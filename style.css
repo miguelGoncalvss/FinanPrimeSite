@@ -1,0 +1,239 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #f7f9fc;
+    color: #1e1e1e;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 60px;
+    background: white;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 45px;
+}
+
+.logo span {
+    color: #0055cc;
+}
+
+/* BOTÃO NAV */
+.cta-nav {
+    color: #0055cc;
+    padding: 8px 16px;
+    border: 1px solid #0055cc;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.cta-nav:hover {
+    background: #0055cc;
+    color: white;
+}
+
+/* HEADER GRADIENTE */
+.header {
+    padding-bottom: 120px;
+    background: linear-gradient(135deg, #2580ff, #0055cc);
+    color: white;
+}
+
+/* HERO SECTION */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.hero p {
+    margin: 20px auto;
+    max-width: 600px;
+    font-size: 18px;
+    opacity: .9;
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-primary {
+    display: inline-block;
+    background: #0055cc;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #003d99;
+}
+
+/* HERO IMAGE MENOR */
+.hero-img {
+    width: 45%;
+    max-width: 600px;
+    border-radius: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* SCREENSHOTS SECTION */
+.screenshots {
+    text-align: center;
+    padding: 80px 40px;
+}
+
+.screenshot-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+/* CARD DAS IMAGENS */
+.shot-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.shot-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.shot-card h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.shot-card p {
+    color: #555;
+    font-size: 14px;
+}
+
+/* FEATURES */
+.features {
+    padding: 80px 60px;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* SEGURANÇA */
+.seguranca {
+    text-align: center;
+    padding: 70px 40px;
+    background: #e6f0ff;
+}
+
+/* CTA FINAL */
+.cta-final {
+    text-align: center;
+    padding: 80px 40px;
+}
+
+footer {
+    text-align: center;
+    background: #2e2e2e;
+    color: white;
+    padding: 35px;
+}
+
+footer a {
+    color: #82baff;
+    text-decoration: none;
+}
+
+
+/* Melhora a rolagem da página */
+html {
+    scroll-behavior: smooth;
+}
+
+/* RESPONSIVIDADE (MOBILE) */
+@media (max-width: 768px) {
+    /* Ajusta o Menu no celular */
+    .navbar {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .header {
+        padding-bottom: 60px;
+    }
+
+    /* Ajusta o Texto Hero */
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .hero p {
+        font-size: 16px;
+    }
+
+    /* Aumenta a imagem para não ficar minuscula no celular */
+    .hero-img {
+        width: 90%; 
+    }
+
+    /* Ajusta os Grids para 1 coluna no celular */
+    .screenshot-grid, .grid {
+        grid-template-columns: 1fr; /* Uma coluna só */
+        padding: 0 10px;
+    }
+
+    .features, .screenshots, .cta-final, .seguranca {
+        padding: 60px 20px;
+    }
+}
