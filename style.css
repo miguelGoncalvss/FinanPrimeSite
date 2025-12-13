@@ -304,3 +304,158 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* --- CSS DA NOVA NAVBAR (CARD NAV) --- */
+
+.card-nav-container {
+    position: fixed; /* Fica fixo no topo ao rolar */
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 800px;
+    z-index: 9999;
+}
+
+.card-nav {
+    display: block;
+    height: 60px; /* Altura inicial fechada */
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-nav-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    z-index: 2;
+}
+
+/* Menu Hamburguer */
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: #333;
+    transition: 0.3s;
+}
+
+/* Animação do Hamburguer quando aberto */
+.hamburger-menu.open .hamburger-line:first-child {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger-menu.open .hamburger-line:last-child {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    /* Centraliza absolutamente */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Botão "Get Started" pequeno na nav */
+.card-nav-cta-button {
+    background-color: #111;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.card-nav-cta-button:hover {
+    background-color: #333;
+}
+
+/* Área do Conteúdo (Cards) */
+.card-nav-content {
+    position: absolute;
+    top: 70px;
+    left: 0; right: 0; bottom: 0;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    opacity: 0; /* Começa invisível */
+    visibility: hidden;
+}
+
+.nav-card {
+    flex: 1;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+    transition: transform 0.3s;
+}
+
+.nav-card:hover {
+    transform: scale(0.98);
+}
+
+.nav-card-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.nav-card-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-card-link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-card-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+    .card-nav-content {
+        flex-direction: column;
+        overflow-y: auto; /* Permite rolar se a tela for pequena */
+    }
+    
+    .nav-card {
+        min-height: 120px;
+    }
+    
+    .card-nav-cta-button {
+        display: none; /* Esconde o botão preto no mobile pra não apertar */
+    }
+}

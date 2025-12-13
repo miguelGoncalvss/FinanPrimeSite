@@ -6,36 +6,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>FinanPrime v1.4 – Inteligência Financeira Offline</title>
-    <meta name="description" content="O primeiro gerenciador financeiro Desktop com Inteligência Artificial Offline. Previsão de gastos, Score de Saúde e Criptografia Zero-Knowledge.">
+    <meta name="description" content="O primeiro gerenciador financeiro Desktop com Inteligência Artificial Offline.">
 
     <meta property="og:title" content="FinanPrime – Finanças com Inteligência">
-    <meta property="og:description" content="Pare de olhar para o passado. Use IA para prever seus gastos futuros. 100% Offline e Seguro.">
+    <meta property="og:description" content="Pare de olhar para o passado. Use IA para prever seus gastos futuros.">
     <meta property="og:image" content="assets/dashboard.png">
     <meta property="og:url" content="https://finan-prime-site.vercel.app/">
 
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="assets/logo.png">
+
+    <style>
+        /* CSS DA NAVBAR (Mantido igual) */
+        .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
+        .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
+        .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
+        .hamburger-menu { display: flex; flex-direction: column; justify-content: center; gap: 6px; cursor: pointer; width: 40px; height: 40px; z-index: 10; }
+        .hamburger-line { width: 24px; height: 2px; background-color: #333; transition: 0.3s ease; transform-origin: center; }
+        .hamburger-menu.open .hamburger-line:first-child { transform: translateY(8px) rotate(45deg); }
+        .hamburger-menu.open .hamburger-line:last-child { transform: translateY(-8px) rotate(-45deg); }
+        .logo-container { display: flex; align-items: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #0055cc; font-size: 1.2rem; }
+        .logo-container img { width: 28px; margin-right: 8px; }
+        .card-nav-cta-button { background-color: #111; color: white; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
+        .card-nav-cta-button:hover { background-color: #333; }
+        .card-nav-content { position: absolute; top: 70px; left: 0; right: 0; bottom: 0; padding: 10px; display: flex; gap: 10px; opacity: 0; visibility: hidden; }
+        .nav-card { flex: 1; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; transition: transform 0.3s; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .nav-card:hover { transform: scale(0.98); }
+        .nav-card-label { font-size: 1.2rem; font-weight: bold; opacity: 0.9; }
+        .nav-card-links { display: flex; flex-direction: column; gap: 8px; }
+        .nav-card-link { color: white; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 5px; opacity: 0.8; transition: 0.2s; }
+        .nav-card-link:hover { opacity: 1; transform: translateX(3px); }
+        @media (max-width: 768px) { .card-nav-content { flex-direction: column; overflow-y: auto; padding-bottom: 20px; } .nav-card { min-height: 100px; flex: none; } .card-nav-cta-button { display: none; } }
+        /* Scroll Suave */
+        html { scroll-behavior: smooth; }
+    </style>
 </head>
 
 <body>
 
-<header class="header">
-    <nav class="navbar">
-        <div class="logo">
-            <img src="assets/logo.png" alt="FinanPrime" onerror="this.style.display='none'">
-            <span>FinanPrime</span>
+<div class="card-nav-container">
+    <nav class="card-nav">
+        <div class="card-nav-top">
+            <div class="hamburger-menu" id="hamburger-btn">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+            <div class="logo-container">
+                <img src="assets/logo.png" alt="FinanPrime">
+                <span>FinanPrime</span>
+            </div>
+            <a href="https://wa.me/5519996261910?text=Quero%20testar%20o%20FinanPrime!" target="_blank" class="card-nav-cta-button">
+                Baixar Agora
+            </a>
         </div>
-        <a class="cta-nav" href="https://wa.me/5519996261910?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20FinanPrime%20v1.4!" target="_blank">Contato</a>
-    </nav>
 
+        <div class="card-nav-content">
+            <div class="nav-card" style="background-color: #0055cc;">
+                <div class="nav-card-label">Recursos</div>
+                <div class="nav-card-links">
+                    <a href="#recursos" class="nav-card-link">📊 Dashboard IA</a>
+                    <a href="#recursos" class="nav-card-link">🤖 Consultor Inteligente</a>
+                    <a href="#recursos" class="nav-card-link">🎯 Gestão de Metas</a>
+                </div>
+            </div>
+
+            <div class="nav-card" style="background-color: #1f2d3a;">
+                <div class="nav-card-label">O Projeto</div>
+                <div class="nav-card-links">
+                    <a href="docs.html#privacidade" class="nav-card-link">🔒 Privacidade Zero-Knowledge</a>
+                    <a href="#home" class="nav-card-link">💻 Versão Desktop (Windows)</a>
+                    <a href="docs.html" class="nav-card-link">📄 Documentação</a>
+                </div>
+            </div>
+
+            <div class="nav-card" style="background-color: #2ecc71;">
+                <div class="nav-card-label">Contato</div>
+                <div class="nav-card-links">
+                    <a href="https://wa.me/5519996261910" class="nav-card-link" target="_blank">📞 Falar no WhatsApp</a>
+                    <a href="https://github.com/miguelGoncalvss" class="nav-card-link" target="_blank">🐱 GitHub do Miguel</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<header class="header" id="home" style="padding-top: 100px;"> 
     <div class="hero">
         <span style="background-color: #2ecc71; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; display: inline-block;">NOVA VERSÃO 1.4</span>
 
-        <h1>Finanças controladas por Inteligência Artificial.</h1>
-        <p>Não apenas registre o passado. O <strong>FinanPrime v1.4</strong> usa Machine Learning para prever sua fatura, calcular seu Score de Saúde e alertar riscos — tudo 100% offline no seu PC.</p>
+        <h1>Domine o seu dinheiro com o poder da Inteligência Artificial.</h1>
+        
+        <p>Transforme seu PC em um consultor financeiro pessoal. Segurança blindada, sem mensalidades e com análises preditivas para você nunca mais ficar no vermelho.</p>
 
-        <a class="btn-primary" href="https://wa.me/5519996261910?text=Olá!%20Quero%20testar%20o%20FinanPrime%20com%20IA!" target="_blank">
-            Quero testar o FinanPrime
+        <a class="btn-primary" href="https://wa.me/5519996261910?text=Olá!%20Quero%20dominar%20minhas%20finanças%20com%20o%20FinanPrime!" target="_blank">
+            Quero dominar minhas finanças
         </a>
 
         <div class="video-container" style="margin-top: 40px; display: flex; gap: 20px;">
@@ -54,72 +118,60 @@
     </div>
 </header>
 
-<section class="screenshots">
+<section class="screenshots" id="recursos">
     <h2>Poderoso. Bonito. Inteligente.</h2>
     <p class="sub">Veja como a tecnologia transforma sua organização financeira.</p>
 
     <div class="screenshot-grid">
-
         <div class="shot-card">
             <img src="assets/dashboard.png" alt="Dashboard">
             <h3>🤖 Consultor IA</h3>
             <p>O sistema analisa seus padrões e diz exatamente: "Você está queimando caixa rápido demais" ou "Previsão de R$ 2.000 no cartão".</p>
         </div>
-
         <div class="shot-card">
             <img src="assets/principal.png" alt="Extrato">
             <h3>Extrato & Auto-Repair</h3>
             <p>Se você tem dados antigos, o sistema corrige e atualiza seu banco de dados automaticamente na hora.</p>
         </div>
-
         <div class="shot-card">
             <img src="assets/metas.png" alt="Metas">
             <h3>Score de Saúde</h3>
             <p>Uma barra de progresso visual (0 a 100) mostra se você está ganhando o jogo do dinheiro no mês.</p>
         </div>
-
     </div>
 </section>
 
 <section class="features">
     <h2>Funcionalidades Premium (v1.4)</h2>
-
     <div class="grid">
         <div class="card">
             <h3>🔮 Previsão de Gastos</h3>
             <p>Algoritmos de Machine Learning projetam quanto você vai gastar no fim do mês baseado no seu ritmo atual.</p>
         </div>
-
         <div class="card">
             <h3>📄 Exportação Flexível</h3>
             <p>Gere relatórios em Excel filtrados: somente mês atual, últimos 3 meses ou histórico completo.</p>
         </div>
-
         <div class="card">
             <h3>💸 Controle de Parcelas</h3>
             <p>Comprou em 12x? O sistema projeta automaticamente o impacto no seu orçamento futuro.</p>
         </div>
-
         <div class="card">
             <h3>🔥 Análise de Burn Rate</h3>
             <p>Saiba exatamente quanto dinheiro você "queima" por dia e quantos dias seu saldo aguenta.</p>
         </div>
-
         <div class="card">
             <h3>⚡ Automação de Fixos</h3>
             <p>Registre e renove gastos fixos (aluguel, internet) com apenas um clique.</p>
         </div>
-
         <div class="card">
             <h3>🔐 Criptografia Militar</h3>
             <p>Seus dados são protegidos com AES-256 e PBKDF2. Nem nós temos acesso. Privacidade absoluta.</p>
         </div>
-
         <div class="card">
             <h3>🚀 100% Offline</h3>
             <p>A IA roda no seu processador. Seus dados nunca saem da sua máquina para nuvem nenhuma.</p>
         </div>
-
         <div class="card">
             <h3>🩺 Score de Saúde</h3>
             <p>Gamificação financeira. Tente manter sua nota acima de 80/100 evitando gastos impulsivos.</p>
@@ -127,7 +179,7 @@
     </div>
 </section>
 
-<section class="seguranca">
+<section class="seguranca" id="seguranca">
     <h2>Privacidade em Primeiro Lugar</h2>
     <p>
         Diferente de apps online, o FinanPrime é <strong>Zero-Knowledge</strong>. 
@@ -152,22 +204,18 @@
 
 <section class="faq">
     <h2>Perguntas Frequentes</h2>
-
     <div class="faq-item">
         <h3>Tenho a versão antiga, perco meus dados?</h3>
         <p>Não! A versão 1.4 possui tecnologia "Auto-Repair". Basta abrir o novo app e ele converte seu banco de dados antigo automaticamente, mantendo todo seu histórico.</p>
     </div>
-
     <div class="faq-item">
         <h3>A IA precisa de internet?</h3>
         <p>Não. Utilizamos bibliotecas de Data Science (Scikit-Learn) que rodam localmente no seu computador. Privacidade total.</p>
     </div>
-
     <div class="faq-item">
         <h3>O FinanPrime funciona em qualquer Windows?</h3>
         <p>Sim! Ele funciona nativamente e otimizado no Windows 10 ou 11.</p>
     </div>
-
     <div class="faq-item">
         <h3>Como recebo o aplicativo?</h3>
         <p>Após o pagamento, você recebe o arquivo instalador seguro e sua Chave de Licença Única diretamente pelo WhatsApp.</p>
@@ -187,6 +235,63 @@
     <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2025 FinanPrime</p>
     <a href="https://github.com/miguelGoncalvss" target="_blank" style="color: #82baff; text-decoration: none;">GitHub</a>
 </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const nav = document.querySelector('.card-nav');
+        const hamburger = document.getElementById('hamburger-btn');
+        const content = document.querySelector('.card-nav-content');
+        const cards = document.querySelectorAll('.nav-card');
+        
+        let isOpen = false;
+        
+        gsap.set(cards, { y: 50, opacity: 0 });
+        
+        function calculateHeight() {
+            if (window.innerWidth <= 768) {
+                return 60 + (cards.length * 130) + 40; 
+            }
+            return 280; 
+        }
+
+        const tl = gsap.timeline({ paused: true, onReverseComplete: () => {
+            content.style.visibility = 'hidden';
+        }});
+
+        tl.to(nav, {
+            height: calculateHeight,
+            duration: 0.5,
+            ease: "power3.out"
+        })
+        .to(content, { opacity: 1, visibility: 'visible', duration: 0.2 }, "-=0.4")
+        .to(cards, { 
+            y: 0, 
+            opacity: 1, 
+            duration: 0.5, 
+            stagger: 0.1, 
+            ease: "power2.out" 
+        }, "-=0.3");
+
+        hamburger.addEventListener('click', () => {
+            isOpen = !isOpen;
+            if (isOpen) {
+                hamburger.classList.add('open');
+                tl.play();
+            } else {
+                hamburger.classList.remove('open');
+                tl.reverse();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if(isOpen) {
+                gsap.to(nav, { height: calculateHeight(), duration: 0.2 });
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
