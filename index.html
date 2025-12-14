@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FinanPrime v1.4 – Inteligência Financeira Offline</title>
-    <meta name="description" content="O primeiro gerenciador financeiro Desktop com Inteligência Artificial Offline.">
+    <title>FinanPrime v2.1 – Gestão Híbrida (Pessoal e MEI)</title>
+    <meta name="description" content="O primeiro gerenciador financeiro Desktop com Inteligência Artificial Offline. Agora com modo Empresarial.">
 
-    <meta property="og:title" content="FinanPrime – Finanças com Inteligência">
-    <meta property="og:description" content="Pare de olhar para o passado. Use IA para prever seus gastos futuros.">
+    <meta property="og:title" content="FinanPrime v2.1 – Finanças Pessoais e PJ">
+    <meta property="og:description" content="Separe as contas de casa das da empresa. Calcule preços, margens e preveja gastos com IA.">
     <meta property="og:image" content="assets/dashboard.png">
     <meta property="og:url" content="https://finan-prime-site.vercel.app/">
 
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="assets/logo.png">
 
     <style>
-        /* CSS DA NAVBAR (Mantido igual) */
+        /* CSS DA NAVBAR (Mantido) */
         .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
         .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
         .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
@@ -55,14 +55,14 @@
                 <img src="assets/logo.png" alt="FinanPrime">
                 <span>FinanPrime</span>
             </div>
-            <a href="https://wa.me/5519996261910?text=Quero%20testar%20o%20FinanPrime!" target="_blank" class="card-nav-cta-button">
-                Baixar Agora
+            <a href="https://wa.me/5519996261910?text=Quero%20testar%20o%20FinanPrime%20v2.1!" target="_blank" class="card-nav-cta-button">
+                Baixar v2.1
             </a>
         </div>
 
         <div class="card-nav-content">
             <div class="nav-card" style="background-color: #0055cc;">
-                <div class="nav-card-label">Recursos</div>
+                <div class="nav-card-label">Pessoal</div>
                 <div class="nav-card-links">
                     <a href="#recursos" class="nav-card-link">📊 Dashboard IA</a>
                     <a href="#recursos" class="nav-card-link">🤖 Consultor Inteligente</a>
@@ -70,18 +70,19 @@
                 </div>
             </div>
 
-            <div class="nav-card" style="background-color: #1f2d3a;">
-                <div class="nav-card-label">O Projeto</div>
+            <div class="nav-card" style="background-color: #8b5cf6;">
+                <div class="nav-card-label">Empresarial <span style="font-size: 0.6em; background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 4px;">NOVO</span></div>
                 <div class="nav-card-links">
-                    <a href="docs.html#privacidade" class="nav-card-link">🔒 Privacidade Zero-Knowledge</a>
-                    <a href="#home" class="nav-card-link">💻 Versão Desktop (Windows)</a>
-                    <a href="docs.html" class="nav-card-link">📄 Documentação</a>
+                    <a href="mei.html" class="nav-card-link">🏷️ Precificação (Guia)</a>
+                    <a href="mei.html#perfis" class="nav-card-link">📈 Separação de Perfis</a>
+                    <a href="mei.html" class="nav-card-link">🏢 Para Autônomos</a>
                 </div>
             </div>
 
             <div class="nav-card" style="background-color: #2ecc71;">
-                <div class="nav-card-label">Contato</div>
+                <div class="nav-card-label">Ajuda & Contato</div>
                 <div class="nav-card-links">
+                    <a href="docs.html" class="nav-card-link">📄 Documentação</a>
                     <a href="https://wa.me/5519996261910" class="nav-card-link" target="_blank">📞 Falar no WhatsApp</a>
                     <a href="https://github.com/miguelGoncalvss" class="nav-card-link" target="_blank">🐱 GitHub do Miguel</a>
                 </div>
@@ -92,31 +93,53 @@
 
 <header class="header" id="home" style="padding-top: 100px;"> 
     <div class="hero">
-        <span style="background-color: #2ecc71; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; display: inline-block;">NOVA VERSÃO 1.4</span>
+        <span style="background-color: #8b5cf6; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; display: inline-block;">NOVA VERSÃO 2.1 • MODO PJ INCLUSO</span>
 
-        <h1>Domine o seu dinheiro com o poder da Inteligência Artificial.</h1>
+        <h1>Domine seu CPF e seu CNPJ no mesmo lugar.</h1>
         
-        <p>Transforme seu PC em um consultor financeiro pessoal. Segurança blindada, sem mensalidades e com análises preditivas para você nunca mais ficar no vermelho.</p>
+        <p>A única plataforma que une o controle financeiro pessoal com ferramentas profissionais para seu negócio. Inteligência Artificial e Precificação em um só sistema 100% Offline.</p>
 
         <a class="btn-primary" href="https://wa.me/5519996261910?text=Olá!%20Quero%20dominar%20minhas%20finanças%20com%20o%20FinanPrime!" target="_blank">
-            Quero dominar minhas finanças
+            Quero testar agora
         </a>
 
         <div class="video-container" style="margin-top: 40px; display: flex; gap: 20px;">
-            
             <div style="flex: 1; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1);">
                 <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
                     <source src="assets/demo.mp4" type="video/mp4">
                 </video>
             </div>
-
             <div style="flex: 1; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1);">
                 <img src="assets/dashboard.png" alt="Dashboard FinanPrime" style="width: 100%; height: 100%; object-fit: cover; display: block;">
             </div>
-
         </div>
     </div>
 </header>
+
+<section class="features" id="pj" style="background-color: #f0f7ff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 60px 20px;">
+    <h2>Novidade: Modo Empresarial 🏢</h2>
+    <p class="sub">Desenvolvido para autônomos, MEIs e pequenos empresários.</p>
+    <div class="grid">
+        <div class="card" style="border-left: 4px solid #8b5cf6;">
+            <h3>🏷️ Precificação Correta</h3>
+            <p>Pare de perder dinheiro. Insira custo, imposto e despesas, e o sistema calcula o preço de venda ideal.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid #8b5cf6;">
+            <h3>📈 Margem Real</h3>
+            <p>Descubra exatamente quanto sobra no seu bolso por produto vendido. Acabe com a ilusão do faturamento.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid #8b5cf6;">
+            <h3>🧱 Multi-Perfil</h3>
+            <p>Escolha: <strong>Perfil Pessoal</strong> ou <strong>Perfil Empresarial</strong>. Seus bancos de dados nunca se misturam.</p>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="mei.html" class="btn-primary" style="background-color: #8b5cf6; padding: 12px 30px;">
+            Ver Detalhes do Módulo PJ →
+        </a>
+    </div>
+</section>
 
 <section class="screenshots" id="recursos">
     <h2>Poderoso. Bonito. Inteligente.</h2>
@@ -142,7 +165,7 @@
 </section>
 
 <section class="features">
-    <h2>Funcionalidades Premium (v1.4)</h2>
+    <h2>Funcionalidades Premium (Geral)</h2>
     <div class="grid">
         <div class="card">
             <h3>🔮 Previsão de Gastos</h3>
@@ -188,15 +211,22 @@
 </section>
 
 <section class="preco">
-    <h2>Oferta de Lançamento v1.4</h2>
-    <p>Tenha o poder de uma Fintech no seu PC, sem mensalidades.</p>
+    <h2>Oferta de Lançamento v2.1</h2>
+    <p>Leve o sistema completo (Pessoal + Empresarial) pelo preço antigo.</p>
 
     <div class="preco-card">
-        <h3>Licença Vitalícia Premium</h3>
+        <h3>Licença Vitalícia Híbrida</h3>
         <p class="valor">R$ 29,99</p>
         <p class="detalhe">Pagamento único • Instalação gratuita</p>
 
-        <a class="btn-primary" href="https://wa.me/5519996261910?text=Quero%20adquirir%20a%20Licença%20Vitalícia%20do%20FinanPrime%20v1.4!" target="_blank">
+        <ul style="list-style: none; padding: 0; margin: 20px 0; color: #555; text-align: left;">
+            <li style="margin-bottom: 8px;">✅ Perfil Finanças Pessoais</li>
+            <li style="margin-bottom: 8px;">✅ <strong>Perfil Empresarial (Novo)</strong></li>
+            <li style="margin-bottom: 8px;">✅ Calculadora de Margem</li>
+            <li style="margin-bottom: 8px;">✅ Suporte na instalação</li>
+        </ul>
+
+        <a class="btn-primary" href="https://wa.me/5519996261910?text=Quero%20adquirir%20a%20Licença%20Vitalícia%20do%20FinanPrime%20v2.1!" target="_blank">
             Comprar agora
         </a>
     </div>
@@ -205,30 +235,25 @@
 <section class="faq">
     <h2>Perguntas Frequentes</h2>
     <div class="faq-item">
+        <h3>Como funciona o "Multi-Perfil"?</h3>
+        <p>Ao fazer login, uma tela pergunta: "Pessoal" ou "Empresarial". Cada um abre um banco de dados separado. O dinheiro do aluguel da loja não mistura com o mercado de casa.</p>
+    </div>
+    <div class="faq-item">
         <h3>Tenho a versão antiga, perco meus dados?</h3>
-        <p>Não! A versão 1.4 possui tecnologia "Auto-Repair". Basta abrir o novo app e ele converte seu banco de dados antigo automaticamente, mantendo todo seu histórico.</p>
+        <p>Não! A versão 2.1 possui tecnologia "Auto-Repair". Basta abrir o novo app e ele converte seu banco de dados antigo automaticamente, mantendo todo seu histórico pessoal.</p>
+    </div>
+    <div class="faq-item">
+        <h3>Serve para comércio?</h3>
+        <p>Sim! A nova ferramenta de precificação foi desenhada pensando em donos de mercado, lojas de roupa e autônomos que precisam calcular margem de lucro.</p>
     </div>
     <div class="faq-item">
         <h3>A IA precisa de internet?</h3>
         <p>Não. Utilizamos bibliotecas de Data Science (Scikit-Learn) que rodam localmente no seu computador. Privacidade total.</p>
     </div>
     <div class="faq-item">
-        <h3>O FinanPrime funciona em qualquer Windows?</h3>
-        <p>Sim! Ele funciona nativamente e otimizado no Windows 10 ou 11.</p>
-    </div>
-    <div class="faq-item">
         <h3>Como recebo o aplicativo?</h3>
         <p>Após o pagamento, você recebe o arquivo instalador seguro e sua Chave de Licença Única diretamente pelo WhatsApp.</p>
     </div>
-</section>
-
-<section class="cta-final">
-    <h2>Pare de adivinhar. Comece a prever.</h2>
-    <p>Adquira o FinanPrime Premium e assuma o controle total.</p>
-
-    <a class="btn-primary" href="https://wa.me/5519996261910?text=Olá!%20Quero%20o%20FinanPrime%20Premium!" target="_blank">
-        Quero minha licença!
-    </a>
 </section>
 
 <footer>
