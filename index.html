@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FinanPrime v2.1 – Gestão Híbrida (Pessoal e MEI)</title>
+    <title>FinanPrime v3.2 – Gestão Híbrida (Pessoal e MEI)</title>
     <meta name="description" content="O primeiro gerenciador financeiro Desktop com Inteligência Artificial Offline. Agora com modo Empresarial.">
 
-    <meta property="og:title" content="FinanPrime v2.1 – Finanças Pessoais e PJ">
+    <meta property="og:title" content="FinanPrime v3.2 – Finanças Pessoais e PJ">
     <meta property="og:description" content="Separe as contas de casa das da empresa. Calcule preços, margens e preveja gastos com IA.">
     <meta property="og:image" content="assets/dashboard.png">
     <meta property="og:url" content="https://finan-prime-site.vercel.app/">
@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="assets/logo.png">
 
     <style>
-        /* CSS DA NAVBAR (Mantido) */
+        /* CSS DA NAVBAR */
         .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
         .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
         .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
@@ -30,14 +30,32 @@
         .card-nav-cta-button { background-color: #111; color: white; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
         .card-nav-cta-button:hover { background-color: #333; }
         .card-nav-content { position: absolute; top: 70px; left: 0; right: 0; bottom: 0; padding: 10px; display: flex; gap: 10px; opacity: 0; visibility: hidden; }
-        .nav-card { flex: 1; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; transition: transform 0.3s; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .nav-card { flex: 1; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; transition: transform 0.3s; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; }
         .nav-card:hover { transform: scale(0.98); }
         .nav-card-label { font-size: 1.2rem; font-weight: bold; opacity: 0.9; }
         .nav-card-links { display: flex; flex-direction: column; gap: 8px; }
         .nav-card-link { color: white; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 5px; opacity: 0.8; transition: 0.2s; }
         .nav-card-link:hover { opacity: 1; transform: translateX(3px); }
         @media (max-width: 768px) { .card-nav-content { flex-direction: column; overflow-y: auto; padding-bottom: 20px; } .nav-card { min-height: 100px; flex: none; } .card-nav-cta-button { display: none; } }
-        /* Scroll Suave */
+        
+        /* ANIMAÇÕES RESTAURADAS (INTERATIVIDADE) */
+        .card, .shot-card, .preco-card, .faq-item, .audience-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+        }
+        .card:hover, .shot-card:hover, .preco-card:hover, .faq-item:hover, .audience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        /* AUDIENCE SECTION (NOVO) */
+        .audience-section { background: white; padding: 60px 20px; text-align: center; }
+        .audience-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 1000px; margin: 30px auto 0; }
+        .audience-card { background: #f8fafc; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; flex: 1; min-width: 250px; text-align: left; }
+        .audience-icon { font-size: 2rem; margin-bottom: 15px; display: block; }
+        .audience-title { font-weight: bold; color: #1e293b; margin-bottom: 8px; display: block; font-size: 1.1rem; }
+        .audience-desc { font-size: 0.95rem; color: #64748b; line-height: 1.5; }
+
         html { scroll-behavior: smooth; }
     </style>
 </head>
@@ -55,8 +73,8 @@
                 <img src="assets/logo.png" alt="FinanPrime">
                 <span>FinanPrime</span>
             </div>
-            <a href="https://wa.me/5519996261910?text=Quero%20testar%20o%20FinanPrime%20v2.1!" target="_blank" class="card-nav-cta-button">
-                Baixar v2.1
+            <a href="https://wa.me/5519996261910?text=Quero%20testar%20o%20FinanPrime%20v3.2!" target="_blank" class="card-nav-cta-button">
+                Baixar v3.2
             </a>
         </div>
 
@@ -93,7 +111,7 @@
 
 <header class="header" id="home" style="padding-top: 100px;"> 
     <div class="hero">
-        <span style="background-color: #8b5cf6; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; display: inline-block;">NOVA VERSÃO 2.1 • MODO PJ INCLUSO</span>
+        <span style="background-color: #8b5cf6; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; display: inline-block;">VERSÃO PLATINUM v3.2 • IA BUSINESS</span>
 
         <h1>Domine seu CPF e seu CNPJ no mesmo lugar.</h1>
         
@@ -115,6 +133,27 @@
         </div>
     </div>
 </header>
+
+<section class="audience-section">
+    <h2 style="text-transform: uppercase; color: #64748b; font-size: 0.85rem; font-weight: bold; letter-spacing: 2px;">IDEAL PARA VOCÊ?</h2>
+    <div class="audience-grid">
+        <div class="audience-card">
+            <span class="audience-icon">🧘‍♂️</span>
+            <span class="audience-title">Pessoa Organizada</span>
+            <span class="audience-desc">Para quem quer controlar cartão, metas de viagem e investimentos sem planilhas complexas.</span>
+        </div>
+        <div class="audience-card">
+            <span class="audience-icon">🛠️</span>
+            <span class="audience-title">MEI & Autônomo</span>
+            <span class="audience-desc">Para quem precisa separar o dinheiro de casa do dinheiro do trabalho e profissionalizar a gestão.</span>
+        </div>
+        <div class="audience-card">
+            <span class="audience-icon">🏢</span>
+            <span class="audience-title">Pequeno Empresário</span>
+            <span class="audience-desc">Para quem precisa calcular preço de venda (Markup) e analisar margem de lucro real.</span>
+        </div>
+    </div>
+</section>
 
 <section class="features" id="pj" style="background-color: #f0f7ff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 60px 20px;">
     <h2>Novidade: Modo Empresarial 🏢</h2>
@@ -211,11 +250,11 @@
 </section>
 
 <section class="preco">
-    <h2>Oferta de Lançamento v2.1</h2>
+    <h2>Oferta de Lançamento v3.2</h2>
     <p>Leve o sistema completo (Pessoal + Empresarial) pelo preço antigo.</p>
 
     <div class="preco-card">
-        <h3>Licença Vitalícia Híbrida</h3>
+        <h3>Licença Vitalícia Platinum</h3>
         <p class="valor">R$ 29,99</p>
         <p class="detalhe">Pagamento único • Instalação gratuita</p>
 
@@ -226,7 +265,7 @@
             <li style="margin-bottom: 8px;">✅ Suporte na instalação</li>
         </ul>
 
-        <a class="btn-primary" href="https://wa.me/5519996261910?text=Quero%20adquirir%20a%20Licença%20Vitalícia%20do%20FinanPrime%20v2.1!" target="_blank">
+        <a class="btn-primary" href="https://wa.me/5519996261910?text=Quero%20adquirir%20a%20Licença%20Vitalícia%20do%20FinanPrime%20v3.2!" target="_blank">
             Comprar agora
         </a>
     </div>
@@ -240,7 +279,7 @@
     </div>
     <div class="faq-item">
         <h3>Tenho a versão antiga, perco meus dados?</h3>
-        <p>Não! A versão 2.1 possui tecnologia "Auto-Repair". Basta abrir o novo app e ele converte seu banco de dados antigo automaticamente, mantendo todo seu histórico pessoal.</p>
+        <p>Não! A versão 3.2 possui tecnologia "Auto-Repair". Basta abrir o novo app e ele converte seu banco de dados antigo automaticamente, mantendo todo seu histórico pessoal.</p>
     </div>
     <div class="faq-item">
         <h3>Serve para comércio?</h3>
@@ -258,7 +297,6 @@
 
 <footer>
     <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2025 FinanPrime</p>
-    <a href="https://github.com/miguelGoncalvss" target="_blank" style="color: #82baff; text-decoration: none;">GitHub</a>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

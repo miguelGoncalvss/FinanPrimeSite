@@ -4,17 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentação & Privacidade - FinanPrime</title>
+    <title>Manual do Usuário - FinanPrime v3.2</title>
     
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="assets/logo.png">
 
     <style>
-        body {
-            background-color: #f7f9fc;
-        }
+        body { background-color: #f7f9fc; }
+        
+        /* SCROLL SUAVE (ESSENCIAL PARA O ÍNDICE) */
+        html { scroll-behavior: smooth; }
 
-        /* Reutilizando CSS da Navbar (Card Nav) */
+        /* NAVBAR */
         .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
         .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
         .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
@@ -35,51 +36,51 @@
         .nav-card-link:hover { opacity: 1; transform: translateX(3px); }
         @media (max-width: 768px) { .card-nav-content { flex-direction: column; overflow-y: auto; padding-bottom: 20px; } .nav-card { min-height: 100px; flex: none; } .card-nav-cta-button { display: none; } }
 
-        /* HERO ESPECÍFICO PARA DOCS */
+        /* HERO DOCS */
         .docs-hero {
             background: linear-gradient(135deg, #0055cc, #003d99);
             color: white;
-            padding: 140px 20px 80px; /* Mais padding top por causa da nav */
+            padding: 140px 20px 80px;
             text-align: center;
-            clip-path: ellipse(150% 100% at 50% 0%); /* Curva suave embaixo */
+            clip-path: ellipse(150% 100% at 50% 0%);
         }
-        
         .docs-hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
         .docs-hero p { opacity: 0.8; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .version-badge { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; margin-top: 10px; display: inline-block; font-weight: 600; border: 1px solid rgba(255,255,255,0.3); }
 
-        /* CONTAINER DE CONTEÚDO (SOBREPOSTO AO HERO) */
-        .docs-wrapper {
-            max-width: 900px;
-            margin: -50px auto 60px; /* Sobe para cima do hero */
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        /* CARD DE TEXTO (Visual Limpo) */
-        .doc-content-card {
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-        }
-
-        /* TIPOGRAFIA DO TEXTO */
-        .doc-section { margin-bottom: 50px; scroll-margin-top: 100px; /* Para o scroll parar antes do titulo */ }
-        .doc-section h2 { font-size: 1.8rem; color: #1f2d3a; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .doc-section p { font-size: 1.05rem; color: #555; line-height: 1.8; margin-bottom: 15px; }
-        .doc-section ul, .doc-section ol { padding-left: 25px; margin-bottom: 20px; }
-        .doc-section li { margin-bottom: 10px; color: #444; line-height: 1.6; }
+        .docs-wrapper { max-width: 900px; margin: -50px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
         
-        /* BLOCO DE CÓDIGO BONITO */
-        code { background: #eef2f7; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #0055cc; font-weight: bold; }
-        pre { background: #1e1e1e; color: #f8f8f2; padding: 20px; border-radius: 10px; overflow-x: auto; margin: 20px 0; font-family: monospace; }
-
-        @media (max-width: 768px) {
-            .doc-content-card { padding: 30px 20px; }
-            .docs-hero h1 { font-size: 2rem; }
+        /* CARD PRINCIPAL (ESTÁTICO PARA LEITURA) */
+        .doc-content-card { 
+            background: white; 
+            padding: 50px; 
+            border-radius: 20px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05); 
+            margin-bottom: 40px; 
+            /* Removi o transition e o hover transform para não pular */
         }
+
+        /* ÍNDICE RÁPIDO */
+        .quick-index { background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 40px; border: 1px solid #e2e8f0; }
+        .quick-index h4 { margin: 0 0 15px 0; color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .quick-index ul { display: flex; gap: 15px; list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
+        .quick-index a { text-decoration: none; color: #0055cc; font-weight: bold; font-size: 0.9rem; padding: 8px 12px; border-radius: 6px; background: white; border: 1px solid #e2e8f0; transition: all 0.2s; }
+        .quick-index a:hover { background: #0055cc; color: white; transform: translateY(-2px); border-color: #0055cc; }
+
+        /* TIPOGRAFIA */
+        .doc-section { margin-bottom: 50px; scroll-margin-top: 120px; /* Espaço extra para o título não ficar escondido pela navbar */ }
+        .doc-section h2 { font-size: 1.8rem; color: #1f2d3a; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+        .doc-section h3 { font-size: 1.3rem; color: #334155; margin-top: 25px; margin-bottom: 10px; font-weight: 700; }
+        .doc-section p { font-size: 1.05rem; color: #475569; line-height: 1.8; margin-bottom: 15px; text-align: justify; }
+        .doc-section ul, .doc-section ol { padding-left: 25px; margin-bottom: 20px; }
+        .doc-section li { margin-bottom: 10px; color: #475569; line-height: 1.6; }
+        
+        /* TAGS E DESTAQUES */
+        code { background: #eef2f7; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #0055cc; font-weight: bold; font-size: 0.9em; }
+        .badge-pj { background: #f3e8ff; color: #7c3aed; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 1px solid #d8b4fe; vertical-align: middle; }
+        .badge-pf { background: #dbeafe; color: #2563eb; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 1px solid #93c5fd; vertical-align: middle; }
+
+        @media (max-width: 768px) { .doc-content-card { padding: 30px 20px; } .quick-index ul { flex-direction: column; gap: 10px; } }
     </style>
 </head>
 
@@ -107,9 +108,9 @@
                 <div class="nav-card" style="background-color: #0055cc;">
                     <div class="nav-card-label">Navegar</div>
                     <div class="nav-card-links">
-                        <a href="#privacidade" class="nav-card-link">🔒 Privacidade</a>
-                        <a href="#instalacao" class="nav-card-link">💻 Instalação</a>
-                        <a href="#ia" class="nav-card-link">🤖 Sobre a IA</a>
+                        <a href="#primeiros-passos" class="nav-card-link">🚀 Primeiros Passos</a>
+                        <a href="#funcionalidades" class="nav-card-link">🛠️ Funcionalidades</a>
+                        <a href="#ia-inteligente" class="nav-card-link">🔮 IA & Coach</a>
                     </div>
                 </div>
 
@@ -134,56 +135,116 @@
     </div>
 
     <header class="docs-hero">
-        <h1>Central de Ajuda</h1>
-        <p>Tudo o que você precisa saber sobre segurança, instalação e recursos do FinanPrime v1.4.</p>
+        <h1>Manual do Usuário</h1>
+        <p>Guia completo para dominar todas as ferramentas do FinanPrime.</p>
+        <span class="version-badge">Versão Atual: v3.2 Platinum</span>
     </header>
 
     <div class="docs-wrapper">
         <div class="doc-content-card">
             
-            <div class="doc-section" id="privacidade">
-                <h2>🔒 Privacidade Zero-Knowledge</h2>
-                <p>O FinanPrime foi desenvolvido com uma filosofia rigorosa de privacidade. Sabemos que dados financeiros são sensíveis, por isso adotamos a arquitetura <strong>Zero-Knowledge</strong>.</p>
-                <p><strong>O que isso significa?</strong></p>
+            <div class="quick-index">
+                <h4>Índice do Manual</h4>
                 <ul>
-                    <li><strong>Dados Locais:</strong> Seu banco de dados (<code>gastos_mensais.db</code>) é criado e mantido exclusivamente no seu disco rígido. Nada é enviado para a nuvem.</li>
-                    <li><strong>Criptografia Forte:</strong> Utilizamos algoritmos <strong>AES-256</strong> (o mesmo usado por bancos) para proteger as descrições e valores dos seus lançamentos.</li>
-                    <li><strong>Sem Acesso Externo:</strong> Nem nós, desenvolvedores, temos a chave para ler seus dados. Sua senha mestra é a única chave.</li>
+                    <li><a href="#instalacao">💾 Instalação</a></li>
+                    <li><a href="#primeiros-passos">🚀 Primeiros Passos</a></li>
+                    <li><a href="#funcionalidades">🛠️ Recursos Principais</a></li>
+                    <li><a href="#empresarial">🏢 Modo PJ (Business)</a></li>
+                    <li><a href="#ia-inteligente">🔮 Inteligência Artificial</a></li>
+                    <li><a href="#seguranca">🔒 Segurança</a></li>
                 </ul>
-                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 4px; color: #856404;">
-                    <strong>Importante:</strong> Se você perder sua Senha Mestra, os dados serão irrecuperáveis. Não há botão de "Esqueci minha senha" por segurança.
-                </div>
             </div>
 
             <div class="doc-section" id="instalacao">
-                <h2>💻 Guia de Instalação (Windows)</h2>
-                <p>O software foi desenhado para ser portátil e não exige configurações complexas.</p>
+                <h2>1. Instalação e Ativação</h2>
+                <p>O FinanPrime é um software portátil para Windows, o que significa que ele não "suja" seu registro e pode rodar direto de um Pen Drive.</p>
                 <ol>
-                    <li>Após a compra, você receberá um link para baixar o arquivo <code>FinanPrime_v1.4.zip</code>.</li>
-                    <li>Extraia o conteúdo da pasta (clique direito -> Extrair Tudo).</li>
-                    <li>Mova a pasta para um local seguro (ex: <code>Documentos/FinanPrime</code>).</li>
-                    <li>Execute o arquivo <code>FinanPrime.exe</code>.</li>
-                    <li>Na primeira execução, o sistema pedirá para criar um "Cofre" (Senha Mestra).</li>
+                    <li>Baixe o arquivo <code>FinanPrime_v3.2_Platinum.zip</code> enviado no seu WhatsApp.</li>
+                    <li><strong>Importante:</strong> Clique com o botão direito e escolha "Extrair Tudo". Não execute de dentro do ZIP.</li>
+                    <li>Abra a pasta extraída e execute <code>FinanPrime.exe</code>.</li>
+                    <li>Na primeira tela, insira sua <strong>Chave de Licença</strong> (ex: <code>FP-SEUNOME-HASH</code>).</li>
+                    <li>Crie sua <strong>Senha Mestra</strong>. Essa senha criptografa seus dados e não pode ser recuperada por nós.</li>
                 </ol>
             </div>
 
-            <div class="doc-section" id="ia">
-                <h2>🤖 Inteligência Artificial Offline</h2>
-                <p>Diferente de IAs como o ChatGPT, nossa inteligência roda <strong>dentro do seu processador</strong>, sem precisar de internet.</p>
-                <p>Utilizamos bibliotecas de Data Science (<em>Scikit-Learn e Pandas</em>) para:</p>
+            <div class="doc-section" id="primeiros-passos">
+                <h2>2. Primeiros Passos: Multi-Perfil</h2>
+                <p>Ao abrir o sistema, você verá a tela de seleção de perfil. Isso garante que seus gastos pessoais nunca se misturem com os da empresa.</p>
                 <ul>
-                    <li>Analisar a tendência de gastos dos últimos 90 dias.</li>
-                    <li>Calcular seu <strong>Burn Rate</strong> (velocidade de queima de caixa).</li>
-                    <li>Identificar categorias "vilãs" que subiram muito de preço repentinamente.</li>
+                    <li><span class="badge-pf">Pessoal</span> Cria o arquivo <code>pessoal.db</code>. Ideal para casa, lazer, viagens.</li>
+                    <li><span class="badge-pj">Empresarial</span> Cria o arquivo <code>empresarial.db</code>. Vem com categorias como Fornecedores, Impostos e Marketing.</li>
                 </ul>
+                <p><strong>Barra Lateral (Sidebar):</strong> É o centro de comando. Ali você define seu mês de trabalho (ex: 12/2025), define sua Renda/Faturamento base e lança novos gastos.</p>
+            </div>
+
+            <div class="doc-section" id="funcionalidades">
+                <h2>3. Funcionalidades Principais</h2>
+                
+                <h3>Lançamentos Inteligentes</h3>
+                <p>No menu lateral, o botão "Adicionar Lançamento" se adapta ao que você precisa:</p>
+                <ul>
+                    <li><strong>Parcelado:</strong> Ative a chave "Parc." para compras no cartão. O sistema projeta automaticamente as parcelas para os meses futuros (ex: "Compra 1/12").</li>
+                    <li><strong>Aporte em Metas:</strong> Ative a chave "Meta" para jogar dinheiro dentro de um objetivo (ex: Reserva de Emergência) em vez de gastar.</li>
+                </ul>
+
+                <h3>Gestão de Fixos</h3>
+                <p>Na aba "Fixos", você cadastra contas que se repetem todo mês (Aluguel, Internet). Com um clique no botão "Lançar no Mês", o sistema gera todos os lançamentos para o mês atual, poupando digitação.</p>
+
+                <h3>Metas e Objetivos</h3>
+                <p>Defina quanto quer juntar e acompanhe a barra de progresso. O sistema cruza o valor atual com o valor alvo e a IA pode sugerir aportes se sobrar dinheiro.</p>
+            </div>
+
+            <div class="doc-section" id="empresarial">
+                <h2>4. Modo Empresarial (PJ) <span class="badge-pj">Novo</span></h2>
+                <p>Recursos exclusivos ativados quando você entra no perfil empresarial:</p>
+                
+                <h3>Calculadora de Precificação 🏷️</h3>
+                <p>Não chute seu preço! Use a aba "Precificação" para calcular o Markup reverso:</p>
+                <ul>
+                    <li>Insira o <strong>Custo</strong> do produto/serviço.</li>
+                    <li>Insira os <strong>Impostos</strong> (%) e <strong>Custo Fixo</strong> (%).</li>
+                    <li>Defina sua <strong>Margem de Lucro</strong> desejada (%).</li>
+                </ul>
+                <p>O sistema calcula o <strong>Preço de Venda Ideal</strong> e mostra quanto dinheiro (R$) realmente sobra no bolso.</p>
+
+                <h3>Análise de Margem</h3>
+                <p>Salve seus produtos calculados. A IA irá monitorar se sua margem média está saudável (>20%) ou se você está pagando para trabalhar.</p>
+            </div>
+
+            <div class="doc-section" id="ia-inteligente">
+                <h2>5. O "Coach" Financeiro (IA) 🔮</h2>
+                <p>O coração do FinanPrime v3.2 é o módulo <code>FinanceAI</code>. Ele analisa seus dados em tempo real:</p>
+                
+                <h3>Score de Saúde (0 a 100)</h3>
+                <ul>
+                    <li><strong>No Pessoal:</strong> Avalia Liquidez (sobra dinheiro?), Uso de Crédito (está endividado?) e Consistência.</li>
+                    <li><strong>No Empresarial:</strong> Avalia Margem Operacional, Peso da Folha/Impostos e Capital de Giro.</li>
+                </ul>
+
+                <h3>Detector de Vilões</h3>
+                <p>A IA compara seu gasto atual com a média histórica dos últimos 90 dias. Se a conta de luz ou o lazer explodirem, o card de alerta avisará: <em>"⚠️ Lazer subiu 45% acima do padrão."</em></p>
+
+                <h3>Burn Rate & Runway</h3>
+                <p>Métricas de startup aplicadas à sua vida:
+                <br><strong>Burn Rate:</strong> Quanto dinheiro você queima por dia.
+                <br><strong>Runway:</strong> Quantos dias você sobrevive se sua renda parasse hoje.</p>
+            </div>
+
+            <div class="doc-section" id="seguranca">
+                <h2>6. Privacidade & Segurança</h2>
+                <p>Adotamos a filosofia <strong>Zero-Knowledge</strong>. Seus dados são criptografados com <strong>AES-256</strong> usando sua Senha Mestra como chave.</p>
+                <p>O arquivo de banco de dados (<code>.db</code>) é ilegível sem a senha. Como o sistema é 100% offline, seus dados financeiros nunca saem do seu computador.</p>
+                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 4px; color: #856404;">
+                    <strong>Atenção:</strong> Não há recuperação de senha. Se esquecer a Senha Mestra, os dados serão perdidos para sempre. Anote-a em local seguro.
+                </div>
             </div>
 
             <div class="doc-section">
-                <h2>📞 Ainda precisa de ajuda?</h2>
-                <p>Estamos disponíveis para resolver qualquer problema técnico na instalação ou uso do software.</p>
+                <h2>📞 Suporte Técnico</h2>
+                <p>Encontrou um bug ou precisa de ajuda com a instalação? Fale diretamente com o desenvolvedor.</p>
                 <br>
-                <a href="https://wa.me/5519996261910" class="btn-primary" style="background: #2ecc71; color: white; padding: 12px 30px; text-decoration: none; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);">
-                    Chamar Suporte no WhatsApp
+                <a href="https://wa.me/5519996261910" class="btn-primary" style="background: #2ecc71; color: white; padding: 12px 30px; text-decoration: none; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4); display: inline-block; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    Chamar no WhatsApp
                 </a>
             </div>
 
@@ -192,7 +253,6 @@
 
     <footer>
         <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2025 FinanPrime</p>
-        <a href="https://github.com/miguelGoncalvss" target="_blank" style="color: #82baff; text-decoration: none;">GitHub</a>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -202,32 +262,15 @@
             const hamburger = document.getElementById('hamburger-btn');
             const content = document.querySelector('.card-nav-content');
             const cards = document.querySelectorAll('.nav-card');
-            
             let isOpen = false;
             gsap.set(cards, { y: 50, opacity: 0 });
-            
-            function calculateHeight() {
-                if (window.innerWidth <= 768) return 60 + (cards.length * 130) + 40; 
-                return 280; 
-            }
-
-            const tl = gsap.timeline({ paused: true, onReverseComplete: () => {
-                content.style.visibility = 'hidden';
-            }});
-
+            function calculateHeight() { return window.innerWidth <= 768 ? 60 + (cards.length * 130) + 40 : 280; }
+            const tl = gsap.timeline({ paused: true, onReverseComplete: () => { content.style.visibility = 'hidden'; }});
             tl.to(nav, { height: calculateHeight, duration: 0.5, ease: "power3.out" })
               .to(content, { opacity: 1, visibility: 'visible', duration: 0.2 }, "-=0.4")
               .to(cards, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" }, "-=0.3");
-
-            hamburger.addEventListener('click', () => {
-                isOpen = !isOpen;
-                if (isOpen) { hamburger.classList.add('open'); tl.play(); } 
-                else { hamburger.classList.remove('open'); tl.reverse(); }
-            });
-
-            window.addEventListener('resize', () => {
-                if(isOpen) gsap.to(nav, { height: calculateHeight(), duration: 0.2 });
-            });
+            hamburger.addEventListener('click', () => { isOpen = !isOpen; if(isOpen) { hamburger.classList.add('open'); tl.play(); } else { hamburger.classList.remove('open'); tl.reverse(); } });
+            window.addEventListener('resize', () => { if(isOpen) gsap.to(nav, { height: calculateHeight(), duration: 0.2 }); });
         });
     </script>
 

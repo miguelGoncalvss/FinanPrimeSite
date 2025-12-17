@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinanPrime PJ - Gestão para MEI e Autônomos</title>
+    <title>FinanPrime PJ - Profissionalize seu Negócio</title>
     
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="assets/logo.png">
 
     <style>
-        body { background-color: #f7f9fc; }
+        body { background-color: #f8fafc; color: #334155; font-family: 'Segoe UI', sans-serif; }
 
-        /* Reutilizando CSS da Navbar (Card Nav) */
+        /* --- NAVBAR --- */
         .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
         .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
         .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
@@ -33,54 +33,127 @@
         .nav-card-link:hover { opacity: 1; transform: translateX(3px); }
         @media (max-width: 768px) { .card-nav-content { flex-direction: column; overflow-y: auto; padding-bottom: 20px; } .nav-card { min-height: 100px; flex: none; } .card-nav-cta-button { display: none; } }
 
-        /* HERO ESPECÍFICO PJ (Roxo) */
-        .docs-hero {
-            background: linear-gradient(135deg, #6d28d9, #4c1d95); /* Roxo PJ */
+        /* --- HERO SECTION --- */
+        .pj-hero {
+            background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
             color: white;
-            padding: 140px 20px 80px;
+            padding: 180px 20px 140px; 
             text-align: center;
-            clip-path: ellipse(150% 100% at 50% 0%);
-        }
-        
-        .docs-hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .docs-hero p { opacity: 0.8; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-
-        /* CONTAINER DE CONTEÚDO */
-        .docs-wrapper {
-            max-width: 900px;
-            margin: -50px auto 60px;
-            padding: 0 20px;
+            border-bottom-left-radius: 50% 8%; 
+            border-bottom-right-radius: 50% 8%;
             position: relative;
-            z-index: 10;
+            z-index: 1;
         }
+        .pj-tag {
+            background: #fbbf24; color: #451a03; 
+            padding: 6px 16px; border-radius: 50px; 
+            font-weight: 800; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;
+            margin-bottom: 25px; display: inline-block;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .pj-hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
+        .pj-hero p { font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
 
-        .doc-content-card {
-            background: white;
-            padding: 50px;
+        /* --- CONTAINER GERAL --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* --- CARDS FLUTUANTES --- */
+        .steps-wrapper { margin-top: -80px; position: relative; z-index: 10; padding-bottom: 80px; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .step-card { 
+            background: white; padding: 40px 30px; border-radius: 24px; 
+            box-shadow: 0 20px 50px rgba(76, 29, 149, 0.15); 
+            transition: transform 0.3s ease; text-align: center; border: 1px solid rgba(255,255,255,0.8);
+        }
+        .step-card:hover { transform: translateY(-10px); }
+        .step-number { 
+            font-size: 2rem; font-weight: 900; color: #8b5cf6; 
+            background: #f5f3ff; width: 60px; height: 60px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; 
+        }
+        .step-title { font-size: 1.4rem; color: #1e293b; font-weight: 700; margin-bottom: 10px; display: block; }
+        .step-text { color: #64748b; font-size: 1rem; line-height: 1.5; }
+
+        /* --- SEÇÕES DE CONTEÚDO --- */
+        .section-white { background: white; padding: 100px 0; }
+        .section-light { background: #f8fafc; padding: 100px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        
+        h2.section-title { font-size: 3rem; color: #4c1d95; margin-bottom: 30px; font-weight: 800; letter-spacing: -1px; text-align: center; }
+        p.section-desc { font-size: 1.25rem; color: #475569; line-height: 1.6; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; font-weight: 400; }
+
+        /* --- DESTAQUE ROXO DA IMAGEM --- */
+        .purple-glow-container {
+            position: relative;
             border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
+            box-shadow: 0 40px 90px rgba(124, 58, 237, 0.3);
+            margin: 20px auto 80px;
+            max-width: 900px;
+            transition: transform 0.3s;
+            overflow: hidden;
+            border: 1px solid #e9d5ff;
+        }
+        .purple-glow-container:hover { transform: scale(1.02); }
+        .purple-glow-container img { display: block; width: 100%; }
+
+        /* --- GRID DE RECURSOS (FIXADA PARA SER TUDO ROXO) --- */
+        .features-grid-pj {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        /* CORREÇÃO AQUI: Estilo unificado para todos os cards */
+        .feature-box { 
+            background: #fff; 
+            padding: 30px; 
+            border-radius: 16px; 
+            border: 2px solid #e9d5ff; /* Borda Roxa Padrão */
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.05); /* Sombra levemente roxa */
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .feature-box:hover { 
+            transform: translateY(-5px); 
+            border-color: #8b5cf6; /* Borda mais forte no hover */
+            background: #fdfaff; /* Fundo levemente roxo no hover */
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+        }
+        .feature-num { 
+            color: #8b5cf6; /* Número Roxo */
+            font-weight: 900; font-size: 1.5rem; display: block; margin-bottom: 10px; opacity: 0.8; 
+        }
+        .feature-box strong { color: #4c1d95; font-size: 1.2rem; display: block; margin-bottom: 8px; }
+        .feature-box span { color: #64748b; font-size: 1rem; line-height: 1.5; display: block; }
+
+        /* Card de Destaque (O Último) */
+        .feature-highlight {
+            background: #fdf4ff; /* Já começa com fundo leve */
+            border-color: #d8b4fe;
         }
 
-        .doc-section { margin-bottom: 50px; scroll-margin-top: 100px; }
-        .doc-section h2 { font-size: 1.8rem; color: #4c1d95; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
-        .doc-section h3 { font-size: 1.3rem; color: #333; margin-top: 30px; margin-bottom: 10px; }
-        .doc-section p { font-size: 1.05rem; color: #555; line-height: 1.8; margin-bottom: 15px; }
-        .doc-section ul { padding-left: 25px; margin-bottom: 20px; }
-        .doc-section li { margin-bottom: 10px; color: #444; line-height: 1.6; }
-
-        /* Estilo para imagem dentro do docs */
-        .doc-image {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin: 20px 0;
-            border: 1px solid #eee;
+        /* --- BOTÃO DE AÇÃO --- */
+        .btn-action {
+            background-color: #7c3aed; color: white; 
+            padding: 18px 45px; border-radius: 50px; 
+            font-weight: 800; text-decoration: none; font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+            display: inline-block; transition: all 0.3s;
         }
+        .btn-action:hover { background-color: #6d28d9; transform: translateY(-3px); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.5); }
+
+        .btn-outline {
+            background: transparent; color: #7c3aed; border: 3px solid #7c3aed;
+            padding: 15px 40px; border-radius: 50px; font-weight: 800; text-decoration: none;
+            display: inline-block; transition: all 0.3s; font-size: 1.1rem;
+        }
+        .btn-outline:hover { background: #7c3aed; color: white; }
 
         @media (max-width: 768px) {
-            .doc-content-card { padding: 30px 20px; }
-            .docs-hero h1 { font-size: 2rem; }
+            .pj-hero h1 { font-size: 2.2rem; }
+            .section-white, .section-light { padding: 60px 0; }
+            .features-grid-pj { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -111,7 +184,7 @@
                     <div class="nav-card-links">
                         <a href="index.html" class="nav-card-link">🏠 Página Inicial</a>
                         <a href="#precificacao" class="nav-card-link">🏷️ Precificação</a>
-                        <a href="#perfis" class="nav-card-link">🏢 Multi-Perfil</a>
+                        <a href="#ia-pj" class="nav-card-link">🤖 IA Empresarial</a>
                     </div>
                 </div>
 
@@ -119,7 +192,7 @@
                     <div class="nav-card-label">Comprar</div>
                     <div class="nav-card-links">
                         <a href="https://wa.me/5519996261910?text=Quero%20o%20FinanPrime%20PJ!" class="nav-card-link">💰 Adquirir Licença</a>
-                        <a href="docs.html" class="nav-card-link">📄 Documentação Técnica</a>
+                        <a href="docs.html" class="nav-card-link">📄 Manual Técnico</a>
                     </div>
                 </div>
 
@@ -133,61 +206,110 @@
         </nav>
     </div>
 
-    <header class="docs-hero">
-        <h1>FinanPrime para Empresas</h1>
-        <p>A solução definitiva para MEI e Pequenos Negócios. Pare de misturar o dinheiro da empresa com o de casa.</p>
+    <header class="pj-hero">
+        <span class="pj-tag">Módulo Exclusivo v3.2</span>
+        <h1>Deixe de ser "Eupresa".<br>Vire uma Empresa de Verdade.</h1>
+        <p>A ferramenta definitiva para MEIs e Autônomos separarem o CPF do CNPJ e descobrirem seu lucro real.</p>
     </header>
 
-    <div class="docs-wrapper">
-        <div class="doc-content-card">
-            
-            <div class="doc-section" id="perfis">
-                <h2>1. O Problema da Mistura (PF x PJ)</h2>
-                <p>O maior erro do pequeno empreendedor é usar o caixa da empresa para pagar a conta de luz de casa. Isso mata o seu fluxo de caixa.</p>
-                <p>O <strong>FinanPrime v2.1</strong> resolve isso com o sistema <strong>Multi-Perfil</strong>:</p>
-                <ul>
-                    <li>Ao fazer login, você escolhe: <strong>Perfil Pessoal</strong> ou <strong>Perfil Empresarial</strong>.</li>
-                    <li>Cada perfil tem seu próprio banco de dados isolado.</li>
-                    <li>As metas da empresa não se misturam com as viagens da família.</li>
-                </ul>
-                <div style="background: #f3e8ff; border-left: 4px solid #8b5cf6; padding: 15px; border-radius: 4px; color: #4c1d95;">
-                    <strong>Dica de Ouro:</strong> Defina um "Pró-labore" (salário) no perfil Empresarial e lance esse mesmo valor como "Entrada" no perfil Pessoal. Assim você profissionaliza sua gestão.
-                </div>
+    <div class="container steps-wrapper">
+        <div class="steps-grid">
+            <div class="step-card">
+                <span class="step-number">1</span>
+                <span class="step-title">Separação Total</span>
+                <p class="step-text">Login duplo inteligente. Seus gastos de mercado nunca mais se misturam com o dinheiro dos fornecedores.</p>
             </div>
-
-            <div class="doc-section" id="precificacao">
-                <h2>2. Calculadora de Preço Inteligente</h2>
-                <p>Você vende um produto por R$ 30,00 e acha que está lucrando R$ 10,00... mas esqueceu de calcular o imposto, a taxa do cartão e o custo fixo. No final, pode estar pagando para trabalhar.</p>
-                <p>Nossa nova ferramenta, desenvolvida com consultoria de empresários reais, faz o cálculo reverso (Markup) para você.</p>
-                
-                <img src="assets/alguma_coisa.png" alt="Tela de Precificação" class="doc-image">
-
-                <h3>Como funciona?</h3>
-                <ol>
-                    <li><strong>Custo Unitário:</strong> Quanto você pagou no produto (ou custo da hora).</li>
-                    <li><strong>Impostos (%):</strong> Simples Nacional, MEI, etc.</li>
-                    <li><strong>Custo Fixo (%):</strong> Uma estimativa de quanto do preço vai para pagar aluguel/luz.</li>
-                    <li><strong>Margem Desejada (%):</strong> Quanto você quer colocar no bolso.</li>
-                </ol>
-                <p>O sistema te dá o <strong>Preço de Venda Ideal</strong> e o seu <strong>Lucro Líquido Real</strong> em Reais.</p>
+            <div class="step-card">
+                <span class="step-number">2</span>
+                <span class="step-title">Preço Certo</span>
+                <p class="step-text">Pare de perder dinheiro. Nossa calculadora de Markup mostra se seu produto realmente dá lucro.</p>
             </div>
-
-            <div class="doc-section">
-                <h2>3. Gestão de Produtos</h2>
-                <p>Salve seus produtos calculados em uma lista organizada. Assim você tem um histórico de preços e sabe exatamente quando precisa reajustar.</p>
-                <p>Tudo isso integrado ao mesmo sistema que cuida do seu fluxo de caixa, mas em uma aba separada para não poluir sua visão financeira.</p>
-                <br>
-                <a href="https://wa.me/5519996261910?text=Quero%20o%20FinanPrime%20para%20minha%20Empresa!" class="btn-primary" style="background: #8b5cf6; color: white; padding: 12px 30px; text-decoration: none; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4); display: inline-block;">
-                    Quero Profissionalizar meu Negócio
-                </a>
+            <div class="step-card">
+                <span class="step-number">3</span>
+                <span class="step-title">Consultor IA</span>
+                <p class="step-text">O robô analisa sua estrutura de custos e avisa: "Cuidado, seu aluguel está consumindo 40% da renda".</p>
             </div>
-
         </div>
     </div>
 
+    <section class="section-white" id="precificacao">
+        <div class="container">
+            <h2 class="section-title">Pare de Chutar seu Preço</h2>
+            <p class="section-desc">
+                Vender muito não significa ter lucro. <br>
+                Se você esqueceu de colocar o imposto ou a taxa da maquininha no custo, <strong>você está pagando para trabalhar.</strong>
+            </p>
+
+            <div class="purple-glow-container">
+                <img src="assets/alguma_coisa.png" alt="Tela de Precificação do FinanPrime">
+            </div>
+
+            <div class="features-grid-pj">
+                <div class="feature-box">
+                    <span class="feature-num">01</span>
+                    <strong>Custo Unitário (R$)</strong>
+                    <span>Insira quanto você paga no produto ou o custo da sua hora de serviço base.</span>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-num">02</span>
+                    <strong>Impostos (%)</strong>
+                    <span>Coloque sua alíquota do Simples Nacional ou MEI. O sistema desconta isso automaticamente.</span>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-num">03</span>
+                    <strong>Custo Fixo Operacional (%)</strong>
+                    <span>Uma estimativa justa de quanto do preço vai para pagar o aluguel e a luz.</span>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-num">04</span>
+                    <strong>Margem Líquida Real (%)</strong>
+                    <span>O sistema calcula exatamente quanto sobra limpo no seu bolso. Sem surpresas.</span>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 80px;">
+                <a href="https://wa.me/5519996261910?text=Quero%20testar%20a%20calculadora%20de%20preços!" class="btn-outline">
+                    SIMULAR MEU PREÇO AGORA
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light" id="ia-pj">
+        <div class="container">
+            <h2 class="section-title">Inteligência Artificial de Negócios 🤖</h2>
+            <p class="section-desc">No modo Pessoal, a IA cuida do seu cartão de crédito. <strong>No modo Empresarial, ela pensa como um Diretor Financeiro (CFO).</strong></p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 60px;">
+                <div style="background: white; padding: 40px; border-radius: 20px; border-top: 6px solid #e11d48; box-shadow: 0 15px 40px rgba(0,0,0,0.05);">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
+                    <h3 style="color: #9f1239; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700;">Detector de Risco</h3>
+                    <p style="color: #64748b; line-height: 1.6; font-size: 1.05rem;">"Alerta Crítico: Seus custos fixos (Aluguel + Pessoal) passaram de 60% do faturamento este mês. Sua estrutura está pesada demais para o volume atual."</p>
+                </div>
+
+                <div style="background: white; padding: 40px; border-radius: 20px; border-top: 6px solid #059669; box-shadow: 0 15px 40px rgba(0,0,0,0.05);">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">✅</div>
+                    <h3 style="color: #065f46; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700;">Auditoria de Margem</h3>
+                    <p style="color: #64748b; line-height: 1.6; font-size: 1.05rem;">"Atenção: A IA detectou que a margem média dos seus produtos caiu para 15%. Sugiro reprecificar o item 'Consultoria X' para recuperar lucratividade."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-white" style="text-align: center; padding-bottom: 140px;">
+        <div class="container">
+            <h2 style="font-size: 3.2rem; color: #1e293b; margin-bottom: 25px; letter-spacing: -1px; font-weight: 800;">Pronto para organizar a casa?</h2>
+            <p style="font-size: 1.4rem; color: #64748b; margin-bottom: 60px;">Tenha o controle total do seu CPF e CNPJ hoje mesmo.</p>
+            
+            <a href="https://wa.me/5519996261910?text=Quero%20adquirir%20a%20Licença%20Vitalícia%20do%20FinanPrime%20PJ!" class="btn-action">
+                COMPRAR LICENÇA VITALÍCIA (R$ 29,99)
+            </a>
+            <p style="margin-top: 25px; font-size: 1rem; color: #94a3b8; font-weight: 500;">Pagamento único • Sem mensalidade • Suporte incluso</p>
+        </div>
+    </section>
+
     <footer>
         <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2025 FinanPrime</p>
-        <a href="https://github.com/miguelGoncalvss" target="_blank" style="color: #82baff; text-decoration: none;">GitHub</a>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -201,14 +323,9 @@
             let isOpen = false;
             gsap.set(cards, { y: 50, opacity: 0 });
             
-            function calculateHeight() {
-                if (window.innerWidth <= 768) return 60 + (cards.length * 130) + 40; 
-                return 280; 
-            }
+            function calculateHeight() { return window.innerWidth <= 768 ? 60 + (cards.length * 130) + 40 : 280; }
 
-            const tl = gsap.timeline({ paused: true, onReverseComplete: () => {
-                content.style.visibility = 'hidden';
-            }});
+            const tl = gsap.timeline({ paused: true, onReverseComplete: () => { content.style.visibility = 'hidden'; }});
 
             tl.to(nav, { height: calculateHeight, duration: 0.5, ease: "power3.out" })
               .to(content, { opacity: 1, visibility: 'visible', duration: 0.2 }, "-=0.4")
@@ -220,9 +337,7 @@
                 else { hamburger.classList.remove('open'); tl.reverse(); }
             });
 
-            window.addEventListener('resize', () => {
-                if(isOpen) gsap.to(nav, { height: calculateHeight(), duration: 0.2 });
-            });
+            window.addEventListener('resize', () => { if(isOpen) gsap.to(nav, { height: calculateHeight(), duration: 0.2 }); });
         });
     </script>
 
