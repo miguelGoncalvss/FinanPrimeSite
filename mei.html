@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="assets/logo.png">
 
     <style>
-        body { background-color: #f8fafc; color: #334155; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f8fafc; color: #334155; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
 
         /* --- NAVBAR --- */
         .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
@@ -96,7 +96,7 @@
         .purple-glow-container:hover { transform: scale(1.02); }
         .purple-glow-container img { display: block; width: 100%; }
 
-        /* --- GRID DE RECURSOS (FIXADA PARA SER TUDO ROXO) --- */
+        /* --- GRID DE RECURSOS (FIXADA) --- */
         .features-grid-pj {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -104,34 +104,28 @@
             max-width: 900px;
             margin: 0 auto;
         }
-        /* CORREÇÃO AQUI: Estilo unificado para todos os cards */
         .feature-box { 
             background: #fff; 
             padding: 30px; 
             border-radius: 16px; 
-            border: 2px solid #e9d5ff; /* Borda Roxa Padrão */
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.05); /* Sombra levemente roxa */
+            border: 2px solid #e9d5ff; 
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.05);
             transition: all 0.3s ease;
             height: 100%;
         }
         .feature-box:hover { 
             transform: translateY(-5px); 
-            border-color: #8b5cf6; /* Borda mais forte no hover */
-            background: #fdfaff; /* Fundo levemente roxo no hover */
+            border-color: #8b5cf6; 
+            background: #fdfaff; 
             box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
         }
         .feature-num { 
-            color: #8b5cf6; /* Número Roxo */
+            color: #8b5cf6; 
             font-weight: 900; font-size: 1.5rem; display: block; margin-bottom: 10px; opacity: 0.8; 
         }
         .feature-box strong { color: #4c1d95; font-size: 1.2rem; display: block; margin-bottom: 8px; }
         .feature-box span { color: #64748b; font-size: 1rem; line-height: 1.5; display: block; }
-
-        /* Card de Destaque (O Último) */
-        .feature-highlight {
-            background: #fdf4ff; /* Já começa com fundo leve */
-            border-color: #d8b4fe;
-        }
+        .feature-highlight { background: #fdf4ff; border-color: #d8b4fe; }
 
         /* --- BOTÃO DE AÇÃO --- */
         .btn-action {
@@ -142,13 +136,6 @@
             display: inline-block; transition: all 0.3s;
         }
         .btn-action:hover { background-color: #6d28d9; transform: translateY(-3px); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.5); }
-
-        .btn-outline {
-            background: transparent; color: #7c3aed; border: 3px solid #7c3aed;
-            padding: 15px 40px; border-radius: 50px; font-weight: 800; text-decoration: none;
-            display: inline-block; transition: all 0.3s; font-size: 1.1rem;
-        }
-        .btn-outline:hover { background: #7c3aed; color: white; }
 
         @media (max-width: 768px) {
             .pj-hero h1 { font-size: 2.2rem; }
@@ -184,10 +171,9 @@
                     <div class="nav-card-links">
                         <a href="index.html" class="nav-card-link">🏠 Página Inicial</a>
                         <a href="#precificacao" class="nav-card-link">🏷️ Precificação</a>
-                        <a href="#ia-pj" class="nav-card-link">🤖 IA Empresarial</a>
+                        <a href="#vendas" class="nav-card-link">🤝 Vendas e CRM</a>
                     </div>
                 </div>
-
                 <div class="nav-card" style="background-color: #8b5cf6;">
                     <div class="nav-card-label">Comprar</div>
                     <div class="nav-card-links">
@@ -195,7 +181,6 @@
                         <a href="docs.html" class="nav-card-link">📄 Manual Técnico</a>
                     </div>
                 </div>
-
                 <div class="nav-card" style="background-color: #2ecc71;">
                     <div class="nav-card-label">Suporte</div>
                     <div class="nav-card-links">
@@ -221,13 +206,13 @@
             </div>
             <div class="step-card">
                 <span class="step-number">2</span>
-                <span class="step-title">Preço Certo</span>
-                <p class="step-text">Pare de perder dinheiro. Nossa calculadora de Markup mostra se seu produto realmente dá lucro.</p>
+                <span class="step-title">Vendas & CRM</span>
+                <p class="step-text">Gerencie clientes, controle o "fiado" e receba pagamentos que caem direto no seu caixa.</p>
             </div>
             <div class="step-card">
                 <span class="step-number">3</span>
-                <span class="step-title">Consultor IA</span>
-                <p class="step-text">O robô analisa sua estrutura de custos e avisa: "Cuidado, seu aluguel está consumindo 40% da renda".</p>
+                <span class="step-title">Preço Certo</span>
+                <p class="step-text">Calculadora de Markup que inclui impostos e taxas. Pare de pagar para trabalhar.</p>
             </div>
         </div>
     </div>
@@ -237,69 +222,120 @@
             <h2 class="section-title">Pare de Chutar seu Preço</h2>
             <p class="section-desc">
                 Vender muito não significa ter lucro. <br>
-                Se você esqueceu de colocar o imposto ou a taxa da maquininha no custo, <strong>você está pagando para trabalhar.</strong>
+                Se você esqueceu de colocar o imposto ou a taxa da maquininha no custo, <strong>você está perdendo dinheiro.</strong>
             </p>
-
-            <div class="purple-glow-container">
-                <img src="assets/alguma_coisa.png" alt="Tela de Precificação do FinanPrime">
-            </div>
 
             <div class="features-grid-pj">
                 <div class="feature-box">
                     <span class="feature-num">01</span>
-                    <strong>Custo Unitário (R$)</strong>
-                    <span>Insira quanto você paga no produto ou o custo da sua hora de serviço base.</span>
+                    <strong>Custo Real do Produto</strong>
+                    <span>
+                        O sistema soma fornecedor, taxas, impostos e custos fixos operacionais.
+                    </span>
                 </div>
                 <div class="feature-box">
                     <span class="feature-num">02</span>
-                    <strong>Impostos (%)</strong>
-                    <span>Coloque sua alíquota do Simples Nacional ou MEI. O sistema desconta isso automaticamente.</span>
+                    <strong>Margem Líquida Verdadeira</strong>
+                    <span>
+                        Saiba exatamente quanto sobra no seu bolso (Lucro) após pagar TODAS as contas.
+                    </span>
                 </div>
                 <div class="feature-box">
                     <span class="feature-num">03</span>
-                    <strong>Custo Fixo Operacional (%)</strong>
-                    <span>Uma estimativa justa de quanto do preço vai para pagar o aluguel e a luz.</span>
+                    <strong>Preço Mínimo Seguro</strong>
+                    <span>
+                        O sistema calcula automaticamente o valor mínimo de venda para não ter prejuízo.
+                    </span>
                 </div>
-                <div class="feature-box">
+                <div class="feature-box feature-highlight">
                     <span class="feature-num">04</span>
-                    <strong>Margem Líquida Real (%)</strong>
-                    <span>O sistema calcula exatamente quanto sobra limpo no seu bolso. Sem surpresas.</span>
+                    <strong>Simulação Rápida</strong>
+                    <span>
+                        Teste diferentes margens e veja o impacto no preço final instantaneamente.
+                    </span>
                 </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 80px;">
-                <a href="https://wa.me/5519996261910?text=Quero%20testar%20a%20calculadora%20de%20preços!" class="btn-outline">
-                    SIMULAR MEU PREÇO AGORA
-                </a>
             </div>
         </div>
     </section>
 
-    <section class="section-light" id="ia-pj">
+    <section class="section-light" id="vendas">
         <div class="container">
-            <h2 class="section-title">Inteligência Artificial de Negócios 🤖</h2>
-            <p class="section-desc">No modo Pessoal, a IA cuida do seu cartão de crédito. <strong>No modo Empresarial, ela pensa como um Diretor Financeiro (CFO).</strong></p>
+            <h2 class="section-title">Vendas e Cobrança no Piloto Automático</h2>
+            <p class="section-desc">
+                Esqueça o caderninho de fiado. Tenha um histórico profissional de cada cliente e cobre com um clique.
+            </p>
+            
+            <div class="purple-glow-container">
+                 <div style="background: #1e293b; color: white; padding: 40px; text-align: center; border-radius: 10px;">
+                    <h3 style="margin: 0; font-size: 1.5rem;">🖥️ Painel de Controle de Vendas</h3>
+                    <p style="opacity: 0.7;">Clientes • Vendas Pendentes • Botão de Cobrança WhatsApp</p>
+                 </div>
+            </div>
+
+            <div class="features-grid-pj">
+                <div class="feature-box">
+                    <span class="feature-num">🤝</span>
+                    <strong>CRM Integrado</strong>
+                    <span>
+                        Cadastro completo de clientes com WhatsApp, E-mail e CPF/CNPJ. Saiba quem são seus melhores compradores.
+                    </span>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-num">📱</span>
+                    <strong>Cobrança Inteligente</strong>
+                    <span>
+                        Cliente atrasou? Clique no botão "Cobrar" e o sistema abre o WhatsApp já com a mensagem de cobrança pronta.
+                    </span>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-num">💰</span>
+                    <strong>Fluxo de Caixa Automático</strong>
+                    <span>
+                        Ao clicar em "Recebi", o dinheiro entra automaticamente no seu Extrato e atualiza o Saldo e os Gráficos.
+                    </span>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-num">🚦</span>
+                    <strong>Semáforo de Risco</strong>
+                    <span>
+                        Identifique na hora quem são os bons pagadores (Verde) e quem está devendo (Vermelho).
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-white" id="ia-pj">
+        <div class="container">
+            <h2 class="section-title">Seu Diretor Financeiro Digital (CFO)</h2>
+            <p class="section-desc">
+                O módulo de IA não apenas categoriza gastos. Ele analisa a saúde financeira da sua empresa como um consultor sênior.
+            </p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 60px;">
                 <div style="background: white; padding: 40px; border-radius: 20px; border-top: 6px solid #e11d48; box-shadow: 0 15px 40px rgba(0,0,0,0.05);">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">⚠️</div>
-                    <h3 style="color: #9f1239; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700;">Detector de Risco</h3>
-                    <p style="color: #64748b; line-height: 1.6; font-size: 1.05rem;">"Alerta Crítico: Seus custos fixos (Aluguel + Pessoal) passaram de 60% do faturamento este mês. Sua estrutura está pesada demais para o volume atual."</p>
+                    <div style="font-size: 3rem; margin-bottom: 20px;">🔥</div>
+                    <h3 style="color: #9f1239; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700;">Análise de "Burn Rate"</h3>
+                    <p style="color: #64748b; line-height: 1.6; font-size: 1.05rem;">
+                        "Atenção: Sua empresa está queimando caixa a uma taxa de <strong>R$ 350/dia</strong>. Se continuar assim, seu capital de giro dura apenas mais 25 dias."
+                    </p>
                 </div>
 
                 <div style="background: white; padding: 40px; border-radius: 20px; border-top: 6px solid #059669; box-shadow: 0 15px 40px rgba(0,0,0,0.05);">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">✅</div>
-                    <h3 style="color: #065f46; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700;">Auditoria de Margem</h3>
-                    <p style="color: #64748b; line-height: 1.6; font-size: 1.05rem;">"Atenção: A IA detectou que a margem média dos seus produtos caiu para 15%. Sugiro reprecificar o item 'Consultoria X' para recuperar lucratividade."</p>
+                    <div style="font-size: 3rem; margin-bottom: 20px;">📈</div>
+                    <h3 style="color: #065f46; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700;">Previsão de Caixa</h3>
+                    <p style="color: #64748b; line-height: 1.6; font-size: 1.05rem;">
+                        "Com base nas vendas cadastradas para a próxima semana, sua receita projetada é de <strong>R$ 15.000</strong>. Momento ideal para repor estoque."
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-white" style="text-align: center; padding-bottom: 140px;">
+    <section class="section-light" style="text-align: center; padding-bottom: 140px;">
         <div class="container">
-            <h2 style="font-size: 3.2rem; color: #1e293b; margin-bottom: 25px; letter-spacing: -1px; font-weight: 800;">Pronto para organizar a casa?</h2>
-            <p style="font-size: 1.4rem; color: #64748b; margin-bottom: 60px;">Tenha o controle total do seu CPF e CNPJ hoje mesmo.</p>
+            <h2 style="font-size: 3.2rem; color: #1e293b; margin-bottom: 25px; letter-spacing: -1px; font-weight: 800;">Profissionalize sua Gestão</h2>
+            <p style="font-size: 1.4rem; color: #64748b; margin-bottom: 60px;">Controle Financeiro, Vendas, CRM e IA em um só lugar.</p>
             
             <a href="https://wa.me/5519996261910?text=Quero%20adquirir%20a%20Licença%20Vitalícia%20do%20FinanPrime%20PJ!" class="btn-action">
                 COMPRAR LICENÇA VITALÍCIA (R$ 29,99)
