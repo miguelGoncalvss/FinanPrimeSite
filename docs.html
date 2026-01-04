@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual do Usuário - FinanPrime v3.2</title>
+    <title>Manual do Usuário - FinanPrime v3.5</title>
     
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="assets/logo.png">
 
     <style>
-        body { background-color: #f7f9fc; }
+        body { background-color: #f7f9fc; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         
-        /* SCROLL SUAVE (ESSENCIAL PARA O ÍNDICE) */
+        /* SCROLL SUAVE */
         html { scroll-behavior: smooth; }
 
-        /* NAVBAR */
+        /* NAVBAR (MANTIDA) */
         .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
         .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
         .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
@@ -44,41 +44,40 @@
             text-align: center;
             clip-path: ellipse(150% 100% at 50% 0%);
         }
-        .docs-hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .docs-hero p { opacity: 0.8; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .docs-hero h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
+        .docs-hero p { opacity: 0.9; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
         .version-badge { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; margin-top: 10px; display: inline-block; font-weight: 600; border: 1px solid rgba(255,255,255,0.3); }
 
         .docs-wrapper { max-width: 900px; margin: -50px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
         
-        /* CARD PRINCIPAL (ESTÁTICO PARA LEITURA) */
+        /* CONTEÚDO */
         .doc-content-card { 
             background: white; 
             padding: 50px; 
             border-radius: 20px; 
             box-shadow: 0 20px 50px rgba(0,0,0,0.05); 
             margin-bottom: 40px; 
-            /* Removi o transition e o hover transform para não pular */
         }
 
         /* ÍNDICE RÁPIDO */
         .quick-index { background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 40px; border: 1px solid #e2e8f0; }
-        .quick-index h4 { margin: 0 0 15px 0; color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .quick-index h4 { margin: 0 0 15px 0; color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
         .quick-index ul { display: flex; gap: 15px; list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
         .quick-index a { text-decoration: none; color: #0055cc; font-weight: bold; font-size: 0.9rem; padding: 8px 12px; border-radius: 6px; background: white; border: 1px solid #e2e8f0; transition: all 0.2s; }
         .quick-index a:hover { background: #0055cc; color: white; transform: translateY(-2px); border-color: #0055cc; }
 
         /* TIPOGRAFIA */
-        .doc-section { margin-bottom: 50px; scroll-margin-top: 120px; /* Espaço extra para o título não ficar escondido pela navbar */ }
-        .doc-section h2 { font-size: 1.8rem; color: #1f2d3a; margin-bottom: 20px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
-        .doc-section h3 { font-size: 1.3rem; color: #334155; margin-top: 25px; margin-bottom: 10px; font-weight: 700; }
-        .doc-section p { font-size: 1.05rem; color: #475569; line-height: 1.8; margin-bottom: 15px; text-align: justify; }
-        .doc-section ul, .doc-section ol { padding-left: 25px; margin-bottom: 20px; }
-        .doc-section li { margin-bottom: 10px; color: #475569; line-height: 1.6; }
+        .doc-section { margin-bottom: 60px; scroll-margin-top: 140px; }
+        .doc-section h2 { font-size: 1.8rem; color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; font-weight: 800; }
+        .doc-section h3 { font-size: 1.3rem; color: #334155; margin-top: 30px; margin-bottom: 15px; font-weight: 700; border-left: 4px solid #3b82f6; padding-left: 10px; }
+        .doc-section p { font-size: 1.05rem; color: #475569; line-height: 1.7; margin-bottom: 15px; text-align: justify; }
+        .doc-section ul, .doc-section ol { padding-left: 20px; margin-bottom: 20px; color: #475569; }
+        .doc-section li { margin-bottom: 10px; line-height: 1.6; }
         
-        /* TAGS E DESTAQUES */
-        code { background: #eef2f7; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #0055cc; font-weight: bold; font-size: 0.9em; }
-        .badge-pj { background: #f3e8ff; color: #7c3aed; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 1px solid #d8b4fe; vertical-align: middle; }
-        .badge-pf { background: #dbeafe; color: #2563eb; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; border: 1px solid #93c5fd; vertical-align: middle; }
+        /* TAGS */
+        code { background: #eef2f7; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; color: #0055cc; font-weight: bold; font-size: 0.9em; }
+        .badge-pj { background: #f3e8ff; color: #7c3aed; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; border: 1px solid #d8b4fe; vertical-align: middle; text-transform: uppercase; }
+        .badge-new { background: #dcfce7; color: #166534; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; border: 1px solid #86efac; vertical-align: middle; text-transform: uppercase; }
 
         @media (max-width: 768px) { .doc-content-card { padding: 30px 20px; } .quick-index ul { flex-direction: column; gap: 10px; } }
     </style>
@@ -108,18 +107,18 @@
                 <div class="nav-card" style="background-color: #0055cc;">
                     <div class="nav-card-label">Navegar</div>
                     <div class="nav-card-links">
-                        <a href="#primeiros-passos" class="nav-card-link">🚀 Primeiros Passos</a>
-                        <a href="#funcionalidades" class="nav-card-link">🛠️ Funcionalidades</a>
-                        <a href="#ia-inteligente" class="nav-card-link">🔮 IA & Coach</a>
+                        <a href="#primeiros-passos" class="nav-card-link">🚀 Instalação</a>
+                        <a href="#fiscal" class="nav-card-link">⚖️ Módulo Fiscal</a>
+                        <a href="#perfil" class="nav-card-link">👤 Perfil & Suporte</a>
                     </div>
                 </div>
 
                 <div class="nav-card" style="background-color: #1f2d3a;">
-                    <div class="nav-card-label">FinanPrime</div>
+                    <div class="nav-card-label">Links Úteis</div>
                     <div class="nav-card-links">
                         <a href="index.html#home" class="nav-card-link">🏠 Página Inicial</a>
-                        <a href="index.html#recursos" class="nav-card-link">📊 Ver Recursos</a>
-                        <a href="index.html#preco" class="nav-card-link">💰 Comprar Licença</a>
+                        <a href="mei.html" class="nav-card-link">🏢 Página Business</a>
+                        <a href="index.html#preco" class="nav-card-link">💰 Licenças</a>
                     </div>
                 </div>
 
@@ -135,116 +134,119 @@
     </div>
 
     <header class="docs-hero">
-        <h1>Manual do Usuário</h1>
-        <p>Guia completo para dominar todas as ferramentas do FinanPrime.</p>
-        <span class="version-badge">Versão Atual: v3.2 Platinum</span>
+        <h1>Manual Oficial v3.5</h1>
+        <p>Documentação completa das funcionalidades Pessoais, Business e Fiscais.</p>
+        <span class="version-badge">Atualizado: v3.5 Final</span>
     </header>
 
     <div class="docs-wrapper">
         <div class="doc-content-card">
             
             <div class="quick-index">
-                <h4>Índice do Manual</h4>
+                <h4>Navegação Rápida</h4>
                 <ul>
-                    <li><a href="#instalacao">💾 Instalação</a></li>
-                    <li><a href="#primeiros-passos">🚀 Primeiros Passos</a></li>
-                    <li><a href="#funcionalidades">🛠️ Recursos Principais</a></li>
-                    <li><a href="#empresarial">🏢 Modo PJ (Business)</a></li>
-                    <li><a href="#ia-inteligente">🔮 Inteligência Artificial</a></li>
+                    <li><a href="#instalacao">💾 Instalação (Win/Mac)</a></li>
+                    <li><a href="#perfil">👤 Perfil Interativo</a></li>
+                    <li><a href="#fiscal">⚖️ Gestão Fiscal</a></li>
+                    <li><a href="#empresarial">🏢 Vendas & Clientes</a></li>
+                    <li><a href="#ia">🔮 IA Advisor</a></li>
                     <li><a href="#seguranca">🔒 Segurança</a></li>
                 </ul>
             </div>
 
             <div class="doc-section" id="instalacao">
                 <h2>1. Instalação e Ativação</h2>
-                <p>O FinanPrime é um software portátil para Windows, o que significa que ele não "suja" seu registro e pode rodar direto de um Pen Drive.</p>
-                <ol>
-                    <li>Baixe o arquivo <code>FinanPrime_v3.2_Platinum.zip</code> enviado no seu WhatsApp.</li>
-                    <li><strong>Importante:</strong> Clique com o botão direito e escolha "Extrair Tudo". Não execute de dentro do ZIP.</li>
-                    <li>Abra a pasta extraída e execute <code>FinanPrime.exe</code>.</li>
-                    <li>Na primeira tela, insira sua <strong>Chave de Licença</strong> (ex: <code>FP-SEUNOME-HASH</code>).</li>
-                    <li>Crie sua <strong>Senha Mestra</strong>. Essa senha criptografa seus dados e não pode ser recuperada por nós.</li>
-                </ol>
-            </div>
-
-            <div class="doc-section" id="primeiros-passos">
-                <h2>2. Primeiros Passos: Multi-Perfil</h2>
-                <p>Ao abrir o sistema, você verá a tela de seleção de perfil. Isso garante que seus gastos pessoais nunca se misturem com os da empresa.</p>
-                <ul>
-                    <li><span class="badge-pf">Pessoal</span> Cria o arquivo <code>pessoal.db</code>. Ideal para casa, lazer, viagens.</li>
-                    <li><span class="badge-pj">Empresarial</span> Cria o arquivo <code>empresarial.db</code>. Vem com categorias como Fornecedores, Impostos e Marketing.</li>
-                </ul>
-                <p><strong>Barra Lateral (Sidebar):</strong> É o centro de comando. Ali você define seu mês de trabalho (ex: 12/2025), define sua Renda/Faturamento base e lança novos gastos.</p>
-            </div>
-
-            <div class="doc-section" id="funcionalidades">
-                <h2>3. Funcionalidades Principais</h2>
+                <p>O FinanPrime v3.5 é um software multiplataforma portátil. Ele não requer instalação complexa e roda isolado no seu sistema.</p>
                 
-                <h3>Lançamentos Inteligentes</h3>
-                <p>No menu lateral, o botão "Adicionar Lançamento" se adapta ao que você precisa:</p>
+                <h3>No Windows 🪟</h3>
+                <ol>
+                    <li>Baixe o arquivo <code>FinanPrime_v3.5_Win.zip</code>.</li>
+                    <li>Clique com o botão direito e escolha <strong>"Extrair Tudo"</strong>.</li>
+                    <li>Abra a pasta e execute <code>FinanPrime.exe</code>.</li>
+                </ol>
+
+                <h3>No Mac (Apple) 🍎 <span class="badge-new">Novo</span></h3>
+                <ol>
+                    <li>Baixe o arquivo <code>FinanPrime_Mac_App.zip</code>.</li>
+                    <li>Dê um duplo clique para extrair o app.</li>
+                    <li>Arraste o ícone para sua pasta de <strong>Aplicativos</strong> ou execute diretamente.</li>
+                    <li><em>Nota:</em> Se aparecer um aviso de segurança, clique com o botão direito no app e selecione "Abrir" para autorizar a primeira execução.</li>
+                </ol>
+
+                <h3>Ativação</h3>
+                <p>Na primeira tela, insira sua chave única (ex: <code>FP-SEUNOME-HASH</code>) para desbloquear o acesso vitalício. Crie uma <strong>Senha Mestra</strong> forte; ela será a única chave para seus dados criptografados.</p>
+            </div>
+
+            <div class="doc-section" id="perfil">
+                <h2>2. Perfil Interativo & Suporte <span class="badge-new">Novo</span></h2>
+                <p>A v3.5 introduziu um novo sistema de identidade no canto superior direito do software.</p>
+                
+                <h3>Cartão de Membro (Flip Card)</h3>
+                <p>Ao clicar na sua foto/iniciais, um cartão flutuante exibe seu status de licença. O cartão possui um recurso "secreto":</p>
                 <ul>
-                    <li><strong>Parcelado:</strong> Ative a chave "Parc." para compras no cartão. O sistema projeta automaticamente as parcelas para os meses futuros (ex: "Compra 1/12").</li>
-                    <li><strong>Aporte em Metas:</strong> Ative a chave "Meta" para jogar dinheiro dentro de um objetivo (ex: Reserva de Emergência) em vez de gastar.</li>
+                    <li><strong>Verso do Cartão:</strong> Clique na linha onde diz <strong>"Licença: Ativa"</strong>. O cartão irá girar (efeito Flip).</li>
+                    <li><strong>QR Code VIP:</strong> No verso, você encontrará um QR Code exclusivo para suporte prioritário no WhatsApp e sua chave de licença completa para cópia.</li>
+                    <li><strong>Logout Seguro:</strong> Use o botão "Sair do Sistema" para fechar o cofre e voltar à tela de login instantaneamente.</li>
+                </ul>
+            </div>
+
+            <div class="doc-section" id="fiscal">
+                <h2>3. Módulo Fiscal & Impostos <span class="badge-pj">Exclusivo PJ</span></h2>
+                <p>O painel "Impostos" automatiza a burocracia do MEI e Simples Nacional.</p>
+
+                <h3>Configuração Inteligente</h3>
+                <p>Selecione seu regime (MEI ou Simples) e seu Anexo de atuação (Comércio, Serviços, etc.). O sistema salvará essa preferência.</p>
+
+                <h3>Provisão de Caixa (DAS)</h3>
+                <p>O sistema calcula o imposto devido com base no seu faturamento do mês atual e RBT12 (Receita Bruta 12 Meses).</p>
+                <ul>
+                    <li>Clique em <strong>"Lançar Provisão"</strong>.</li>
+                    <li>O sistema agendará automaticamente um lançamento futuro no seu extrato para o dia 20 do mês seguinte.</li>
+                    <li>Isso garante que seu "Saldo Disponível" hoje já desconte o imposto que você pagará mês que vem.</li>
                 </ul>
 
-                <h3>Gestão de Fixos</h3>
-                <p>Na aba "Fixos", você cadastra contas que se repetem todo mês (Aluguel, Internet). Com um clique no botão "Lançar no Mês", o sistema gera todos os lançamentos para o mês atual, poupando digitação.</p>
-
-                <h3>Metas e Objetivos</h3>
-                <p>Defina quanto quer juntar e acompanhe a barra de progresso. O sistema cruza o valor atual com o valor alvo e a IA pode sugerir aportes se sobrar dinheiro.</p>
+                <h3>Monitor de Fator R</h3>
+                <p>Para empresas de serviços (Anexo V), a IA monitora a relação entre sua Folha de Pagamento (Pró-labore) e Faturamento. Se o índice atingir <strong>28%</strong>, você economiza cerca de 9.5% em impostos. O painel avisa exatamente quanto falta de Pró-labore para atingir esse benefício.</p>
             </div>
 
             <div class="doc-section" id="empresarial">
-                <h2>4. Modo Empresarial (PJ) <span class="badge-pj">Novo</span></h2>
-                <p>Recursos exclusivos ativados quando você entra no perfil empresarial:</p>
+                <h2>4. Gestão Empresarial</h2>
                 
-                <h3>Calculadora de Precificação 🏷️</h3>
-                <p>Não chute seu preço! Use a aba "Precificação" para calcular o Markup reverso:</p>
-                <ul>
-                    <li>Insira o <strong>Custo</strong> do produto/serviço.</li>
-                    <li>Insira os <strong>Impostos</strong> (%) e <strong>Custo Fixo</strong> (%).</li>
-                    <li>Defina sua <strong>Margem de Lucro</strong> desejada (%).</li>
-                </ul>
-                <p>O sistema calcula o <strong>Preço de Venda Ideal</strong> e mostra quanto dinheiro (R$) realmente sobra no bolso.</p>
+                <h3>Precificação & Margem</h3>
+                <p>Use a ferramenta de precificação para calcular o preço de venda ideal com base nos seus custos fixos e impostos. A IA alerta se sua margem média cair abaixo de 20%.</p>
 
-                <h3>Análise de Margem</h3>
-                <p>Salve seus produtos calculados. A IA irá monitorar se sua margem média está saudável (>20%) ou se você está pagando para trabalhar.</p>
+                <h3>CRM e Cobrança</h3>
+                <p>Na aba "Vendas", gerencie quem te deve. O sistema destaca em vermelho pagamentos atrasados e oferece um botão <strong>"Cobrar no WhatsApp"</strong> que já abre a conversa com uma mensagem de cobrança educada e pré-formatada.</p>
             </div>
 
-            <div class="doc-section" id="ia-inteligente">
-                <h2>5. O "Coach" Financeiro (IA) 🔮</h2>
-                <p>O coração do FinanPrime v3.2 é o módulo <code>FinanceAI</code>. Ele analisa seus dados em tempo real:</p>
+            <div class="doc-section" id="ia">
+                <h2>5. IA Advisor (Pessoal & PJ)</h2>
+                <p>O módulo de inteligência artificial analisa seus padrões de consumo localmente.</p>
                 
-                <h3>Score de Saúde (0 a 100)</h3>
-                <ul>
-                    <li><strong>No Pessoal:</strong> Avalia Liquidez (sobra dinheiro?), Uso de Crédito (está endividado?) e Consistência.</li>
-                    <li><strong>No Empresarial:</strong> Avalia Margem Operacional, Peso da Folha/Impostos e Capital de Giro.</li>
-                </ul>
+                <h3>Análise de Burn Rate</h3>
+                <p>Descubra sua velocidade de queima de caixa.
+                <br><strong>Runway:</strong> A IA calcula quantos dias sua empresa (ou família) sobrevive se a entrada de dinheiro parasse hoje.</p>
 
-                <h3>Detector de Vilões</h3>
-                <p>A IA compara seu gasto atual com a média histórica dos últimos 90 dias. Se a conta de luz ou o lazer explodirem, o card de alerta avisará: <em>"⚠️ Lazer subiu 45% acima do padrão."</em></p>
-
-                <h3>Burn Rate & Runway</h3>
-                <p>Métricas de startup aplicadas à sua vida:
-                <br><strong>Burn Rate:</strong> Quanto dinheiro você queima por dia.
-                <br><strong>Runway:</strong> Quantos dias você sobrevive se sua renda parasse hoje.</p>
+                <h3>Lucro Isento (Para Sócios)</h3>
+                <p>No painel fiscal, o sistema calcula o limite exato de <strong>Distribuição de Lucros</strong> que você pode transferir para sua conta pessoal sem pagar Imposto de Renda, baseando-se nas regras de presunção da Receita Federal.</p>
             </div>
 
             <div class="doc-section" id="seguranca">
-                <h2>6. Privacidade & Segurança</h2>
-                <p>Adotamos a filosofia <strong>Zero-Knowledge</strong>. Seus dados são criptografados com <strong>AES-256</strong> usando sua Senha Mestra como chave.</p>
-                <p>O arquivo de banco de dados (<code>.db</code>) é ilegível sem a senha. Como o sistema é 100% offline, seus dados financeiros nunca saem do seu computador.</p>
-                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; border-radius: 4px; color: #856404;">
-                    <strong>Atenção:</strong> Não há recuperação de senha. Se esquecer a Senha Mestra, os dados serão perdidos para sempre. Anote-a em local seguro.
-                </div>
+                <h2>6. Segurança Zero-Knowledge</h2>
+                <p>Nós levamos sua privacidade a sério. Diferente de sistemas em nuvem:</p>
+                <ul>
+                    <li><strong>100% Offline:</strong> Seus dados nunca saem do seu computador.</li>
+                    <li><strong>Criptografia AES-256:</strong> O banco de dados é ilegível sem a sua Senha Mestra.</li>
+                    <li><strong>Auto-Repair:</strong> Se você atualizar de uma versão antiga, o sistema migra e corrige a estrutura do seu banco de dados automaticamente na primeira execução.</li>
+                </ul>
             </div>
 
-            <div class="doc-section">
-                <h2>📞 Suporte Técnico</h2>
-                <p>Encontrou um bug ou precisa de ajuda com a instalação? Fale diretamente com o desenvolvedor.</p>
+            <div class="doc-section" style="text-align: center; margin-top: 80px;">
+                <h2>Precisa de ajuda avançada?</h2>
+                <p>Nosso suporte técnico funciona diretamente pelo WhatsApp para clientes com licença ativa.</p>
                 <br>
-                <a href="https://wa.me/5519996261910" class="btn-primary" style="background: #2ecc71; color: white; padding: 12px 30px; text-decoration: none; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4); display: inline-block; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                    Chamar no WhatsApp
+                <a href="https://wa.me/5519996261910" class="btn-primary" style="background: #2ecc71; color: white; padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3); display: inline-block; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+                    Iniciar Atendimento VIP
                 </a>
             </div>
 
@@ -252,7 +254,7 @@
     </div>
 
     <footer>
-        <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2025 FinanPrime</p>
+        <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2026 FinanPrime v3.5</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

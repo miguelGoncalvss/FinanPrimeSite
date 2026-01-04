@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FinanPrime v3.2 – Gestão Híbrida (Pessoal e MEI)</title>
-    <meta name="description" content="O primeiro gerenciador financeiro Desktop com Inteligência Artificial Offline. Agora com modo Empresarial.">
+    <title>FinanPrime v3.5 Final – Gestão Híbrida (Pessoal e Business)</title>
+    <meta name="description" content="Gerenciador financeiro Desktop com IA Offline, suporte nativo para Mac e Módulo Fiscal PJ.">
 
-    <meta property="og:title" content="FinanPrime v3.2 – Finanças Pessoais e PJ">
-    <meta property="og:description" content="Separe as contas de casa das da empresa. Calcule preços, margens e preveja gastos com IA.">
+    <meta property="og:title" content="FinanPrime v3.5 Final – Finanças Pessoais e Business">
+    <meta property="og:description" content="Separe as contas de casa das da empresa. Calcule impostos e preveja gastos com IA 100% Offline.">
     <meta property="og:image" content="assets/dashboard.png">
     <meta property="og:url" content="https://finan-prime-site.vercel.app/">
 
@@ -17,44 +17,94 @@
     <link rel="shortcut icon" href="assets/logo.png">
 
     <style>
-        /* CSS DA NAVBAR */
+        /* --- CSS DA NAVBAR (Mantido) --- */
         .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
         .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
         .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
         .hamburger-menu { display: flex; flex-direction: column; justify-content: center; gap: 6px; cursor: pointer; width: 40px; height: 40px; z-index: 10; }
         .hamburger-line { width: 24px; height: 2px; background-color: #333; transition: 0.3s ease; transform-origin: center; }
-        .hamburger-menu.open .hamburger-line:first-child { transform: translateY(8px) rotate(45deg); }
-        .hamburger-menu.open .hamburger-line:last-child { transform: translateY(-8px) rotate(-45deg); }
         .logo-container { display: flex; align-items: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #0055cc; font-size: 1.2rem; }
         .logo-container img { width: 28px; margin-right: 8px; }
         .card-nav-cta-button { background-color: #111; color: white; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
-        .card-nav-cta-button:hover { background-color: #333; }
         .card-nav-content { position: absolute; top: 70px; left: 0; right: 0; bottom: 0; padding: 10px; display: flex; gap: 10px; opacity: 0; visibility: hidden; }
         .nav-card { flex: 1; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; transition: transform 0.3s; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; }
-        .nav-card:hover { transform: scale(0.98); }
-        .nav-card-label { font-size: 1.2rem; font-weight: bold; opacity: 0.9; }
-        .nav-card-links { display: flex; flex-direction: column; gap: 8px; }
-        .nav-card-link { color: white; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 5px; opacity: 0.8; transition: 0.2s; }
-        .nav-card-link:hover { opacity: 1; transform: translateX(3px); }
-        @media (max-width: 768px) { .card-nav-content { flex-direction: column; overflow-y: auto; padding-bottom: 20px; } .nav-card { min-height: 100px; flex: none; } .card-nav-cta-button { display: none; } }
         
-        /* ANIMAÇÕES RESTAURADAS (INTERATIVIDADE) */
-        .card, .shot-card, .preco-card, .faq-item, .audience-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: default;
-        }
-        .card:hover, .shot-card:hover, .preco-card:hover, .faq-item:hover, .audience-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        /* --- HEADER ARREDONDADO (ESTILO PJ/MEI) --- */
+        .header {
+            background-color: #0055cc; /* Azul principal */
+            border-bottom-left-radius: 50% 8%; 
+            border-bottom-right-radius: 50% 8%;
+            position: relative;
+            z-index: 1;
+            padding-bottom: 140px; /* Espaço para a curva respirar */
         }
 
-        /* AUDIENCE SECTION (NOVO) */
-        .audience-section { background: white; padding: 60px 20px; text-align: center; }
-        .audience-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 1000px; margin: 30px auto 0; }
-        .audience-card { background: #f8fafc; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; flex: 1; min-width: 250px; text-align: left; }
-        .audience-icon { font-size: 2rem; margin-bottom: 15px; display: block; }
-        .audience-title { font-weight: bold; color: #1e293b; margin-bottom: 8px; display: block; font-size: 1.1rem; }
-        .audience-desc { font-size: 0.95rem; color: #64748b; line-height: 1.5; }
+        /* --- HERO SECTION --- */
+        .hero { 
+            display: flex; align-items: center; justify-content: center; 
+            gap: 60px; padding: 180px 40px 40px; max-width: 1300px; margin: 0 auto; 
+        }
+        .hero-text { flex: 1; text-align: left; max-width: 550px; }
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.05; margin-bottom: 25px; color: white; font-weight: 800; }
+        .hero-text p { color: rgba(255,255,255,0.85); font-size: 1.25rem; margin-bottom: 35px; line-height: 1.5; }
+        
+        .hero-image { 
+            flex: 1.4; 
+            position: relative;
+            border-radius: 18px; 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5); 
+            border: 1px solid rgba(255,255,255,0.15);
+            overflow: hidden;
+            transform: perspective(1000px) rotateY(-5deg);
+        }
+        .hero-image img { width: 100%; display: block; }
+
+        /* --- CARDS DE PREÇO (Bordas de 15px) --- */
+        .pricing-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; align-items: stretch; }
+        .preco-card { 
+            display: flex; flex-direction: column; 
+            background: white; border-radius: 24px; padding: 40px 30px; 
+            width: 340px; box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            position: relative; overflow: hidden;
+        }
+        .preco-card.pf { border-top: 15px solid #3b82f6; }
+        .preco-card.pj { border-top: 15px solid #8b5cf6; }
+        .preco-card .content-box { flex-grow: 1; }
+        .pricing-features { list-style: none; padding: 0; margin: 25px 0; text-align: left; }
+        .pricing-features li { margin-bottom: 14px; color: #475569; font-size: 1rem; }
+
+        /* --- GERAL --- */
+        .features h2 { margin-bottom: 60px; font-size: 2.8rem; }
+        /* --- SECÇÃO PRIVACIDADE (DARK ORIGINAL) --- */
+        .seguranca { 
+            background-color: #1e293b; /* Fundo Escuro */
+            padding: 100px 20px; 
+            text-align: center; 
+            color: white;
+        }
+        .seguranca h2 { 
+            color: white; /* Título Branco */
+            font-size: 2.5rem; 
+            margin-bottom: 20px; 
+        }
+        .seguranca p { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            font-size: 1.25rem; 
+            line-height: 1.7; 
+            color: #e2e8f0; /* Texto claro */
+        }
+        .seguranca strong {
+            color: white;
+        }
+
+        @media (max-width: 1100px) {
+            .header { border-bottom-left-radius: 0; border-bottom-right-radius: 0; padding-bottom: 60px; }
+            .hero { flex-direction: column; text-align: center; padding-top: 140px; }
+            .hero-text { text-align: center; margin: 0 auto; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .hero-image { transform: none; width: 100%; max-width: 800px; }
+        }
 
         html { scroll-behavior: smooth; }
     </style>
@@ -73,288 +123,192 @@
                 <img src="assets/logo.png" alt="FinanPrime">
                 <span>FinanPrime</span>
             </div>
-            <a href="https://wa.me/5519996261910?text=Quero%20testar%20o%20FinanPrime%20v3.2!" target="_blank" class="card-nav-cta-button">
-                Baixar v3.2
+            <a href="https://wa.me/5519996261910?text=Quero%20adquirir%20o%20FinanPrime%20v3.5!" target="_blank" class="card-nav-cta-button">
+                Adquirir v3.5
             </a>
         </div>
-
         <div class="card-nav-content">
             <div class="nav-card" style="background-color: #0055cc;">
                 <div class="nav-card-label">Pessoal</div>
                 <div class="nav-card-links">
                     <a href="#recursos" class="nav-card-link">📊 Dashboard IA</a>
-                    <a href="#recursos" class="nav-card-link">🤖 Consultor Inteligente</a>
-                    <a href="#recursos" class="nav-card-link">🎯 Gestão de Metas</a>
+                    <a href="#recursos" class="nav-card-link">👤 Perfil Interativo</a>
                 </div>
             </div>
-
             <div class="nav-card" style="background-color: #8b5cf6;">
-                <div class="nav-card-label">Empresarial <span style="font-size: 0.6em; background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 4px;">NOVO</span></div>
+                <div class="nav-card-label">Business</div>
                 <div class="nav-card-links">
-                    <a href="mei.html" class="nav-card-link">🏷️ Precificação (Guia)</a>
-                    <a href="mei.html#perfis" class="nav-card-link">📈 Separação de Perfis</a>
-                    <a href="mei.html" class="nav-card-link">🏢 Para Autônomos</a>
+                    <a href="mei.html" class="nav-card-link">⚖️ Gestão Fiscal</a>
+                    <a href="mei.html#clientes" class="nav-card-link">👥 CRM Clientes</a>
                 </div>
             </div>
-
             <div class="nav-card" style="background-color: #2ecc71;">
-                <div class="nav-card-label">Ajuda & Contato</div>
+                <div class="nav-card-label">Ajuda</div>
                 <div class="nav-card-links">
-                    <a href="docs.html" class="nav-card-link">📄 Documentação</a>
-                    <a href="https://wa.me/5519996261910" class="nav-card-link" target="_blank">📞 Falar no WhatsApp</a>
-                    <a href="https://github.com/miguelGoncalvss" class="nav-card-link" target="_blank">🐱 GitHub do Miguel</a>
+                    <a href="docs.html" class="nav-card-link">📄 Manual v3.5</a>
+                    <a href="https://wa.me/5519996261910" class="nav-card-link" target="_blank">📞 Suporte VIP</a>
                 </div>
             </div>
         </div>
     </nav>
 </div>
 
-<header class="header" id="home" style="padding-top: 100px;"> 
+<header class="header" id="home"> 
     <div class="hero">
-        <span style="background-color: #8b5cf6; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; display: inline-block;">VERSÃO PLATINUM v3.2 • IA BUSINESS</span>
-
-        <h1>Domine seu CPF e seu CNPJ no mesmo lugar.</h1>
-        
-        <p>A única plataforma que une o controle financeiro pessoal com ferramentas profissionais para seu negócio. Inteligência Artificial e Precificação em um só sistema 100% Offline.</p>
-
-        <a class="btn-primary" href="https://wa.me/5519996261910?text=Olá!%20Quero%20dominar%20minhas%20finanças%20com%20o%20FinanPrime!" target="_blank">
-            Quero testar agora
-        </a>
-
-        <div class="video-container" style="margin-top: 40px; display: flex; gap: 20px;">
-            <div style="flex: 1; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1);">
-                <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                    <source src="assets/demo.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="flex: 1; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid rgba(0,0,0,0.1);">
-                <img src="assets/dashboard.png" alt="Dashboard FinanPrime" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-            </div>
+        <div class="hero-text">
+            <span style="background-color: #3b82f6; color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: inline-block; letter-spacing: 1px;">VERSÃO FINAL v3.5 • SUPORTE MAC NATIVO</span>
+            <h1>Organização Profissional para sua Vida e seu Negócio.</h1>
+            <p>Controle gastos pessoais e gerencie faturamento, clientes e impostos PJ em um sistema 100% offline com IA Advisor.</p>
+            <a class="btn-primary" href="https://wa.me/5519996261910?text=Olá!%20Quero%20adquirir%20o%20FinanPrime%20v3.5!" target="_blank" style="padding: 18px 40px; font-size: 1.1rem;">
+                Adquirir Licença Vitalícia
+            </a>
+        </div>
+        <div class="hero-image">
+            <img src="assets/dashboard.png" alt="Dashboard FinanPrime">
         </div>
     </div>
 </header>
 
-<section class="audience-section">
-    <h2 style="text-transform: uppercase; color: #64748b; font-size: 0.85rem; font-weight: bold; letter-spacing: 2px;">IDEAL PARA VOCÊ?</h2>
-    <div class="audience-grid">
-        <div class="audience-card">
-            <span class="audience-icon">🧘‍♂️</span>
-            <span class="audience-title">Pessoa Organizada</span>
-            <span class="audience-desc">Para quem quer controlar cartão, metas de viagem e investimentos sem planilhas complexas.</span>
-        </div>
-        <div class="audience-card">
-            <span class="audience-icon">🛠️</span>
-            <span class="audience-title">MEI & Autônomo</span>
-            <span class="audience-desc">Para quem precisa separar o dinheiro de casa do dinheiro do trabalho e profissionalizar a gestão.</span>
-        </div>
-        <div class="audience-card">
-            <span class="audience-icon">🏢</span>
-            <span class="audience-title">Pequeno Empresário</span>
-            <span class="audience-desc">Para quem precisa calcular preço de venda (Markup) e analisar margem de lucro real.</span>
-        </div>
-    </div>
-</section>
-
-<section class="features" id="pj" style="background-color: #f0f7ff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; padding: 60px 20px;">
-    <h2>Novidade: Modo Empresarial 🏢</h2>
-    <p class="sub">Desenvolvido para autônomos, MEIs e pequenos empresários.</p>
-    <div class="grid">
-        <div class="card" style="border-left: 4px solid #8b5cf6;">
-            <h3>🏷️ Precificação Correta</h3>
-            <p>Pare de perder dinheiro. Insira custo, imposto e despesas, e o sistema calcula o preço de venda ideal.</p>
-        </div>
-        <div class="card" style="border-left: 4px solid #8b5cf6;">
-            <h3>📈 Margem Real</h3>
-            <p>Descubra exatamente quanto sobra no seu bolso por produto vendido. Acabe com a ilusão do faturamento.</p>
-        </div>
-        <div class="card" style="border-left: 4px solid #8b5cf6;">
-            <h3>🧱 Multi-Perfil</h3>
-            <p>Escolha: <strong>Perfil Pessoal</strong> ou <strong>Perfil Empresarial</strong>. Seus bancos de dados nunca se misturam.</p>
-        </div>
-    </div>
-    
-    <div style="text-align: center; margin-top: 40px;">
-        <a href="mei.html" class="btn-primary" style="background-color: #8b5cf6; padding: 12px 30px;">
-            Ver Detalhes do Módulo PJ →
-        </a>
-    </div>
-</section>
-
 <section class="screenshots" id="recursos">
-    <h2>Poderoso. Bonito. Inteligente.</h2>
-    <p class="sub">Veja como a tecnologia transforma sua organização financeira.</p>
-
+    <h2>Tecnologia de Elite. Design Impecável.</h2>
     <div class="screenshot-grid">
         <div class="shot-card">
-            <img src="assets/dashboard.png" alt="Dashboard">
-            <h3>🤖 Consultor IA</h3>
-            <p>O sistema analisa seus padrões e diz exatamente: "Você está queimando caixa rápido demais" ou "Previsão de R$ 2.000 no cartão".</p>
+            <h3>👤 Perfil Interativo</h3>
+            <p>Novo sistema de perfil com efeito "Flip". Acesse sua licença e suporte direto no seu avatar.</p>
         </div>
         <div class="shot-card">
-            <img src="assets/principal.png" alt="Extrato">
-            <h3>Extrato & Auto-Repair</h3>
-            <p>Se você tem dados antigos, o sistema corrige e atualiza seu banco de dados automaticamente na hora.</p>
+            <h3>⚖️ Gestão Fiscal PJ</h3>
+            <p>Controle de DAS para MEI e Simples Nacional. Lançamento automático de provisão no extrato.</p>
         </div>
         <div class="shot-card">
-            <img src="assets/metas.png" alt="Metas">
-            <h3>Score de Saúde</h3>
-            <p>Uma barra de progresso visual (0 a 100) mostra se você está ganhando o jogo do dinheiro no mês.</p>
+            <h3>🍎 Suporte Mac Nativo</h3>
+            <p>Interface e exportação Excel 100% compatíveis com macOS Intel e Apple Silicon.</p>
         </div>
     </div>
 </section>
 
 <section class="features">
-    <h2>Funcionalidades Premium (Geral)</h2>
+    <h2>O que há de novo?</h2>
     <div class="grid">
         <div class="card">
-            <h3>🔮 Previsão de Gastos</h3>
-            <p>Algoritmos de Machine Learning projetam quanto você vai gastar no fim do mês baseado no seu ritmo atual.</p>
+            <h3>🔐 Segurança Máxima</h3>
+            <p>Cofre criptografado com AES-256. Dados ilegíveis sem sua senha mestra.</p>
         </div>
         <div class="card">
-            <h3>📄 Exportação Flexível</h3>
-            <p>Gere relatórios em Excel filtrados: somente mês atual, últimos 3 meses ou histórico completo.</p>
+            <h3>🔮 IA Advisor Offline</h3>
+            <p>Machine Learning local que projeta seu saldo e identifica vilões de gastos.</p>
         </div>
         <div class="card">
-            <h3>💸 Controle de Parcelas</h3>
-            <p>Comprou em 12x? O sistema projeta automaticamente o impacto no seu orçamento futuro.</p>
+            <h3>🎯 Metas & Cofrinho</h3>
+            <p>Gestão visual de objetivos. Saiba quanto falta para sua reserva de emergência.</p>
         </div>
         <div class="card">
-            <h3>🔥 Análise de Burn Rate</h3>
-            <p>Saiba exatamente quanto dinheiro você "queima" por dia e quantos dias seu saldo aguenta.</p>
+            <h3>📄 Exportação Profissional</h3>
+            <p>Gere relatórios em Excel filtrados por mês, trimestre ou histórico completo.</p>
         </div>
         <div class="card">
             <h3>⚡ Automação de Fixos</h3>
-            <p>Registre e renove gastos fixos (aluguel, internet) com apenas um clique.</p>
+            <p>Lance contas recorrentes (aluguel, internet) com apenas um clique para todo o mês.</p>
         </div>
         <div class="card">
-            <h3>🔐 Criptografia Militar</h3>
-            <p>Seus dados são protegidos com AES-256 e PBKDF2. Nem nós temos acesso. Privacidade absoluta.</p>
-        </div>
-        <div class="card">
-            <h3>🚀 100% Offline</h3>
-            <p>A IA roda no seu processador. Seus dados nunca saem da sua máquina para nuvem nenhuma.</p>
-        </div>
-        <div class="card">
-            <h3>🩺 Score de Saúde</h3>
-            <p>Gamificação financeira. Tente manter sua nota acima de 80/100 evitando gastos impulsivos.</p>
+            <h3>📊 BI & Gráficos</h3>
+            <p>Visão clara através de gráficos de tendência, faturamento e balanço atual.</p>
         </div>
     </div>
 </section>
 
-<section class="seguranca" id="seguranca">
-    <h2>Privacidade em Primeiro Lugar</h2>
-    <p>
-        Diferente de apps online, o FinanPrime é <strong>Zero-Knowledge</strong>. 
-        Mesmo com acesso ao computador, ninguém consegue ler suas informações sem sua senha mestra.
-    </p>
-</section>
-
-<section class="preco">
-    <h2>Oferta de Lançamento v3.2</h2>
-    <p>Leve o sistema completo (Pessoal + Empresarial) pelo preço antigo.</p>
-
-    <div class="preco-card">
-        <h3>Licença Vitalícia Platinum</h3>
-        <p class="valor">R$ 29,99</p>
-        <p class="detalhe">Pagamento único • Instalação gratuita</p>
-
-        <ul style="list-style: none; padding: 0; margin: 20px 0; color: #555; text-align: left;">
-            <li style="margin-bottom: 8px;">✅ Perfil Finanças Pessoais</li>
-            <li style="margin-bottom: 8px;">✅ <strong>Perfil Empresarial (Novo)</strong></li>
-            <li style="margin-bottom: 8px;">✅ Calculadora de Margem</li>
-            <li style="margin-bottom: 8px;">✅ Suporte na instalação</li>
-        </ul>
-
-        <a class="btn-primary" href="https://wa.me/5519996261910?text=Quero%20adquirir%20a%20Licença%20Vitalícia%20do%20FinanPrime%20v3.2!" target="_blank">
-            Comprar agora
-        </a>
+<section class="preco" id="preco">
+    <h2>Licenças Vitalícias</h2>
+    <p class="sub">Pagamento único. Sem mensalidades. Acesso para sempre.</p>
+    <div class="pricing-grid">
+        <div class="preco-card pf">
+            <div class="content-box">
+                <h3>Vitalício Pessoal (PF)</h3>
+                <p class="valor">R$ 49,99</p>
+                <p class="detalhe">Foco em organização doméstica</p>
+                <ul class="pricing-features">
+                    <li>✅ Controle de Gastos e Receitas</li>
+                    <li>✅ IA Advisor (Previsão de Saldo)</li>
+                    <li>✅ Gestão de Metas e Cofrinho</li>
+                    <li>✅ Suporte Windows e Mac</li>
+                </ul>
+            </div>
+            <a class="btn-primary" href="https://wa.me/5519996261910?text=Quero%20adquirir%20a%20Licenca%20Pessoal%20Vitalicia!" target="_blank">Adquirir PF</a>
+        </div>
+        <div class="preco-card pj">
+            <div class="content-box">
+                <h3>Vitalício Business (PJ)</h3>
+                <p class="valor">Sob Consulta</p>
+                <p class="detalhe">Análise personalizada para sua empresa</p>
+                <ul class="pricing-features">
+                    <li>✅ <strong>Tudo do Plano Pessoal</strong></li>
+                    <li>✅ CRM de Clientes e WhatsApp</li>
+                    <li>✅ Módulo Fiscal (MEI/Simples)</li>
+                    <li>✅ Gestão de Vendas e Cobrança</li>
+                </ul>
+            </div>
+            <a class="btn-primary" style="background-color: #8b5cf6;" href="https://wa.me/5519996261910?text=Quero%20consultar%20a%20Licenca%20Business%20Vitalicia!" target="_blank">Consultar Suporte</a>
+        </div>
     </div>
 </section>
 
 <section class="faq">
     <h2>Perguntas Frequentes</h2>
     <div class="faq-item">
+        <h3>Funciona no Mac?</h3>
+        <p>Sim! A v3.5 foi otimizada para rodar nativamente tanto em Windows quanto no macOS.</p>
+    </div>
+    <div class="faq-item">
         <h3>Como funciona o "Multi-Perfil"?</h3>
-        <p>Ao fazer login, uma tela pergunta: "Pessoal" ou "Empresarial". Cada um abre um banco de dados separado. O dinheiro do aluguel da loja não mistura com o mercado de casa.</p>
+        <p>Ao fazer login, você escolhe entre "Pessoal" ou "Empresarial". Cada perfil possui seu próprio banco de dados isolado.</p>
     </div>
     <div class="faq-item">
         <h3>Tenho a versão antiga, perco meus dados?</h3>
-        <p>Não! A versão 3.2 possui tecnologia "Auto-Repair". Basta abrir o novo app e ele converte seu banco de dados antigo automaticamente, mantendo todo seu histórico pessoal.</p>
+        <p>Não! A tecnologia "Auto-Repair" converte seu banco de dados antigo automaticamente para a v3.5.</p>
     </div>
     <div class="faq-item">
         <h3>Serve para comércio?</h3>
-        <p>Sim! A nova ferramenta de precificação foi desenhada pensando em donos de mercado, lojas de roupa e autônomos que precisam calcular margem de lucro.</p>
+        <p>Sim! Ferramentas de precificação e margem de lucro foram feitas para lojistas e autônomos.</p>
     </div>
     <div class="faq-item">
         <h3>A IA precisa de internet?</h3>
-        <p>Não. Utilizamos bibliotecas de Data Science (Scikit-Learn) que rodam localmente no seu computador. Privacidade total.</p>
+        <p>Não. Utilizamos bibliotecas de Data Science que rodam 100% localmente no seu computador.</p>
     </div>
     <div class="faq-item">
         <h3>Como recebo o aplicativo?</h3>
-        <p>Após o pagamento, você recebe o arquivo instalador seguro e sua Chave de Licença Única diretamente pelo WhatsApp.</p>
+        <p>Após o pagamento, você recebe o instalador e sua Chave de Licença Única via WhatsApp.</p>
     </div>
 </section>
 
+<section class="seguranca">
+    <h2>Privacidade em Primeiro Lugar</h2>
+    <p>Diferente de apps online, o FinanPrime é <strong>Zero-Knowledge</strong>. Mesmo com acesso ao computador, ninguém consegue ler suas informações sem sua senha mestra.</p>
+</section>
+
 <footer>
-    <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2025 FinanPrime</p>
+    <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2026 FinanPrime v3.5</p>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const nav = document.querySelector('.card-nav');
         const hamburger = document.getElementById('hamburger-btn');
         const content = document.querySelector('.card-nav-content');
         const cards = document.querySelectorAll('.nav-card');
-        
         let isOpen = false;
-        
         gsap.set(cards, { y: 50, opacity: 0 });
-        
-        function calculateHeight() {
-            if (window.innerWidth <= 768) {
-                return 60 + (cards.length * 130) + 40; 
-            }
-            return 280; 
-        }
-
-        const tl = gsap.timeline({ paused: true, onReverseComplete: () => {
-            content.style.visibility = 'hidden';
-        }});
-
-        tl.to(nav, {
-            height: calculateHeight,
-            duration: 0.5,
-            ease: "power3.out"
-        })
-        .to(content, { opacity: 1, visibility: 'visible', duration: 0.2 }, "-=0.4")
-        .to(cards, { 
-            y: 0, 
-            opacity: 1, 
-            duration: 0.5, 
-            stagger: 0.1, 
-            ease: "power2.out" 
-        }, "-=0.3");
-
+        function calculateHeight() { return window.innerWidth <= 768 ? 60 + (cards.length * 130) + 40 : 280; }
+        const tl = gsap.timeline({ paused: true, onReverseComplete: () => { content.style.visibility = 'hidden'; }});
+        tl.to(nav, { height: calculateHeight, duration: 0.5, ease: "power3.out" })
+          .to(content, { opacity: 1, visibility: 'visible', duration: 0.2 }, "-=0.4")
+          .to(cards, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" }, "-=0.3");
         hamburger.addEventListener('click', () => {
             isOpen = !isOpen;
-            if (isOpen) {
-                hamburger.classList.add('open');
-                tl.play();
-            } else {
-                hamburger.classList.remove('open');
-                tl.reverse();
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            if(isOpen) {
-                gsap.to(nav, { height: calculateHeight(), duration: 0.2 });
-            }
+            if (isOpen) { hamburger.classList.add('open'); tl.play(); } 
+            else { hamburger.classList.remove('open'); tl.reverse(); }
         });
     });
 </script>
-
 </body>
 </html>
