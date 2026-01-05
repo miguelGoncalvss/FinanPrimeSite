@@ -101,14 +101,14 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         .feature-box { 
             background: #fff; 
             padding: 30px; 
             border-radius: 16px; 
-            border: 2px solid #e9d5ff; 
+            border: 1px solid #e9d5ff; 
             box-shadow: 0 10px 30px rgba(124, 58, 237, 0.05);
             transition: all 0.3s ease;
             height: 100%;
@@ -119,6 +119,23 @@
             background: #fdfaff; 
             box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
         }
+
+        .feature-icon-circle {
+            width: 50px; height: 50px;
+            background-color: #f3e8ff; /* Roxo bem clarinho */
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #7c3aed;
+        }
+
+        .feature-box strong { color: #1e293b; font-size: 1.3rem; display: block; margin-bottom: 12px; font-weight: 800; }
+        .feature-box span { color: #64748b; font-size: 1.05rem; line-height: 1.6; display: block; }
+        
+        /* Destaque (Lucro Isento) */
+        .feature-highlight { background: #fdf4ff; border-color: #d8b4fe; }
+        .feature-highlight .feature-icon-circle { background-color: #fae8ff; color: #d946ef; }
         .feature-num { 
             color: #8b5cf6; 
             font-weight: 900; font-size: 1.5rem; display: block; margin-bottom: 10px; opacity: 0.8; 
@@ -308,36 +325,55 @@
         <div class="container">
             <h2 class="section-title">Painel Fiscal Inteligente ⚖️</h2>
             <p class="section-desc">
-                O único sistema que calcula seus impostos (MEI ou Simples Nacional) e monitora oportunidades de economia tributária em tempo real.
+                Automatize sua rotina fiscal. O sistema calcula impostos, monitora limites e gera relatórios prontos para seu contador.
             </p>
 
             <div class="features-grid-pj">
                 <div class="feature-box">
-                    <span class="feature-num">🏢</span>
-                    <strong>Multiregime</strong>
+                    <div class="feature-icon-circle">🏢</div>
+                    <strong>MEI & Simples Nacional</strong>
                     <span>
-                        Suporte nativo para <strong>MEI</strong> (DAS Fixo) e <strong>Simples Nacional</strong> (Anexos I a V) com cálculo de faixas.
+                        Cálculo automático da Guia DAS (Fixa para MEI) e suporte completo aos Anexos I a V do Simples com tabelas progressivas.
                     </span>
                 </div>
+
                 <div class="feature-box">
-                    <span class="feature-num">📅</span>
+                    <div class="feature-icon-circle">📅</div>
                     <strong>Provisão Automática</strong>
                     <span>
                         Botão "Lançar Provisão": O sistema agenda o pagamento do imposto no seu fluxo de caixa para o dia 20 do mês seguinte.
                     </span>
                 </div>
+
                 <div class="feature-box">
-                    <span class="feature-num">📉</span>
-                    <strong>Monitor Fator R</strong>
+                    <div class="feature-icon-circle">📉</div>
+                    <strong>Economia (Fator R)</strong>
                     <span>
-                        Para empresas de serviços: A IA avisa se sua folha de pagamento está adequada para reduzir sua alíquota de 15,5% para 6%.
+                        Para empresas de serviços: Monitoramos se sua folha de pagamento permite reduzir a alíquota de 15,5% para 6%.
                     </span>
                 </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-circle">🚨</div>
+                    <strong>Monitor de Teto</strong>
+                    <span>
+                        Acompanhe o limite anual (R$ 81k MEI / R$ 4.8M Simples). A IA avisa antes de você estourar o enquadramento.
+                    </span>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-circle">📑</div>
+                    <strong>Relatório Contábil</strong>
+                    <span>
+                        Gere um extrato limpo com todas as notas fiscais e impostos pagos para enviar ao seu contador no fim do mês.
+                    </span>
+                </div>
+
                 <div class="feature-box feature-highlight">
-                    <span class="feature-num">🛡️</span>
+                    <div class="feature-icon-circle">🛡️</div>
                     <strong>Lucro Isento (PF)</strong>
                     <span>
-                        Saiba exatamente quanto dinheiro você pode transferir da conta PJ para sua conta PF sem pagar Imposto de Renda.
+                        Saiba o limite exato de dinheiro que você pode transferir da empresa para sua conta pessoal sem pagar IR.
                     </span>
                 </div>
             </div>
