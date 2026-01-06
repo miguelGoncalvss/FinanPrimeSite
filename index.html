@@ -28,7 +28,7 @@
             --bg-light: #f8fafc;
             --text-main: #334155;
             --text-light: #64748b;
-            --gold: #f59e0b; /* Nova cor para o plano Master */
+            --gold: #f59e0b;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -39,15 +39,18 @@
         .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
         .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
         .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
-        .hamburger-menu { display: flex; flex-direction: column; justify-content: center; gap: 6px; cursor: pointer; width: 40px; height: 40px; z-index: 10; }
+        
+        .hamburger-menu { display: flex; flex-direction: column; justify-content: center; gap: 6px; cursor: pointer; width: 40px; height: 40px; z-index: 10; padding: 5px; } /* Aumentei a área de toque */
         .hamburger-line { width: 24px; height: 2px; background-color: #333; transition: 0.3s ease; transform-origin: center; }
+        
         .logo-container { display: flex; align-items: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-weight: 700; color: var(--blue-prime); font-size: 1.2rem; }
         .logo-container img { width: 28px; margin-right: 8px; }
         .card-nav-cta-button { background-color: var(--navy-dark); color: white; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
+        
         .card-nav-content { position: absolute; top: 70px; left: 0; right: 0; bottom: 0; padding: 10px; display: flex; flex-direction: row; gap: 10px; opacity: 0; visibility: hidden; }
         
         .nav-card { flex: 1; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; transition: transform 0.3s; color: white; cursor: pointer; }
-        .nav-card-link { color: rgba(255,255,255,0.9); text-decoration: none; font-weight: 500; display: block; margin-top: 8px; transition: 0.2s; font-size: 0.95rem; }
+        .nav-card-link { color: rgba(255,255,255,0.95); text-decoration: none; font-weight: 500; display: block; margin-top: 12px; transition: 0.2s; font-size: 1rem; padding: 5px 0; } /* Aumentei área de toque */
         .nav-card-link:hover { color: white; transform: translateX(5px); }
         .nav-card-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; font-weight: 700; margin-bottom: 10px; }
         
@@ -88,6 +91,7 @@
         .section-title { font-size: 2.5rem; font-weight: 800; color: var(--navy-dark); margin-bottom: 20px; line-height: 1.2; }
         .section-desc { font-size: 1.15rem; color: var(--text-light); line-height: 1.6; margin-bottom: 30px; }
         
+        /* LISTA PADRÃO DESKTOP */
         .check-list { list-style: none; }
         .check-list li { margin-bottom: 15px; font-size: 1.05rem; display: flex; align-items: center; color: var(--text-main); }
         .check-list li::before { content: "✓"; color: white; background: var(--green-action); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; }
@@ -122,7 +126,7 @@
         .pricing-grid { display: flex; justify-content: center; gap: 20px; margin-top: 50px; flex-wrap: wrap; }
         
         .price-card { 
-            width: 100%; max-width: 320px; /* Um pouco menor para caber 3 */
+            width: 100%; max-width: 320px; 
             background: white; border-radius: 24px; padding: 30px; 
             border: 1px solid #e2e8f0; box-shadow: 0 10px 40px rgba(0,0,0,0.05); 
             display: flex; flex-direction: column; position: relative;
@@ -155,11 +159,19 @@
 
         /* --- MÍDIA QUERIES (RESPONSIVIDADE REAL) --- */
         @media (max-width: 900px) {
-            /* Navbar Mobile: Empilha os cards */
-            .card-nav-content { flex-direction: column; }
-            .nav-card { min-height: 120px; }
+            /* 1. Navbar Mobile: Fixando o corte */
+            .card-nav-content { 
+                flex-direction: column; 
+                overflow-y: auto; /* Permite rolar se o celular for pequeno */
+                padding-bottom: 20px;
+            }
+            .nav-card { 
+                min-height: 120px; 
+                flex: none; /* Impede que o flex esmague */
+                height: auto;
+            }
             
-            /* Hero: Texto e Imagem empilhados */
+            /* 2. Hero */
             .header { border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; padding-bottom: 80px; }
             .hero { flex-direction: column; text-align: center; padding: 120px 20px 40px; gap: 40px; }
             .hero-text h1 { font-size: 2.5rem; } 
@@ -167,14 +179,22 @@
             .hero-image img { transform: none; margin-top: 20px; } 
             .hero-image img:hover { transform: none; }
 
-            /* Seções Alternadas */
-            .section-value { flex-direction: column; padding: 60px 20px; gap: 40px; }
+            /* 3. Correção de Texto "Grudado" nas listas */
+            .section-value { flex-direction: column; padding: 60px 20px; gap: 40px; text-align: center; }
             .section-value.reverse { flex-direction: column; }
-            .section-title { font-size: 2rem; }
             
-            /* Passos */
-            .section-steps { padding: 60px 20px; }
-            
+            /* AQUI ESTÁ A CORREÇÃO DE LEITURA NO MOBILE */
+            .check-list li { 
+                justify-content: flex-start; /* Alinha no começo (esquerda) */
+                align-items: flex-start; /* Ícone no topo, não no meio */
+                text-align: left; /* Texto alinhado à esquerda para leitura */
+                margin-bottom: 20px; /* Mais espaço entre itens */
+                line-height: 1.6; /* Altura de linha maior */
+            }
+            .check-list li::before {
+                margin-top: 4px; /* Ajuste fino para o ícone alinhar com a primeira linha */
+            }
+
             /* Híbrido */
             .hybrid-pf { border-right: none; border-bottom: 1px solid #dbeafe; }
             .hybrid-side { padding: 60px 20px; }
@@ -348,7 +368,7 @@
                 <li>Cobrança via WhatsApp</li>
                 <li>Monitor Fiscal Fator R</li>
             </ul>
-            <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20Empresarial%20(PJ)%20por%20R$%2072!" target="_blank" class="btn-price btn-biz">Adquirir PJ</a>
+            <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20Empresarial%20(PJ)%20por%20R$%20108!" target="_blank" class="btn-price btn-biz">Adquirir PJ</a>
         </div>
 
         <div class="price-card featured">
@@ -362,7 +382,7 @@
                 <li>IA Advisor Completa</li>
                 <li>Suporte Prioritário</li>
             </ul>
-            <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20MASTER%20(Combo)%20por%20R$%20108!" target="_blank" class="btn-price btn-master">Adquirir Combo</a>
+            <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20MASTER%20(Combo)%20por%20R$%20180!" target="_blank" class="btn-price btn-master">Adquirir Combo</a>
         </div>
     </div>
 </section>
@@ -383,9 +403,11 @@
         
         gsap.set(cards, { y: 50, opacity: 0 });
         
+        // Ajuste de altura do menu mobile para garantir que todos os 3 cards caibam
         function calculateHeight() { 
             if (window.innerWidth <= 900) {
-                return 60 + (cards.length * 140) + 40; 
+                // Altura base (60) + (3 cards * 160px cada) + folga (60)
+                return 60 + (cards.length * 160) + 60; 
             } else {
                 return 280; 
             }
