@@ -4,277 +4,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual do Usuário - FinanPrime v3.5</title>
+    <title>Manual Oficial - FinanPrime v3.5</title>
     
-    <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        body { background-color: #f7f9fc; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
-        
-        /* SCROLL SUAVE */
-        html { scroll-behavior: smooth; }
-
-        /* NAVBAR (MANTIDA) */
-        .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
-        .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
-        .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
-        .hamburger-menu { display: flex; flex-direction: column; justify-content: center; gap: 6px; cursor: pointer; width: 40px; height: 40px; z-index: 10; }
-        .hamburger-line { width: 24px; height: 2px; background-color: #333; transition: 0.3s ease; transform-origin: center; }
-        .hamburger-menu.open .hamburger-line:first-child { transform: translateY(8px) rotate(45deg); }
-        .hamburger-menu.open .hamburger-line:last-child { transform: translateY(-8px) rotate(-45deg); }
-        .logo-container { display: flex; align-items: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #0055cc; font-size: 1.2rem; }
-        .logo-container img { width: 28px; margin-right: 8px; }
-        .card-nav-cta-button { background-color: #111; color: white; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
-        .card-nav-cta-button:hover { background-color: #333; }
-        .card-nav-content { position: absolute; top: 70px; left: 0; right: 0; bottom: 0; padding: 10px; display: flex; gap: 10px; opacity: 0; visibility: hidden; }
-        .nav-card { flex: 1; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; transition: transform 0.3s; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .nav-card:hover { transform: scale(0.98); }
-        .nav-card-label { font-size: 1.2rem; font-weight: bold; opacity: 0.9; }
-        .nav-card-links { display: flex; flex-direction: column; gap: 8px; }
-        .nav-card-link { color: white; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 5px; opacity: 0.8; transition: 0.2s; }
-        .nav-card-link:hover { opacity: 1; transform: translateX(3px); }
-        @media (max-width: 768px) { .card-nav-content { flex-direction: column; overflow-y: auto; padding-bottom: 20px; } .nav-card { min-height: 100px; flex: none; } .card-nav-cta-button { display: none; } }
-
-        /* HERO DOCS */
-        .docs-hero {
-            background: linear-gradient(135deg, #0055cc, #003d99);
-            color: white;
-            padding: 140px 20px 80px;
-            text-align: center;
-            clip-path: ellipse(150% 100% at 50% 0%);
-        }
-        .docs-hero h1 { font-size: 2.5rem; margin-bottom: 10px; font-weight: 800; }
-        .docs-hero p { opacity: 0.9; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-        .version-badge { background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; margin-top: 10px; display: inline-block; font-weight: 600; border: 1px solid rgba(255,255,255,0.3); }
-
-        .docs-wrapper { max-width: 900px; margin: -50px auto 60px; padding: 0 20px; position: relative; z-index: 10; }
-        
-        /* CONTEÚDO */
-        .doc-content-card { 
-            background: white; 
-            padding: 50px; 
-            border-radius: 20px; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05); 
-            margin-bottom: 40px; 
+        :root {
+            --blue-prime: #0055cc;
+            --navy-dark: #0f172a;
+            --green-action: #10b981;
+            --purple-biz: #8b5cf6;
+            --bg-light: #f1f5f9;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
         }
 
-        /* ÍNDICE RÁPIDO */
-        .quick-index { background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 40px; border: 1px solid #e2e8f0; }
-        .quick-index h4 { margin: 0 0 15px 0; color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
-        .quick-index ul { display: flex; gap: 15px; list-style: none; padding: 0; margin: 0; flex-wrap: wrap; }
-        .quick-index a { text-decoration: none; color: #0055cc; font-weight: bold; font-size: 0.9rem; padding: 8px 12px; border-radius: 6px; background: white; border: 1px solid #e2e8f0; transition: all 0.2s; }
-        .quick-index a:hover { background: #0055cc; color: white; transform: translateY(-2px); border-color: #0055cc; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.7; }
+        
+        /* LAYOUT */
+        .doc-layout { display: flex; min-height: 100vh; }
+        
+        /* SIDEBAR DE NAVEGAÇÃO (CLEAN) */
+        .sidebar { width: 280px; background: white; border-right: 1px solid var(--border); position: fixed; height: 100vh; overflow-y: auto; padding: 30px; display: none; }
+        
+        .sidebar-header { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+        .sidebar-brand { font-weight: 700; font-size: 1.1rem; color: var(--navy-dark); }
+        
+        .sidebar h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-light); letter-spacing: 1px; margin-bottom: 15px; margin-top: 25px; font-weight: 700; }
+        
+        .sidebar a { 
+            display: block; 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-size: 0.9rem; 
+            margin-bottom: 8px; 
+            transition: 0.2s; 
+            padding: 8px 0 8px 15px; 
+            border-left: 2px solid transparent; 
+        }
+        
+        .sidebar a:hover { color: var(--blue-prime); border-left-color: var(--blue-prime); background: #f8fafc; }
+        .sidebar a.active { color: var(--blue-prime); font-weight: 600; border-left-color: var(--blue-prime); background: #f1f5f9; }
+
+        /* CONTEÚDO PRINCIPAL */
+        .main-content { flex: 1; padding: 40px; margin-left: 0; max-width: 100%; }
+        
+        @media (min-width: 1024px) {
+            .sidebar { display: block; }
+            .main-content { margin-left: 280px; padding: 60px 80px; }
+        }
 
         /* TIPOGRAFIA */
-        .doc-section { margin-bottom: 60px; scroll-margin-top: 140px; }
-        .doc-section h2 { font-size: 1.8rem; color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; font-weight: 800; }
-        .doc-section h3 { font-size: 1.3rem; color: #334155; margin-top: 30px; margin-bottom: 15px; font-weight: 700; border-left: 4px solid #3b82f6; padding-left: 10px; }
-        .doc-section p { font-size: 1.05rem; color: #475569; line-height: 1.7; margin-bottom: 15px; text-align: justify; }
-        .doc-section ul, .doc-section ol { padding-left: 20px; margin-bottom: 20px; color: #475569; }
-        .doc-section li { margin-bottom: 10px; line-height: 1.6; }
+        h1 { font-size: 2.5rem; font-weight: 800; color: var(--navy-dark); margin-bottom: 10px; letter-spacing: -1px; }
+        .subtitle { font-size: 1.2rem; color: var(--text-light); margin-bottom: 40px; font-weight: 300; }
         
-        /* TAGS */
-        code { background: #eef2f7; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; color: #0055cc; font-weight: bold; font-size: 0.9em; }
-        .badge-pj { background: #f3e8ff; color: #7c3aed; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; border: 1px solid #d8b4fe; vertical-align: middle; text-transform: uppercase; }
-        .badge-new { background: #dcfce7; color: #166534; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; border: 1px solid #86efac; vertical-align: middle; text-transform: uppercase; }
+        h2 { font-size: 1.75rem; color: var(--navy-dark); margin-top: 60px; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+        h3 { font-size: 1.25rem; color: var(--blue-prime); margin-top: 30px; margin-bottom: 15px; font-weight: 700; }
+        h4 { font-size: 1.1rem; color: var(--navy-dark); margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
+        
+        p, li { margin-bottom: 12px; font-size: 1rem; color: #475569; }
+        
+        /* ELEMENTOS VISUAIS */
+        .feature-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 25px; margin: 25px 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        
+        .feature-box h3:first-child,
+        .feature-box h4:first-child,
+        .feature-box strong:first-child {margin-top: 0;}
 
-        @media (max-width: 768px) { .doc-content-card { padding: 30px 20px; } .quick-index ul { flex-direction: column; gap: 10px; } }
+        .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-left: 10px; vertical-align: middle; }
+        .bg-master { background: #fffbeb; color: #b45309; border: 1px solid #fcd34d; }
+        .bg-pj { background: #f3e8ff; color: #7e22ce; border: 1px solid #d8b4fe; }
+        .bg-secure { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+        .bg-step { background: var(--navy-dark); color: white; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; margin-right: 10px; }
+
+        code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9em; color: #dc2626; }
+        
+        ul, ol { margin-left: 20px; margin-bottom: 20px; }
+        
+        /* ALERTAS */
+        .alert { padding: 20px; border-radius: 8px; margin: 25px 0; font-size: 0.95rem; display: flex; gap: 15px; }
+        .alert-info { background: #eff6ff; border-left: 4px solid var(--blue-prime); color: #1e3a8a; }
+        .alert-warn { background: #fff7ed; border-left: 4px solid #f97316; color: #7c2d12; }
+        
+        .btn-back { display: inline-block; margin-bottom: 20px; color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+        .btn-back:hover { color: var(--blue-prime); }
+        /* Removemos o .alert-info antigo e criamos um estilo novo */
+.pro-tip {
+    background: linear-gradient(to right, #f8fafc, #ffffff); /* Degradê sutil */
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #3b82f6; /* Azul Prime */
+    border-radius: 12px;
+    padding: 20px;
+    margin: 30px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); /* Sombra elegante */
+    transition: transform 0.2s;
+}
+
+.pro-tip:hover {
+    transform: translateY(-2px); /* Efeito de levitação ao passar o mouse */
+    box-shadow: 0 15px 20px -3px rgba(59, 130, 246, 0.1);
+}
+
+.pro-tip-icon {
+    background-color: #eff6ff;
+    color: #2563eb;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0; /* Impede o ícone de amassar */
+}
+
+.pro-tip-content strong {
+    display: block;
+    color: #1e3a8a; /* Azul escuro para o título */
+    font-size: 1rem;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.pro-tip-content {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.6;
+}
     </style>
 </head>
 
 <body>
 
-    <div class="card-nav-container">
-        <nav class="card-nav">
-            <div class="card-nav-top">
-                <div class="hamburger-menu" id="hamburger-btn">
-                    <div class="hamburger-line"></div>
-                    <div class="hamburger-line"></div>
-                </div>
-                <a href="index.html" style="text-decoration: none;">
-                    <div class="logo-container">
-                        <img src="assets/logo.png" alt="FinanPrime">
-                        <span>FinanPrime</span>
-                    </div>
-                </a>
-                <a href="index.html" class="card-nav-cta-button" style="background-color: #eee; color: #333;">
-                    ← Voltar ao Site
-                </a>
-            </div>
-
-            <div class="card-nav-content">
-                <div class="nav-card" style="background-color: #0055cc;">
-                    <div class="nav-card-label">Navegar</div>
-                    <div class="nav-card-links">
-                        <a href="#primeiros-passos" class="nav-card-link">🚀 Instalação</a>
-                        <a href="#fiscal" class="nav-card-link">⚖️ Módulo Fiscal</a>
-                        <a href="#perfil" class="nav-card-link">👤 Perfil & Suporte</a>
-                    </div>
-                </div>
-
-                <div class="nav-card" style="background-color: #1f2d3a;">
-                    <div class="nav-card-label">Links Úteis</div>
-                    <div class="nav-card-links">
-                        <a href="index.html#home" class="nav-card-link">🏠 Página Inicial</a>
-                        <a href="mei.html" class="nav-card-link">🏢 Página Business</a>
-                        <a href="index.html#preco" class="nav-card-link">💰 Licenças</a>
-                    </div>
-                </div>
-
-                <div class="nav-card" style="background-color: #2ecc71;">
-                    <div class="nav-card-label">Suporte</div>
-                    <div class="nav-card-links">
-                        <a href="https://wa.me/5519996261910" class="nav-card-link" target="_blank">📞 Falar no WhatsApp</a>
-                        <a href="https://github.com/miguelGoncalvss" class="nav-card-link" target="_blank">🐱 GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-    <header class="docs-hero">
-        <h1>Manual Oficial v3.5</h1>
-        <p>Documentação completa das funcionalidades Pessoais, Business e Fiscais.</p>
-        <span class="version-badge">Atualizado: v3.5 Final</span>
-    </header>
-
-    <div class="docs-wrapper">
-        <div class="doc-content-card">
-            
-            <div class="quick-index">
-                <h4>Navegação Rápida</h4>
-                <ul>
-                    <li><a href="#instalacao">💾 Instalação (Win/Mac)</a></li>
-                    <li><a href="#perfil">👤 Perfil Interativo</a></li>
-                    <li><a href="#fiscal">⚖️ Gestão Fiscal</a></li>
-                    <li><a href="#empresarial">🏢 Vendas & Clientes</a></li>
-                    <li><a href="#ia">🔮 IA Advisor</a></li>
-                    <li><a href="#seguranca">🔒 Segurança</a></li>
-                </ul>
-            </div>
-
-            <div class="doc-section" id="instalacao">
-                <h2>1. Instalação e Ativação</h2>
-                <p>O FinanPrime v3.5 é um software multiplataforma portátil. Ele não requer instalação complexa e roda isolado no seu sistema.</p>
-                
-                <h3>No Windows 🪟</h3>
-                <ol>
-                    <li>Baixe o arquivo <code>FinanPrime_v3.5_Win.zip</code>.</li>
-                    <li>Clique com o botão direito e escolha <strong>"Extrair Tudo"</strong>.</li>
-                    <li>Abra a pasta e execute <code>FinanPrime.exe</code>.</li>
-                </ol>
-
-                <h3>No Mac (Apple) 🍎 <span class="badge-new">Novo</span></h3>
-                <ol>
-                    <li>Baixe o arquivo <code>FinanPrime_Mac_App.zip</code>.</li>
-                    <li>Dê um duplo clique para extrair o app.</li>
-                    <li>Arraste o ícone para sua pasta de <strong>Aplicativos</strong> ou execute diretamente.</li>
-                    <li><em>Nota:</em> Se aparecer um aviso de segurança, clique com o botão direito no app e selecione "Abrir" para autorizar a primeira execução.</li>
-                </ol>
-
-                <h3>Ativação</h3>
-                <p>Na primeira tela, insira sua chave única (ex: <code>FP-SEUNOME-HASH</code>) para desbloquear o acesso vitalício. Crie uma <strong>Senha Mestra</strong> forte; ela será a única chave para seus dados criptografados.</p>
-            </div>
-
-            <div class="doc-section" id="perfil">
-                <h2>2. Perfil Interativo & Suporte <span class="badge-new">Novo</span></h2>
-                <p>A v3.5 introduziu um novo sistema de identidade no canto superior direito do software.</p>
-                
-                <h3>Cartão de Membro (Flip Card)</h3>
-                <p>Ao clicar na sua foto/iniciais, um cartão flutuante exibe seu status de licença. O cartão possui um recurso "secreto":</p>
-                <ul>
-                    <li><strong>Verso do Cartão:</strong> Clique na linha onde diz <strong>"Licença: Ativa"</strong>. O cartão irá girar (efeito Flip).</li>
-                    <li><strong>QR Code VIP:</strong> No verso, você encontrará um QR Code exclusivo para suporte prioritário no WhatsApp e sua chave de licença completa para cópia.</li>
-                    <li><strong>Logout Seguro:</strong> Use o botão "Sair do Sistema" para fechar o cofre e voltar à tela de login instantaneamente.</li>
-                </ul>
-            </div>
-
-            <div class="doc-section" id="fiscal">
-                <h2>3. Módulo Fiscal & Impostos <span class="badge-pj">Exclusivo PJ</span></h2>
-                <p>O painel "Impostos" automatiza a burocracia do MEI e Simples Nacional.</p>
-
-                <h3>Configuração Inteligente</h3>
-                <p>Selecione seu regime (MEI ou Simples) e seu Anexo de atuação (Comércio, Serviços, etc.). O sistema salvará essa preferência.</p>
-
-                <h3>Provisão de Caixa (DAS)</h3>
-                <p>O sistema calcula o imposto devido com base no seu faturamento do mês atual e RBT12 (Receita Bruta 12 Meses).</p>
-                <ul>
-                    <li>Clique em <strong>"Lançar Provisão"</strong>.</li>
-                    <li>O sistema agendará automaticamente um lançamento futuro no seu extrato para o dia 20 do mês seguinte.</li>
-                    <li>Isso garante que seu "Saldo Disponível" hoje já desconte o imposto que você pagará mês que vem.</li>
-                </ul>
-
-                <h3>Monitor de Fator R</h3>
-                <p>Para empresas de serviços (Anexo V), a IA monitora a relação entre sua Folha de Pagamento (Pró-labore) e Faturamento. Se o índice atingir <strong>28%</strong>, você economiza cerca de 9.5% em impostos. O painel avisa exatamente quanto falta de Pró-labore para atingir esse benefício.</p>
-            </div>
-
-            <div class="doc-section" id="empresarial">
-                <h2>4. Gestão Empresarial</h2>
-                
-                <h3>Precificação & Margem</h3>
-                <p>Use a ferramenta de precificação para calcular o preço de venda ideal com base nos seus custos fixos e impostos. A IA alerta se sua margem média cair abaixo de 20%.</p>
-
-                <h3>CRM e Cobrança</h3>
-                <p>Na aba "Vendas", gerencie quem te deve. O sistema destaca em vermelho pagamentos atrasados e oferece um botão <strong>"Cobrar no WhatsApp"</strong> que já abre a conversa com uma mensagem de cobrança educada e pré-formatada.</p>
-            </div>
-
-            <div class="doc-section" id="ia">
-                <h2>5. IA Advisor (Pessoal & PJ)</h2>
-                <p>O módulo de inteligência artificial analisa seus padrões de consumo localmente.</p>
-                
-                <h3>Análise de Burn Rate</h3>
-                <p>Descubra sua velocidade de queima de caixa.
-                <br><strong>Runway:</strong> A IA calcula quantos dias sua empresa (ou família) sobrevive se a entrada de dinheiro parasse hoje.</p>
-
-                <h3>Lucro Isento (Para Sócios)</h3>
-                <p>No painel fiscal, o sistema calcula o limite exato de <strong>Distribuição de Lucros</strong> que você pode transferir para sua conta pessoal sem pagar Imposto de Renda, baseando-se nas regras de presunção da Receita Federal.</p>
-            </div>
-
-            <div class="doc-section" id="seguranca">
-                <h2>6. Segurança Zero-Knowledge</h2>
-                <p>Nós levamos sua privacidade a sério. Diferente de sistemas em nuvem:</p>
-                <ul>
-                    <li><strong>100% Offline:</strong> Seus dados nunca saem do seu computador.</li>
-                    <li><strong>Criptografia AES-256:</strong> O banco de dados é ilegível sem a sua Senha Mestra.</li>
-                    <li><strong>Auto-Repair:</strong> Se você atualizar de uma versão antiga, o sistema migra e corrige a estrutura do seu banco de dados automaticamente na primeira execução.</li>
-                </ul>
-            </div>
-
-            <div class="doc-section" style="text-align: center; margin-top: 80px;">
-                <h2>Precisa de ajuda avançada?</h2>
-                <p>Nosso suporte técnico funciona diretamente pelo WhatsApp para clientes com licença ativa.</p>
-                <br>
-                <a href="https://wa.me/5519996261910" class="btn-primary" style="background: #2ecc71; color: white; padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3); display: inline-block; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
-                    Iniciar Atendimento VIP
-                </a>
-            </div>
-
+<div class="doc-layout">
+    
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="assets/logo.png" width="28">
+            <span class="sidebar-brand">FinanPrime Docs</span>
         </div>
-    </div>
 
-    <footer>
-        <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2026 FinanPrime v3.5</p>
-    </footer>
+        <h3>Introdução</h3>
+        <a href="#intro" class="active">Visão Geral</a>
+        <a href="#setup">1. Instalação e Ativação</a>
+        
+        <h3>Manual Pessoal</h3>
+        <a href="#lancamentos">2. Lançamentos</a>
+        <a href="#metas">3. Metas e Investimentos</a>
+        <a href="#importacao">4. Automação Bancária</a>
+        <a href="#irpf">5. Auditoria Fiscal (Leão)</a>
+        
+        <h3>Manual Empresarial</h3>
+        <a href="#pj">6. Gestão PJ e CRM</a>
+        
+        <h3>Suporte</h3>
+        <a href="#faq">Perguntas Frequentes</a>
+    </aside>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const nav = document.querySelector('.card-nav');
-            const hamburger = document.getElementById('hamburger-btn');
-            const content = document.querySelector('.card-nav-content');
-            const cards = document.querySelectorAll('.nav-card');
-            let isOpen = false;
-            gsap.set(cards, { y: 50, opacity: 0 });
-            function calculateHeight() { return window.innerWidth <= 768 ? 60 + (cards.length * 130) + 40 : 280; }
-            const tl = gsap.timeline({ paused: true, onReverseComplete: () => { content.style.visibility = 'hidden'; }});
-            tl.to(nav, { height: calculateHeight, duration: 0.5, ease: "power3.out" })
-              .to(content, { opacity: 1, visibility: 'visible', duration: 0.2 }, "-=0.4")
-              .to(cards, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" }, "-=0.3");
-            hamburger.addEventListener('click', () => { isOpen = !isOpen; if(isOpen) { hamburger.classList.add('open'); tl.play(); } else { hamburger.classList.remove('open'); tl.reverse(); } });
-            window.addEventListener('resize', () => { if(isOpen) gsap.to(nav, { height: calculateHeight(), duration: 0.2 }); });
-        });
-    </script>
+    <main class="main-content">
+        <a href="index.html" class="btn-back">← Voltar para o Site</a>
+        
+        <section id="intro">
+            <h1>Documentação Oficial</h1>
+            <p class="subtitle">Guia completo de operação e recursos do FinanPrime v3.5.</p>
+        </section>
+
+        <section id="setup">
+            <h2>1. Primeiro Acesso</h2>
+            <div class="feature-box">
+                <h4><span class="bg-step">1</span> Ativação da Licença</h4>
+                <p>Ao abrir o <code>FinanPrime.exe</code>, insira a chave recebida no WhatsApp (Formato: <code>FP-SEUNOME-XXXXXX</code>) ou clique em <strong>Testar 7 Dias Grátis</strong>.</p>
+                
+                <h4><span class="bg-step">2</span> Criação do Perfil</h4>
+                <p>O sistema pedirá seu <strong>Apelido</strong> (como quer ser chamado) e seu <strong>Objetivo Principal</strong>. Isso ajuda a IA a personalizar dicas.</p>
+
+                <h4><span class="bg-step">3</span> Cofre de Segurança</h4>
+                <p>Crie sua <strong>Senha Mestra</strong>. Ela criptografa seus arquivos <code>.db</code>. <strong>Atenção:</strong> Se perder essa senha, seus dados não poderão ser recuperados nem pelo suporte.</p>
+            </div>
+        </section>
+
+        <section id="lancamentos">
+            <h2>2. Lançamentos e Gastos</h2>
+            <p>O painel de controle principal para suas finanças diárias.</p>
+
+            <h3>Adicionando um Gasto Manual</h3>
+            <ol>
+                <li>No formulário lateral, confira a <strong>Data</strong> (hoje vem preenchido).</li>
+                <li>Escolha a <strong>Categoria</strong> (ex: Alimentação) e o <strong>Pagamento</strong> (ex: Pix).</li>
+                <li>Digite a <strong>Descrição</strong> (ex: Almoço) e o <strong>Valor</strong>.</li>
+                <li>Clique em <strong>ADICIONAR</strong>.</li>
+            </ol>
+
+            <div class="pro-tip">
+                <div class="pro-tip-icon">💡</div>
+                <div class="pro-tip-content">
+                    <strong>Dica Pro: O Poder do Parcelado</strong>
+                    Vai comprar em 10x? Ative a chave <code style="color: #ef4444; background: #fee2e2;">Parc.</code> (ficará vermelha), digite <code>10</code> e lance. O sistema projeta as parcelas futuras automaticamente nos próximos meses.
+                </div>
+            </div>
+
+            <h3>Renda Extra e Salário</h3>
+            <ul>
+                <li><strong>Salário Fixo:</strong> Digite no topo da barra lateral e clique no botão Verde (✓).</li>
+                <li><strong>Extras:</strong> Clique no botão <strong>"+ Extra"</strong> para lançar freelas ou dividendos.</li>
+            </ul>
+        </section>
+
+        <section id="metas">
+            <h2>3. Metas e Investimentos</h2>
+            <p>Separe o dinheiro das contas do dinheiro dos seus sonhos.</p>
+            
+            <div class="feature-box">
+                <h3>Como Aportar (Modo Cofre)</h3>
+                <p>Para guardar dinheiro em uma meta específica (ex: Reserva de Emergência):</p>
+                <ol>
+                    <li>Vá na aba <strong>Metas</strong> e crie o objetivo.</li>
+                    <li>Na barra lateral, ative a chave <strong>"Meta"</strong> (ela ficará Dourada).</li>
+                    <li>Selecione a meta desejada e o valor.</li>
+                    <li>Clique em <strong>APORTAR</strong>.</li>
+                </ol>
+                <p>O sistema debita do seu "Saldo Disponível" e transfere para o "Patrimônio da Meta".</p>
+            </div>
+        </section>
+
+        <section id="importacao">
+            <h2>4. Automação Bancária</h2>
+            <p>Importe seus extratos bancários sem digitar linha por linha.</p>
+            
+            <ol>
+                <li>Baixe o PDF da fatura ou extrato do seu banco (Nubank, Inter, Bradesco...).</li>
+                <li>No FinanPrime, clique em <strong>Importar Extrato</strong>.</li>
+                <li>Selecione o arquivo.</li>
+            </ol>
+            <p>O sistema lê as descrições e classifica automaticamente (Ex: "Uber" vira "Transporte").</p>
+            <div class="alert alert-warn">
+                <strong>Nota:</strong> No modo <em>Trial</em>, essa função é bloqueada.
+            </div>
+        </section>
+
+        <section id="irpf">
+            <h2>5. Auditoria Fiscal (Leão) <span class="badge bg-master">MASTER</span></h2>
+            <p>O módulo Leão prepara você para a declaração de Imposto de Renda.</p>
+            
+            <h3>Dashboard de Fontes</h3>
+            <p>O sistema separa visualmente sua renda em:</p>
+            <ul>
+                <li><strong>Salários:</strong> Renda principal tributável.</li>
+                <li><strong>Vendas PJ:</strong> Distribuição de lucros (geralmente isenta).</li>
+                <li><strong>Extras:</strong> Outras fontes.</li>
+            </ul>
+
+            <h3>Kit de Exportação</h3>
+            <p>Clique no botão verde <strong>EXPORTAR PACOTE IRPF</strong>. Você receberá um Excel com:</p>
+            <ul>
+                <li>Resumo de Rendimentos Anuais.</li>
+                <li>Lista de Despesas Dedutíveis (Médico, Escola) já filtrada.</li>
+                <li>Comparativo: Modelo Simplificado vs. Completo.</li>
+            </ul>
+        </section>
+
+        <section id="pj">
+            <h2>6. Gestão Empresarial <span class="badge bg-pj">PJ</span></h2>
+            <p>Funcionalidades exclusivas para autônomos e empresas.</p>
+
+            <h3>CRM de Clientes</h3>
+            <p>Cadastre seus clientes na aba <strong>Clientes</strong>. Use o botão <strong>WhatsApp</strong> para cobrar ou enviar orçamentos sem salvar o número na agenda do celular.</p>
+
+            <h3>Monitor Fiscal (Fator R)</h3>
+            <p>O sistema monitora se sua empresa (Simples Nacional) está gastando 28% do faturamento com folha/pró-labore. Mantenha esse indicador no <strong>Verde</strong> para pagar menos imposto (Anexo III).</p>
+        </section>
+
+        <section id="faq">
+            <h2>Perguntas Frequentes</h2>
+            
+            <div class="feature-box">
+                <strong>Errei um lançamento. Como apagar?</strong><br>
+                Vá na aba <strong>Extrato</strong>. Clique no item errado e aperte o botão <strong>Remover</strong> na barra lateral. Para apagar vários, segure <code>CTRL</code> enquanto clica.
+            </div>
+
+            <div class="feature-box">
+                <strong>Automação de Gastos Fixos</strong><br>
+                Cadastre seu Aluguel e Internet na aba <strong>Fixos</strong>. Todo dia 1º, clique no botão <strong>⚡ LANÇAR FIXOS</strong> e o sistema lança tudo de uma vez.
+            </div>
+        </section>
+        
+        <footer style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 30px; text-align: center; color: var(--text-light); font-size: 0.9rem;">
+            <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2026 FinanPrime v3.5</p>
+        </footer>
+
+    </main>
+</div>
 
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const links = document.querySelectorAll('.sidebar a');
+        const sections = document.querySelectorAll('section');
+
+        // 1. Clique Suave (Smooth Scroll)
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); // Impede o pulo seco padrão
+                
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    // Rola suavemente até a seção
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 40, // -40px para dar um respiro no topo
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 2. Espião de Rolagem (Muda a cor na Sidebar conforme você desce)
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                // Se a rolagem passou de 1/3 da seção, considera ela ativa
+                if (window.scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Atualiza os links da sidebar
+            links.forEach(link => {
+                link.classList.remove('active');
+                // Adiciona a classe apenas se o href do link bater com a seção atual
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    });
+</script>
+
 </html>
+
