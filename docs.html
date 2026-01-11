@@ -79,6 +79,7 @@
         .bg-master { background: #fffbeb; color: #b45309; border: 1px solid #fcd34d; }
         .bg-pj { background: #f3e8ff; color: #7e22ce; border: 1px solid #d8b4fe; }
         .bg-secure { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+        .bg-core { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; } /* Nova cor para Core Features */
         .bg-step { background: var(--navy-dark); color: white; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; margin-right: 10px; }
 
         code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9em; color: #dc2626; }
@@ -92,52 +93,56 @@
         
         .btn-back { display: inline-block; margin-bottom: 20px; color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
         .btn-back:hover { color: var(--blue-prime); }
-        /* Removemos o .alert-info antigo e criamos um estilo novo */
-.pro-tip {
-    background: linear-gradient(to right, #f8fafc, #ffffff); /* Degradê sutil */
-    border: 1px solid #e2e8f0;
-    border-left: 5px solid #3b82f6; /* Azul Prime */
-    border-radius: 12px;
-    padding: 20px;
-    margin: 30px 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); /* Sombra elegante */
-    transition: transform 0.2s;
-}
+        
+        .pro-tip {
+            background: linear-gradient(to right, #f8fafc, #ffffff);
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
 
-.pro-tip:hover {
-    transform: translateY(-2px); /* Efeito de levitação ao passar o mouse */
-    box-shadow: 0 15px 20px -3px rgba(59, 130, 246, 0.1);
-}
+        .pro-tip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 20px -3px rgba(59, 130, 246, 0.1);
+        }
 
-.pro-tip-icon {
-    background-color: #eff6ff;
-    color: #2563eb;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0; /* Impede o ícone de amassar */
-}
+        .pro-tip-icon {
+            background-color: #eff6ff;
+            color: #2563eb;
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
 
-.pro-tip-content strong {
-    display: block;
-    color: #1e3a8a; /* Azul escuro para o título */
-    font-size: 1rem;
-    margin-bottom: 4px;
-    font-weight: 700;
-}
+        .pro-tip-content strong {
+            display: block;
+            color: #1e3a8a;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
 
-.pro-tip-content {
-    font-size: 0.95rem;
-    color: #475569;
-    line-height: 1.6;
-}
+        .pro-tip-content {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* Específico para o novo CRM Kanban (Mantendo estilo clean) */
+        .kanban-preview { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .k-col { flex: 1; padding: 15px; border-radius: 8px; font-size: 0.8rem; font-weight: bold; text-align: center; min-width: 120px; border: 1px solid transparent; }
     </style>
 </head>
 
@@ -158,13 +163,11 @@
         <h3>Manual Pessoal</h3>
         <a href="#lancamentos">2. Lançamentos</a>
         <a href="#metas">3. Metas e Investimentos</a>
-        <a href="#importacao">4. Automação Bancária</a>
-        <a href="#irpf">5. Auditoria Fiscal (Leão)</a>
+        <a href="#financiamento">4. Simulador Imóveis <span style="font-size:10px"></span></a> <a href="#importacao">5. Automação Bancária</a>
+        <a href="#irpf">6. Auditoria Fiscal (Leão)</a>
         
         <h3>Manual Empresarial</h3>
-        <a href="#pj">6. Gestão PJ e CRM</a>
-        
-        <h3>Suporte</h3>
+        <a href="#pj">7. Gestão PJ e CRM 2.0</a> <h3>Suporte</h3>
         <a href="#faq">Perguntas Frequentes</a>
     </aside>
 
@@ -234,8 +237,23 @@
             </div>
         </section>
 
+        <section id="financiamento">
+            <h2>4. Simulador de Imóveis <span class="badge bg-core">NOVO</span></h2>
+            <p>Ferramenta de engenharia financeira para quem possui ou planeja dívidas de longo prazo (Imóveis, Carros).</p>
+
+            <div class="feature-box">
+                <h3> O Poder da Amortização</h3>
+                <p>Simule cenários reais e veja a economia no seu bolso:</p>
+                <ul>
+                    <li><strong>SAC vs PRICE:</strong> Escolha o sistema de amortização do seu contrato para ver a evolução exata.</li>
+                    <li><strong>Simulador de Aporte ("Pagar de Trás"):</strong> Digite um valor extra (ex: R$ 5.000) e veja quantas parcelas finais são eliminadas.</li>
+                    <li><strong>Loop Reverso (Price):</strong> Algoritmo exclusivo que calcula a quitação das parcelas finais descontando os juros compostos.</li>
+                    <li><strong>Feedback Visual:</strong> As parcelas eliminadas ficam <span style="color:#10b981; font-weight:bold;">Verdes</span> na tabela de evolução, facilitando a visualização da redução da dívida.</li>
+                </ul>
+            </div>
+        </section>
         <section id="importacao">
-            <h2>4. Automação Bancária</h2>
+            <h2>5. Automação Bancária</h2>
             <p>Importe seus extratos bancários sem digitar linha por linha.</p>
             
             <ol>
@@ -250,8 +268,8 @@
         </section>
 
         <section id="irpf">
-            <h2>5. Auditoria Fiscal (Leão) <span class="badge bg-master">MASTER</span></h2>
-            <p>O módulo Leão prepara você para a declaração de Imposto de Renda.</p>
+            <h2>6. Auditoria Fiscal <span class="badge bg-master">MASTER</span></h2>
+            <p>O módulo Leão prepara você para a declaração de Imposto de Renda, comparando cenários fiscais.</p>
             
             <h3>Dashboard de Fontes</h3>
             <p>O sistema separa visualmente sua renda em:</p>
@@ -261,21 +279,31 @@
                 <li><strong>Extras:</strong> Outras fontes.</li>
             </ul>
 
-            <h3>Kit de Exportação</h3>
-            <p>Clique no botão verde <strong>EXPORTAR PACOTE IRPF</strong>. Você receberá um Excel com:</p>
+            <h3>Kit de Exportação Inteligente</h3> <p>Clique no botão verde <strong>EXPORTAR PACOTE IRPF</strong>. Você receberá um Relatório Completo com:</p>
             <ul>
-                <li>Resumo de Rendimentos Anuais.</li>
-                <li>Lista de Despesas Dedutíveis (Médico, Escola) já filtrada.</li>
-                <li>Comparativo: Modelo Simplificado vs. Completo.</li>
+                <li>Resumo de Rendimentos Anuais e Lista de Despesas Dedutíveis (Médico, Escola).</li>
+                <li><strong>Comparativo Tributário:</strong> O sistema calcula se vale mais a pena declarar pelo modelo <strong>Simplificado</strong> (desconto padrão de 20%) ou <strong>Completo</strong> (todas as deduções), mostrando a economia exata em Reais.</li>
             </ul>
         </section>
 
         <section id="pj">
-            <h2>6. Gestão Empresarial <span class="badge bg-pj">PJ</span></h2>
-            <p>Funcionalidades exclusivas para autônomos e empresas.</p>
+            <h2>7. Gestão PJ e CRM 2.0 <span class="badge bg-pj">PJ</span></h2>
+            <p>Funcionalidades exclusivas para autônomos e empresas, agora com inteligência de dados.</p>
 
-            <h3>CRM de Clientes</h3>
-            <p>Cadastre seus clientes na aba <strong>Clientes</strong>. Use o botão <strong>WhatsApp</strong> para cobrar ou enviar orçamentos sem salvar o número na agenda do celular.</p>
+            <h3>CRM de Clientes Inteligente</h3> <p>O novo CRM abandona o "arrastar cards" manual. Agora, o status do cliente é definido matematicamente:</p>
+            
+            <div class="kanban-preview">
+                <div class="k-col" style="background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe">🟦 NOVOS<br>Nunca Compraram</div>
+                <div class="k-col" style="background:#f0fdf4; color:#166534; border:1px solid #bbf7d0">🟩 CARTEIRA<br>Ativos & Recorrentes</div>
+                <div class="k-col" style="background:#fff7ed; color:#9a3412; border:1px solid #fed7aa">🟧 RISCO<br>Inativo > 60 dias</div>
+                <div class="k-col" style="background:#fef2f2; color:#991b1b; border:1px solid #fecaca">🟥 COBRANÇA<br>Venda Vencida</div>
+            </div>
+
+            <ul>
+                <li><strong>Diamante (VIP):</strong> Clientes com alto volume de compras ganham destaque roxo.</li>
+                <li><strong>Automação de Risco:</strong> Se um cliente ativo para de comprar, ele é movido automaticamente para "Risco" para você agir.</li>
+                <li><strong>Cobrança:</strong> Boletos vencidos movem o cliente para a coluna vermelha instantaneamente.</li>
+            </ul>
 
             <h3>Monitor Fiscal (Fator R)</h3>
             <p>O sistema monitora se sua empresa (Simples Nacional) está gastando 28% do faturamento com folha/pró-labore. Mantenha esse indicador no <strong>Verde</strong> para pagar menos imposto (Anexo III).</p>
@@ -353,4 +381,3 @@
 </script>
 
 </html>
-

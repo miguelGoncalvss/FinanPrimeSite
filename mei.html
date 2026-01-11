@@ -4,466 +4,506 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinanPrime PJ - Gestão Inteligente para Negócios</title>
+    <title>FinanPrime PJ - Inteligência de Negócios</title>
     
-    <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script> <style>
+        :root {
+            --pj-primary: #8b5cf6; /* Roxo Business */
+            --pj-dark: #0f172a;
+            --pj-card: #1e293b;
+            --accent: #10b981; /* Verde Dinheiro */
+        }
 
-    <style>
-        body { background-color: #f8fafc; color: #334155; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { 
+            background-color: var(--pj-dark); 
+            color: white; 
+            overflow-x: hidden; 
+        }
 
-        /* --- NAVBAR --- */
-        .card-nav-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 800px; z-index: 9999; }
-        .card-nav { display: block; height: 60px; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); position: relative; overflow: hidden; }
-        .card-nav-top { position: absolute; top: 0; left: 0; right: 0; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; z-index: 2; }
-        .hamburger-menu { display: flex; flex-direction: column; justify-content: center; gap: 6px; cursor: pointer; width: 40px; height: 40px; z-index: 10; }
-        .hamburger-line { width: 24px; height: 2px; background-color: #333; transition: 0.3s ease; transform-origin: center; }
-        .hamburger-menu.open .hamburger-line:first-child { transform: translateY(8px) rotate(45deg); }
-        .hamburger-menu.open .hamburger-line:last-child { transform: translateY(-8px) rotate(-45deg); }
-        .logo-container { display: flex; align-items: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #0055cc; font-size: 1.2rem; }
-        .logo-container img { width: 28px; margin-right: 8px; }
-        .card-nav-cta-button { background-color: #111; color: white; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
-        .card-nav-cta-button:hover { background-color: #333; }
-        .card-nav-content { position: absolute; top: 70px; left: 0; right: 0; bottom: 0; padding: 10px; display: flex; gap: 10px; opacity: 0; visibility: hidden; }
-        .nav-card { flex: 1; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 180px; transition: transform 0.3s; color: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .nav-card:hover { transform: scale(0.98); }
-        .nav-card-label { font-size: 1.2rem; font-weight: bold; opacity: 0.9; }
-        .nav-card-links { display: flex; flex-direction: column; gap: 8px; }
-        .nav-card-link { color: white; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 5px; opacity: 0.8; transition: 0.2s; }
-        .nav-card-link:hover { opacity: 1; transform: translateX(3px); }
-        @media (max-width: 768px) { .card-nav-content { flex-direction: column; overflow-y: auto; padding-bottom: 20px; } .nav-card { min-height: 100px; flex: none; } .card-nav-cta-button { display: none; } }
+        /* --- HEADER & HERO --- */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
 
-        /* --- HERO SECTION --- */
-        .pj-hero {
-            background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+        .logo { font-size: 24px; font-weight: 800; color: white; }
+        .logo span { color: var(--pj-primary); }
+
+        .btn-cta {
+            background: var(--pj-primary);
             color: white;
-            padding: 180px 20px 140px; 
-            text-align: center;
-            border-bottom-left-radius: 50% 8%; 
-            border-bottom-right-radius: 50% 8%;
-            position: relative;
-            z-index: 1;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+            display: inline-flex; align-items: center; gap: 8px;
         }
-        .pj-tag {
-            background: #fbbf24; color: #451a03; 
-            padding: 6px 16px; border-radius: 50px; 
-            font-weight: 800; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;
-            margin-bottom: 25px; display: inline-block;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        .pj-hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1px; }
-        .pj-hero p { font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
+        .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(139, 92, 246, 0.6); }
 
-        /* --- CONTAINER GERAL --- */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        
-        /* --- CARDS FLUTUANTES --- */
-        .steps-wrapper { margin-top: -80px; position: relative; z-index: 10; padding-bottom: 80px; }
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .step-card { 
-            background: white; padding: 40px 30px; border-radius: 24px; 
-            box-shadow: 0 20px 50px rgba(76, 29, 149, 0.15); 
-            transition: transform 0.3s ease; text-align: center; border: 1px solid rgba(255,255,255,0.8);
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
         }
-        .step-card:hover { transform: translateY(-10px); }
-        .step-number { 
-            font-size: 2rem; font-weight: 900; color: #8b5cf6; 
-            background: #f5f3ff; width: 60px; height: 60px; 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px; 
-        }
-        .step-title { font-size: 1.4rem; color: #1e293b; font-weight: 700; margin-bottom: 10px; display: block; }
-        .step-text { color: #64748b; font-size: 1rem; line-height: 1.5; }
+        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: white; }
 
-        /* --- SEÇÕES DE CONTEÚDO --- */
-        .section-white { background: white; padding: 100px 0; }
-        .section-light { background: #f8fafc; padding: 100px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
-        
-        h2.section-title { font-size: 3rem; color: #4c1d95; margin-bottom: 30px; font-weight: 800; letter-spacing: -1px; text-align: center; }
-        p.section-desc { font-size: 1.25rem; color: #475569; line-height: 1.6; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; font-weight: 400; }
-
-        /* --- DESTAQUE ROXO DA IMAGEM --- */
-        .purple-glow-container {
-            position: relative;
-            border-radius: 20px;
-            box-shadow: 0 40px 90px rgba(124, 58, 237, 0.3);
-            margin: 20px auto 80px;
-            max-width: 900px;
-            transition: transform 0.3s;
-            overflow: hidden;
-            border: 1px solid #e9d5ff;
-        }
-        .purple-glow-container:hover { transform: scale(1.02); }
-        .purple-glow-container img { display: block; width: 100%; }
-
-        /* --- GRID DE RECURSOS (FIXADA) --- */
-        .features-grid-pj {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .feature-box { 
-            background: #fff; 
-            padding: 30px 25px; 
-            border-radius: 16px; 
-            border: 1px solid #e2e8f0; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); /* Sombra mais leve */
-            transition: all 0.3s ease;
-            height: 100%;
-            text-align: left; 
+        .hero {
+            min-height: 100vh; /* Ocupa 100% da altura da tela */
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-        }
-        .feature-box:hover { 
-            transform: translateY(-5px); 
-            border-color: #8b5cf6; 
-            background: #fdfaff; 
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.10);
-        }
-
-        .feature-icon-circle {
-            width: 45px; height: 45px;
-            background-color: #f3e8ff; /* Roxo bem clarinho */
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: #7c3aed;
+            justify-content: center; /* Centraliza Horizontalmente */
+            align-items: center;     /* Centraliza Verticalmente */
+            padding: 0 5%;
+            text-align: center;
+            background: radial-gradient(circle at 50% 30%, #2e1065 0%, #0f172a 70%);
+            position: relative;
         }
 
-        .feature-box strong { color: #1e293b; font-size: 1.3rem; display: block; margin-bottom: 12px; font-weight: 800; }
-        .feature-box span { color: #64748b; font-size: 1.05rem; line-height: 1.6; display: block; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 400px;
+            background: var(--pj-primary);
+            filter: blur(150px);
+            opacity: 0.2;
+            z-index: 0;
+            pointer-events: none;
+        }
         
-        /* Destaque (Lucro Isento) */
-        .feature-highlight { background: #fdf4ff; border-color: #d8b4fe; }
-        .feature-highlight .feature-icon-circle { background-color: #fae8ff; color: #d946ef; }
-
-        .feature-num { 
-            color: #8b5cf6; 
-            font-weight: 900; font-size: 1.5rem; display: block; margin-bottom: 10px; opacity: 0.8; 
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
         }
-        .feature-box strong { color: #4c1d95; font-size: 1.2rem; display: block; margin-bottom: 8px; }
-        .feature-box span { color: #64748b; font-size: 1rem; line-height: 1.5; display: block; }
-        .feature-highlight { background: #fdf4ff; border-color: #d8b4fe; }
 
-        /* --- BOTÃO DE AÇÃO --- */
-        .btn-action {
-            background-color: #7c3aed; color: white; 
-            padding: 18px 45px; border-radius: 50px; 
-            font-weight: 800; text-decoration: none; font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
-            display: inline-block; transition: all 0.3s;
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
         }
-        .btn-action:hover { background-color: #6d28d9; transform: translateY(-3px); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.5); }
+
+        .pill-badge {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #a78bfa;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+        }
+        
+        .pill-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 8px #10b981; }
+
+        .hero h1 {
+            font-size: 4.5rem; /* Aumentei um pouco */
+            line-height: 1.05;
+            margin-bottom: 25px;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff 20%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.35rem; /* Texto maior para leitura fácil */
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .trust-badges {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            color: #64748b;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+        .trust-item { display: flex; align-items: center; gap: 8px; }
+        .trust-item i { color: #475569; }
 
         @media (max-width: 768px) {
-            .pj-hero h1 { font-size: 2.2rem; }
-            .section-white, .section-light { padding: 60px 0; }
-            .features-grid-pj { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero { padding-top: 100px; } /* Compensar header no mobile */
         }
+
+        /* --- SEÇÕES COMUNS --- */
+        .section-padding { padding: 100px 5%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .section-title span { color: var(--accent); text-transform: uppercase; font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; }
+
+        /* --- CARDS GRID --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 35px;
+            border-radius: 20px;
+            transition: 0.3s;
+            position: relative;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--pj-primary); background: rgba(30, 41, 59, 0.8); }
+
+        /* --- CRM SECTION --- */
+        .crm-showcase {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            background: #0b1120;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        @media (max-width: 900px) { .crm-showcase { flex-direction: column; text-align: center; } }
+
+        .crm-visual { 
+            flex: 1; 
+            background: #1e293b; 
+            padding: 30px; 
+            border-radius: 20px; 
+            border: 1px solid #334155;
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
+        }
+
+        .kanban-mock { display: flex; gap: 10px; margin-top: 20px; }
+        .k-col { flex: 1; height: 120px; background: #0f172a; border-radius: 8px; position: relative; }
+        .k-col::before { content: ''; position: absolute; top: 12px; left: 12px; right: 12px; height: 6px; border-radius: 3px; }
+        .c1::before { background: #3b82f6; } .c2::before { background: #10b981; } .c3::before { background: #ef4444; }
+
+        /* --- PRICING --- */
+        .pricing-card {
+            background: var(--pj-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--pj-primary);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+            transform: scale(1.05);
+            z-index: 10;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .badge-popular {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background: var(--pj-primary); color: white;
+            padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;
+        }
+
+        .price { font-size: 3rem; font-weight: 800; margin: 20px 0; color: white; }
+        .price span { font-size: 1rem; color: #94a3b8; font-weight: 400; }
+        
+        .check-list { list-style: none; margin: 30px 0; text-align: left; }
+        .check-list li { margin-bottom: 12px; color: #cbd5e1; display: flex; gap: 10px; }
+        .check-list i { color: var(--accent); }
+
+        /* --- TESTIMONIALS --- */
+        .testimonial { text-align: left; }
+        .quote-icon { color: var(--pj-primary); opacity: 0.5; margin-bottom: 15px; }
+        .user-info { display: flex; align-items: center; gap: 15px; margin-top: 20px; }
+        .avatar { width: 50px; height: 50px; background: #334155; border-radius: 50%; }
+
+        /* --- FAQ --- */
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .faq-item h4 { color: white; margin-bottom: 10px; font-size: 1.1rem; }
+        .faq-item p { color: #94a3b8; font-size: 0.95rem; }
+
+        /* --- FLOATING WHATSAPP --- */
+        .float-wa {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25D366; color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 9999; transition: 0.3s;
+            text-decoration: none;
+        }
+        .float-wa:hover { transform: scale(1.1); box-shadow: 0 0 30px #25d36680; }
+
+        footer { padding: 60px 5%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: #64748b; font-size: 0.9rem; }
+
+        /* ANIMS */
+        .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
     </style>
 </head>
 
 <body>
 
-    <div class="card-nav-container">
-        <nav class="card-nav">
-            <div class="card-nav-top">
-                <div class="hamburger-menu" id="hamburger-btn">
-                    <div class="hamburger-line"></div>
-                    <div class="hamburger-line"></div>
-                </div>
-                <a href="index.html" style="text-decoration: none;">
-                    <div class="logo-container">
-                        <img src="assets/logo.png" alt="FinanPrime">
-                        <span>FinanPrime</span>
-                    </div>
-                </a>
-                <a href="index.html" class="card-nav-cta-button" style="background-color: #eee; color: #333;">
-                    ← Voltar ao Site
-                </a>
-            </div>
-
-            <div class="card-nav-content">
-                <div class="nav-card" style="background-color: #0055cc;">
-                    <div class="nav-card-label">Navegar</div>
-                    <div class="nav-card-links">
-                        <a href="index.html" class="nav-card-link">🏠 Página Inicial</a>
-                        <a href="#fiscal" class="nav-card-link">⚖️ Painel Fiscal</a>
-                        <a href="#vendas" class="nav-card-link">🤝 Vendas e Cobrança</a>
-                    </div>
-                </div>
-                <div class="nav-card" style="background-color: #8b5cf6;">
-                    <div class="nav-card-label">Comprar</div>
-                    <div class="nav-card-links">
-                        <a href="https://wa.me/5519996261910?text=Quero%20consultar%20o%20FinanPrime%20PJ!" class="nav-card-link">💰 Consultar Licença</a>
-                        <a href="docs.html" class="nav-card-link">📄 Manual Técnico</a>
-                    </div>
-                </div>
-                <div class="nav-card" style="background-color: #2ecc71;">
-                    <div class="nav-card-label">Suporte</div>
-                    <div class="nav-card-links">
-                        <a href="https://wa.me/5519996261910" class="nav-card-link" target="_blank">📞 Falar no WhatsApp</a>
-                    </div>
-                </div>
-            </div>
+    <header>
+        <div class="logo">Finan<span>Prime PJ</span></div>
+        <nav>
+            <a href="index.html" style="color: #94a3b8; text-decoration: none; margin-right: 20px; font-size: 0.9rem;">← Voltar</a>
+            <a href="https://wa.me/5519996261910?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20FinanPrime%20PJ" class="btn-cta" target="_blank">
+                <i data-lucide="message-circle" size="18"></i> Falar com Consultor
+            </a>
         </nav>
-    </div>
-
-    <header class="pj-hero">
-        <span class="pj-tag">Versão Final v3.5</span>
-        <h1>Deixe de ser "Eupresa".<br>Vire uma Empresa de Verdade.</h1>
-        <p>A ferramenta definitiva para MEIs e Autônomos separarem o CPF do CNPJ e descobrirem seu lucro real.</p>
     </header>
 
-    <div class="container steps-wrapper">
-        <div class="steps-grid">
-            <div class="step-card">
-                <span class="step-number">1</span>
-                <span class="step-title">Separação de Contas</span>
-                <p class="step-text">Login duplo inteligente. Seus gastos pessoais nunca mais se misturam com o capital de giro da empresa.</p>
+    <section class="hero">
+        <div class="hero-content fade-up">
+            
+            <div class="pill-badge">
+                <span class="pill-dot"></span> v3.5 Stable • Disponível para Windows
             </div>
-            <div class="step-card">
-                <span class="step-number">2</span>
-                <span class="step-title">CRM de Clientes</span>
-                <p class="step-text">Cadastro completo com histórico de compras, WhatsApp e controle de inadimplência em tempo real.</p>
+
+            <h1>Não é planilha.<br>É Inteligência.</h1>
+            
+            <p>O único sistema Desktop que une <strong>CRM Autônomo</strong> e <strong>Engenharia Fiscal</strong> para MEI e Simples Nacional. Mantenha seus dados seguros no seu PC.</p>
+            
+            <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                <a href="https://wa.me/5519996261910?text=Quero%20uma%20demonstra%C3%A7%C3%A3o%20do%20FinanPrime" class="btn-cta" target="_blank">
+                    <i data-lucide="play-circle" size="20"></i> Ver Demonstração
+                </a>
+                <a href="#planos" class="btn-outline">
+                    Ver Planos Vitalícios
+                </a>
             </div>
-            <div class="step-card">
-                <span class="step-number">3</span>
-                <span class="step-title">Gestão Fiscal</span>
-                <p class="step-text">Monitoramento de impostos (MEI/Simples), Fator R e cálculo de Lucro Isento para retirada segura.</p>
+
+            <div class="trust-badges">
+                <div class="trust-item">
+                    <i data-lucide="shield-check" size="16"></i> Compra Segura
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="wifi-off" size="16"></i> 100% Offline
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="monitor" size="16"></i> Win 10/11
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="check-circle" size="16"></i> Sem Mensalidade
+                </div>
             </div>
+
         </div>
-    </div>
+    </section>
 
-    <section class="section-white" id="clientes">
-        <div class="container">
-            <h2 class="section-title">Adeus Caderninho de Fiado</h2>
-            <p class="section-desc">
-                Gerencie sua carteira de clientes de forma profissional. Saiba exatamente quem são seus melhores compradores e quem está em atraso.
-            </p>
+    <section class="section-padding">
+        <div class="section-title">
+            <span>O diferencial</span>
+            <h2>Por que migrar para o PJ?</h2>
+        </div>
 
-            <div class="features-grid-pj">
-                <div class="feature-box">
-                    <span class="feature-num">👥</span>
-                    <strong>Gestão Completa de Clientes</strong>
-                    <span>
-                        CRUD completo: cadastre, edite e organize clientes com WhatsApp, CPF/CNPJ e observações personalizadas.
-                    </span>
-                </div>
-                <div class="feature-box">
-                    <span class="feature-num">🚦</span>
-                    <strong>Semáforo de Risco</strong>
-                    <span>
-                        Identificação visual automática: Zona Verde para bons pagadores e Zona Vermelha para clientes com atrasos.
-                    </span>
-                </div>
-                <div class="feature-box">
-                    <span class="feature-num">📅</span>
-                    <strong>Histórico de Vendas</strong>
-                    <span>
-                        Cada cliente possui um histórico vinculado. Saiba o que ele comprou e quando pagou em poucos segundos.
-                    </span>
-                </div>
-                <div class="feature-box feature-highlight">
-                    <span class="feature-num">⚡</span>
-                    <strong>Sincronização Real-time</strong>
-                    <span>
-                        Atualizações no cadastro refletem instantaneamente em todo o software, sem precisar reiniciar.
-                    </span>
-                </div>
+        <div class="grid-cards">
+            <div class="card">
+                <i data-lucide="brain-circuit" size="40"></i>
+                <h3>CRM Autônomo 2.0</h3>
+                <p>Nosso algoritmo analisa o comportamento de compra e classifica clientes em VIP, Recorrente ou Risco automaticamente. Sem arrastar cards.</p>
+            </div>
+            <div class="card">
+                <i data-lucide="shield-check" size="40"></i>
+                <h3>Escudo Fiscal & Fator R</h3>
+                <p>Monitoramento em tempo real do Teto MEI e cálculo do Fator R. Saiba exatamente quando emitir nota para pagar menos imposto.</p>
+            </div>
+            <div class="card">
+                <i data-lucide="trending-up" size="40"></i>
+                <h3>Simulador de Ativos</h3>
+                <p>Vai financiar um carro ou sala para a empresa? Use nossa engenharia reversa (Price/SAC) para economizar milhares de reais.</p>
             </div>
         </div>
     </section>
 
-    <section class="section-light" id="vendas">
-        <div class="container">
-            <h2 class="section-title">Vendas e Cobrança em 1 Clique</h2>
-            <p class="section-desc">
-                Registre vendas à vista ou a prazo. Quando o cliente atrasar, o FinanPrime resolve para você com mensagens prontas.
+    <section class="section-padding crm-showcase">
+        <div class="crm-text fade-up">
+            <span style="color: var(--accent); font-weight: 700;">TECNOLOGIA EXCLUSIVA</span>
+            <h2 style="font-size: 2.5rem; margin: 15px 0;">Seus clientes organizados.<br>Sem você tocar em nada.</h2>
+            <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 30px;">
+                O FinanPrime monitora sua base 24/7. Se um cliente VIP para de comprar, ele te avisa. Se um boleto vence, ele vai para cobrança.
             </p>
             
-            <div class="purple-glow-container">
-                 <div style="background: #1e293b; color: white; padding: 40px; text-align: center; border-radius: 10px;">
-                    <h3 style="margin: 0; font-size: 1.5rem;">🖥️ Painel de Controle de Vendas</h3>
-                    <p style="opacity: 0.7;">Vendas Pendentes • Alertas de Vencimento • Baixa Automática no Extrato</p>
-                 </div>
+            <div style="display: grid; gap: 15px;">
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <div style="background: rgba(139, 92, 246, 0.2); pading: 10px; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: var(--pj-primary);"><i data-lucide="target"></i></div>
+                    <div><strong>Detecção de Churn</strong><br><span style="color: #64748b; font-size: 0.9rem;">Avisa antes do cliente te abandonar.</span></div>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <div style="background: rgba(16, 185, 129, 0.2); pading: 10px; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: var(--accent);"><i data-lucide="zap"></i></div>
+                    <div><strong>Tagueamento Inteligente</strong><br><span style="color: #64748b; font-size: 0.9rem;">Classifica Diamante, Ouro e Prata sozinho.</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="crm-visual">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <div style="font-weight: bold;">Gestão de Carteira</div>
+                <div style="background: var(--accent); padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #064e3b; font-weight: 800;">LIVE DATA</div>
+            </div>
+            <div class="kanban-mock">
+                <div class="k-col c1"><div style="margin: 40px 10px 0; height: 30px; background: rgba(255,255,255,0.05); border-radius: 4px;"></div></div>
+                <div class="k-col c2">
+                    <div style="margin: 40px 10px 0; height: 30px; background: rgba(255,255,255,0.1); border-radius: 4px;"></div>
+                    <div style="margin: 10px 10px 0; height: 30px; background: rgba(255,255,255,0.05); border-radius: 4px;"></div>
+                </div>
+                <div class="k-col c3"><div style="margin: 40px 10px 0; height: 30px; background: rgba(255,255,255,0.05); border-radius: 4px;"></div></div>
+            </div>
+            <div style="margin-top: 20px; text-align: center; color: #64748b; font-size: 0.8rem;">*Interface real do sistema</div>
+        </div>
+    </section>
+
+    <section id="planos" class="section-padding">
+        <div class="section-title">
+            <span>Sem mensalidade</span>
+            <h2>Licença Vitalícia (Lifetime)</h2>
+            <p style="color: #94a3b8; margin-top: 10px;">Pague uma vez, use para sempre na versão adquirida.</p>
+        </div>
+
+        <div class="grid-cards">
+            <div class="pricing-card">
+                <h3>MEI Essencial</h3>
+                <div class="price">R$ 297</div>
+                <p style="color: #64748b; font-size: 0.9rem;">Para quem quer apenas organizar o caixa.</p>
+                <ul class="check-list">
+                    <li><i data-lucide="check"></i> Controle de Fluxo de Caixa</li>
+                    <li><i data-lucide="check"></i> Importação de Extrato (OFX)</li>
+                    <li><i data-lucide="check"></i> Relatórios em PDF</li>
+                    <li><i data-lucide="check"></i> Licença para 1 Computador</li>
+                    <li style="opacity: 0.5;"><i data-lucide="x"></i> Módulo Fiscal & CRM</li>
+                </ul>
+                <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20ESSENCIAL" class="btn-outline" style="display: block; width: 100%;">Comprar Licença</a>
             </div>
 
-            <div class="features-grid-pj">
-                <div class="feature-box">
-                    <span class="feature-num">📱</span>
-                    <strong>Cobrança via WhatsApp</strong>
-                    <span>
-                        Botão direto para cobrar inadimplentes com mensagens automáticas personalizadas enviadas ao WhatsApp do cliente.
-                    </span>
+            <div class="pricing-card featured">
+                <div class="badge-popular">MAIS VENDIDO</div>
+                <h3>PJ Master 3.5</h3>
+                <div style="text-decoration: line-through; color: #64748b; font-size: 0.9rem; margin-bottom: -10px;">De R$ 997</div>
+                <div class="price">R$ 497<span style="font-size: 0.8rem; display: block; margin-top: -10px; color: #10b981;">Oferta de Lançamento</span></div>
+                
+                <p style="color: #94a3b8; font-size: 0.9rem;">O sistema completo com Inteligência de Negócio.</p>
+                <ul class="check-list">
+                    <li><i data-lucide="check"></i> <strong>Tudo do Essencial +</strong></li>
+                    <li><i data-lucide="check"></i> CRM Autônomo 2.0</li>
+                    <li><i data-lucide="check"></i> Monitor Fiscal (Fator R)</li>
+                    <li><i data-lucide="check"></i> Simulador de Financiamento</li>
+                    <li><i data-lucide="check"></i> Licença para 2 Computadores</li>
+                </ul>
+                <a href="https://wa.me/5519996261910?text=Quero%20aproveitar%20a%20oferta%20do%20PJ%20MASTER" class="btn-cta" style="display: block; width: 100%;">Garantir Oferta</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Consultoria VIP</h3>
+                <div class="price">Sob Medida</div>
+                <p style="color: #64748b; font-size: 0.9rem;">Não tem tempo? Nós implantamos para você.</p>
+                <ul class="check-list">
+                    <li><i data-lucide="check"></i> Instalação Remota Assistida</li>
+                    <li><i data-lucide="check"></i> Migração dos seus dados antigos</li>
+                    <li><i data-lucide="check"></i> Treinamento da sua equipe (1h)</li>
+                    <li><i data-lucide="check"></i> Personalização de Relatórios</li>
+                </ul>
+                <a href="https://wa.me/5519996261910?text=Tenho%20interesse%20na%20CONSULTORIA" class="btn-outline" style="display: block; width: 100%;">Falar com Consultor</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: rgba(255,255,255,0.02);">
+        <div class="section-title">
+            <h2>O que dizem os empresários</h2>
+        </div>
+        <div class="grid-cards">
+            <div class="card testimonial">
+                <i data-lucide="quote" class="quote-icon"></i>
+                <p>"Eu perdia horas tentando calcular se estava estourando o teto do MEI. O FinanPrime me avisou 2 meses antes, salvando minha empresa de uma multa gigante."</p>
+                <div class="user-info">
+                    <div class="avatar" style="background: url('https://ui-avatars.com/api/?name=Ricardo+S&background=random') center/cover;"></div>
+                    <div><strong>Ricardo Silva</strong><br><span style="font-size: 0.8rem; color: #64748b;">Dono de E-commerce</span></div>
                 </div>
-                <div class="feature-box">
-                    <span class="feature-num">💰</span>
-                    <strong>Baixa Automática no Caixa</strong>
-                    <span>
-                        Ao clicar em "Recebi", o valor entra automaticamente no seu extrato como receita, atualizando lucros e gráficos.
-                    </span>
+            </div>
+            <div class="card testimonial">
+                <i data-lucide="quote" class="quote-icon"></i>
+                <p>"O simulador de financiamento é bruxaria. Coloquei os dados da sala que eu ia comprar e vi que o banco estava me cobrando taxa errada. Economizei 40 mil reais."</p>
+                <div class="user-info">
+                    <div class="avatar" style="background: url('https://ui-avatars.com/api/?name=Ana+P&background=random') center/cover;"></div>
+                    <div><strong>Ana Paula</strong><br><span style="font-size: 0.8rem; color: #64748b;">Arquiteta</span></div>
                 </div>
-                <div class="feature-box">
-                    <span class="feature-num">🔔</span>
-                    <strong>Alertas de Vencimento</strong>
-                    <span>
-                        O sistema avisa diariamente quem são os clientes que vencem hoje, garantindo que você não perca nenhum recebimento.
-                    </span>
-                </div>
-                <div class="feature-box feature-highlight">
-                    <span class="feature-num">📊</span>
-                    <strong>Contas a Receber</strong>
-                    <span>
-                        Visão clara de todo o dinheiro que ainda vai entrar no mês, permitindo um planejamento financeiro real.
-                    </span>
+            </div>
+            <div class="card testimonial">
+                <i data-lucide="quote" class="quote-icon"></i>
+                <p>"O CRM automático é vida. Antes eu tinha que lembrar de cobrar. Agora abro o sistema e a coluna vermelha já me diz pra quem mandar mensagem."</p>
+                <div class="user-info">
+                    <div class="avatar" style="background: url('https://ui-avatars.com/api/?name=Carlos+M&background=random') center/cover;"></div>
+                    <div><strong>Carlos Mendez</strong><br><span style="font-size: 0.8rem; color: #64748b;">Consultor de TI</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-white" id="fiscal">
-        <div class="container">
-            <h2 class="section-title">Painel Fiscal Inteligente ⚖️</h2>
-            <p class="section-desc">
-                Automatize sua rotina fiscal. O sistema calcula impostos, monitora limites e gera relatórios prontos para seu contador.
-            </p>
-
-            <div class="features-grid-pj">
-                <div class="feature-box">
-                    <div class="feature-icon-circle">🏢</div>
-                    <strong>MEI & Simples Nacional</strong>
-                    <span>
-                        Cálculo automático da Guia DAS (Fixa para MEI) e suporte completo aos Anexos I a V do Simples com tabelas progressivas.
-                    </span>
-                </div>
-
-                <div class="feature-box">
-                    <div class="feature-icon-circle">📅</div>
-                    <strong>Provisão Automática</strong>
-                    <span>
-                        Botão "Lançar Provisão": O sistema agenda o pagamento do imposto no seu fluxo de caixa para o dia 20 do mês seguinte.
-                    </span>
-                </div>
-
-                <div class="feature-box">
-                    <div class="feature-icon-circle">📉</div>
-                    <strong>Economia (Fator R)</strong>
-                    <span>
-                        Para empresas de serviços: Monitoramos se sua folha de pagamento permite reduzir a alíquota de 15,5% para 6%.
-                    </span>
-                </div>
-
-                <div class="feature-box">
-                    <div class="feature-icon-circle">🚨</div>
-                    <strong>Monitor de Teto</strong>
-                    <span>
-                        Acompanhe o limite anual (R$ 81k MEI / R$ 4.8M Simples). A IA avisa antes de você estourar o enquadramento.
-                    </span>
-                </div>
-
-                <div class="feature-box">
-                    <div class="feature-icon-circle">📑</div>
-                    <strong>Relatório Contábil</strong>
-                    <span>
-                        Gere um extrato limpo com todas as notas fiscais e impostos pagos para enviar ao seu contador no fim do mês.
-                    </span>
-                </div>
-
-                <div class="feature-box feature-highlight">
-                    <div class="feature-icon-circle">🛡️</div>
-                    <strong>Lucro Isento (PF)</strong>
-                    <span>
-                        Saiba o limite exato de dinheiro que você pode transferir da empresa para sua conta pessoal sem pagar IR.
-                    </span>
-                </div>
-            </div>
+    <section class="section-padding">
+        <div class="section-title">
+            <h2>Dúvidas Frequentes</h2>
         </div>
-    </section>
-
-    <section class="section-light" id="ia-pj">
-        <div class="container">
-            <h2 class="section-title">Inteligência de "Gente Grande"</h2>
-            <p class="section-desc">
-                O módulo de IA analisa a saúde financeira da sua empresa usando métricas reais do mercado financeiro.
-            </p>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px;">
-                <div style="background: white; padding: 40px; border-radius: 20px; border-top: 6px solid #ef4444; box-shadow: 0 15px 40px rgba(0,0,0,0.05);">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">🔥</div>
-                    <h3 style="color: #b91c1c; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700;">Análise de Burn Rate</h3>
-                    <p style="color: #64748b; line-height: 1.6; font-size: 1.05rem;">
-                        A IA calcula sua taxa de queima de caixa e avisa o seu **Runway**: quantos dias a empresa sobrevive se parar de vender hoje.
-                    </p>
-                </div>
-
-                <div style="background: white; padding: 40px; border-radius: 20px; border-top: 6px solid #10b981; box-shadow: 0 15px 40px rgba(0,0,0,0.05);">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">🔮</div>
-                    <h3 style="color: #065f46; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700;">Previsão de Caixa</h3>
-                    <p style="color: #64748b; line-height: 1.6; font-size: 1.05rem;">
-                        Com base nos gastos fixos e histórico de vendas, o sistema projeta o saldo final do mês antes mesmo dele acabar.
-                    </p>
-                </div>
-
-                <div style="background: white; padding: 40px; border-radius: 20px; border-top: 6px solid #8b5cf6; box-shadow: 0 15px 40px rgba(0,0,0,0.05);">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">📈</div>
-                    <h3 style="color: #4c1d95; margin-bottom: 15px; font-size: 1.5rem; font-weight: 700;">Margens Reais</h3>
-                    <p style="color: #64748b; line-height: 1.6; font-size: 1.05rem;">
-                        Identifique produtos com margem apertada e saiba se sua precificação está cobrindo os custos fixos da operação.
-                    </p>
-                </div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>Preciso pagar mensalidade?</h4>
+                <p>Não! O FinanPrime é venda de licença vitalícia (Lifetime). Você paga uma vez e usa para sempre na versão adquirida.</p>
             </div>
-        </div>
-    </section>
-
-    <section class="section-white" style="text-align: center; padding-bottom: 140px;">
-        <div class="container">
-            <h2 style="font-size: 3.2rem; color: #1e293b; margin-bottom: 25px; letter-spacing: -1px; font-weight: 800;">A Gestão que seu Negócio Merece</h2>
-            <p style="font-size: 1.4rem; color: #64748b; margin-bottom: 60px;">Controle Fiscal, Clientes, Vendas e IA em um só lugar.</p>
-            
-            <a href="https://wa.me/5519996261910?text=Olá!%20Gostaria%20de%20consultar%20uma%20solução%20Empresarial%20para%20meu%20negócio." class="btn-action">
-                CONSULTAR SOLUÇÃO EMPRESARIAL
-            </a>
-            <p style="margin-top: 25px; font-size: 1rem; color: #94a3b8; font-weight: 500;">Licença Vitalícia • Análise Personalizada • Suporte VIP</p>
+            <div class="faq-item">
+                <h4>Funciona no Mac ou Celular?</h4>
+                <p>Atualmente é um software Desktop para Windows (focado em performance). A versão mobile está em desenvolvimento.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Meus dados ficam na nuvem?</h4>
+                <p>Não. Prezamos pela sua privacidade total. O banco de dados fica criptografado apenas no seu computador (Local-First).</p>
+            </div>
+            <div class="faq-item">
+                <h4>E se eu formatar o PC?</h4>
+                <p>O sistema possui uma ferramenta de Backup simples. Basta salvar o arquivo .db no Google Drive e restaurar depois.</p>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2026 FinanPrime v3.5</p>
+        <p>© 2026 FinanPrime Technology. Todos os direitos reservados.</p>
+        <!---<p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.5;">CNPJ: 00.000.000/0001-00 • Mogi Guaçu - SP</p>-->
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <a href="https://wa.me/5519996261910?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20tenho%20d%C3%BAvidas" class="float-wa" target="_blank">
+        <i data-lucide="message-circle" size="30"></i>
+    </a>
+
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const nav = document.querySelector('.card-nav');
-            const hamburger = document.getElementById('hamburger-btn');
-            const content = document.querySelector('.card-nav-content');
-            const cards = document.querySelectorAll('.nav-card');
-            
-            let isOpen = false;
-            gsap.set(cards, { y: 50, opacity: 0 });
-            
-            function calculateHeight() { return window.innerWidth <= 768 ? 60 + (cards.length * 130) + 40 : 280; }
-
-            const tl = gsap.timeline({ paused: true, onReverseComplete: () => { content.style.visibility = 'hidden'; }});
-
-            tl.to(nav, { height: calculateHeight, duration: 0.5, ease: "power3.out" })
-              .to(content, { opacity: 1, visibility: 'visible', duration: 0.2 }, "-=0.4")
-              .to(cards, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" }, "-=0.3");
-
-            hamburger.addEventListener('click', () => {
-                isOpen = !isOpen;
-                if (isOpen) { hamburger.classList.add('open'); tl.play(); } 
-                else { hamburger.classList.remove('open'); tl.reverse(); }
-            });
-
-            window.addEventListener('resize', () => { if(isOpen) gsap.to(nav, { height: calculateHeight(), duration: 0.2 }); });
-        });
+        lucide.createIcons();
     </script>
-
 </body>
 </html>
