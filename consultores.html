@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanPrime Master - Consultores</title>
+
+  <link rel="shortcut icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root{
+      /* Mesmas cores-base do mei.html (PJ) */
+      --pj-primary: #8b5cf6; /* Roxo Business */
+      --pj-dark: #0f172a;
+      --pj-card: #1e293b;
+      --accent: #10b981; /* Verde Dinheiro */
+
+      /* Master accent (dourado) */
+      --master: #fbbf24;
+      --master2: #f59e0b;
+
+      --text-muted: #94a3b8;
+      --border: rgba(255,255,255,0.06);
+      --glass: rgba(15, 23, 42, 0.85);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body { background: var(--pj-dark); color:#fff; overflow-x:hidden; }
+
+    /* subtle grid */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(139,92,246,0.22), transparent 55%),
+        radial-gradient(circle at 75% 30%, rgba(16,185,129,0.12), transparent 55%),
+        linear-gradient(to bottom, rgba(15,23,42,0.85), rgba(15,23,42,0.95)),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 44px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 44px);
+      opacity: 0.55;
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    a { color: inherit; text-decoration:none; }
+
+    /* Header */
+    header{
+      padding: 18px 5%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:1000;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .logo{ font-size: 20px; font-weight: 900; letter-spacing:0.2px; }
+    .logo span{ color: var(--pj-primary); }
+    nav{
+      display:flex; gap:18px; align-items:center;
+      font-size:0.92rem; color:#cbd5e1;
+    }
+    nav a{ opacity:0.85; transition:0.2s; }
+    nav a:hover{ opacity:1; transform: translateY(-1px); }
+    .nav-pill{
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:800;
+    }
+
+    .btn-cta{
+      background: var(--pj-primary);
+      color:#fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 800;
+      display:inline-flex; align-items:center; gap:10px;
+      transition:0.25s;
+      box-shadow: 0 0 18px rgba(139,92,246,0.30);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .btn-cta:hover{ transform: translateY(-2px); box-shadow: 0 0 30px rgba(139,92,246,0.55); }
+
+    .btn-master{
+      background: rgba(245,158,11,0.16);
+      border: 1px solid rgba(245,158,11,0.45);
+      color: #ffe7b3;
+      box-shadow: 0 0 22px rgba(245,158,11,0.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .btn-master::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(120deg, rgba(245,158,11,0), rgba(245,158,11,0.55), rgba(245,158,11,0));
+      filter: blur(12px);
+      opacity:0.55;
+      animation: pulseGold 2.8s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .btn-master:hover{ transform: translateY(-2px); box-shadow: 0 0 34px rgba(245,158,11,0.35); }
+    @keyframes pulseGold{
+      0%{ opacity:0.20; transform: scale(0.98); }
+      50%{ opacity:0.70; transform: scale(1.01); }
+      100%{ opacity:0.20; transform: scale(0.98); }
+    }
+
+    /* Hero */
+    .hero{
+      min-height: 92vh;
+      padding: 120px 5% 60px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      text-align:center;
+    }
+    .hero-inner{
+      max-width: 980px;
+      position:relative;
+      z-index:1;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(245,158,11,0.10);
+      border: 1px solid rgba(245,158,11,0.30);
+      color: #ffd37a;
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 0 18px rgba(245,158,11,0.12);
+      margin-bottom: 22px;
+    }
+    .kdot{
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(16,185,129,0.75);
+    }
+    .hero h1{
+      font-size: 3.6rem;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      font-weight: 900;
+      background: linear-gradient(to right, #ffffff 20%, #a78bfa 70%, #ffd37a 110%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(139,92,246,0.22);
+    }
+    .hero p{
+      color: #cbd5e1;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      max-width: 860px;
+      margin: 0 auto 28px;
+    }
+    .hero-cta{
+      display:flex;
+      gap: 12px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top: 14px;
+    }
+    .btn-outline{
+      border: 1px solid rgba(255,255,255,0.18);
+      color:#fff;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 800;
+      transition:0.25s;
+      background: rgba(255,255,255,0.03);
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    .btn-outline:hover{ transform: translateY(-2px); border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+
+    .trust-badges{
+      margin-top: 28px;
+      display:flex;
+      justify-content:center;
+      gap: 18px;
+      color: #94a3b8;
+      font-size: 0.92rem;
+      flex-wrap:wrap;
+    }
+    .trust-item{ display:flex; align-items:center; gap: 10px; padding: 10px 14px; border:1px solid rgba(255,255,255,0.06); border-radius: 999px; background: rgba(255,255,255,0.02); }
+    .trust-item i{ color: #64748b; }
+
+    /* Sections */
+    .section{ padding: 90px 5%; }
+    .section.alt{ background: rgba(255,255,255,0.02); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05); }
+    .section-title{ text-align:center; max-width: 980px; margin: 0 auto 46px; }
+    .section-title span{
+      color: var(--accent);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+    .section-title h2{ font-size: 2.45rem; margin-top: 12px; margin-bottom: 10px; }
+    .section-title p{ color: var(--text-muted); font-size: 1.02rem; line-height: 1.7; }
+
+    /* Cards grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card{
+      background: rgba(30, 41, 59, 0.42);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+      position:relative;
+      transition: 0.25s;
+      overflow:hidden;
+      box-shadow: 0 18px 48px -20px rgba(0,0,0,0.55);
+    }
+    .card:hover{ transform: translateY(-6px); border-color: rgba(139,92,246,0.55); background: rgba(30, 41, 59, 0.72); }
+    .card h3{ font-size: 1.18rem; margin: 12px 0 8px; }
+    .card p{ color: var(--text-muted); line-height:1.7; font-size: 0.98rem; }
+    .icon{
+      width: 46px; height: 46px;
+      display:flex; align-items:center; justify-content:center;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+    .icon.master{ border-color: rgba(245,158,11,0.35); background: rgba(245,158,11,0.10); }
+    .icon i{ color: #cbd5e1; }
+    .icon.master i{ color: #ffd37a; }
+
+    /* Master highlight card */
+    .card.master{
+      border: 1px solid rgba(245,158,11,0.45);
+    }
+    .card.master::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(120deg, rgba(245,158,11,0), rgba(245,158,11,0.55), rgba(245,158,11,0));
+      filter: blur(14px);
+      opacity: 0.55;
+      animation: pulseGold 2.8s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .badge-master{
+      position:absolute;
+      top: 14px;
+      right: 14px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--master);
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.45);
+      box-shadow: 0 0 16px rgba(245,158,11,0.20);
+    }
+    .mini-list{ list-style:none; margin-top: 14px; display:grid; gap: 10px; color:#cbd5e1; }
+    .mini-list li{ display:flex; gap:10px; align-items:flex-start; }
+    .mini-list i{ color: var(--accent); margin-top: 2px; }
+
+    /* Comparison */
+    .compare{
+      max-width: 1100px;
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .compare .side{
+      background: rgba(30, 41, 59, 0.35);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+      position:relative;
+      overflow:hidden;
+    }
+    .side h3{ font-size: 1.1rem; margin: 10px 0 10px; }
+    .side p{ color: var(--text-muted); line-height:1.7; }
+    .side ul{ list-style:none; margin-top: 14px; display:grid; gap: 10px; color:#cbd5e1; }
+    .side li{ display:flex; gap:10px; align-items:flex-start; }
+    .side .x{ color: #ef4444; }
+    .side .ok{ color: var(--accent); }
+
+    .side.master{
+      border-color: rgba(245,158,11,0.40);
+      background: linear-gradient(180deg, rgba(30,41,59,0.55), rgba(15,23,42,0.65));
+    }
+    .side.master::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(245,158,11,0.18), transparent 55%),
+        radial-gradient(circle at 70% 20%, rgba(139,92,246,0.12), transparent 55%);
+      pointer-events:none;
+    }
+
+    /* Gallery / Prints */
+    .gallery{
+      max-width: 1100px;
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items:start;
+    }
+    .shot{
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(30,41,59,0.45);
+      padding: 16px;
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 25px 60px -18px rgba(0,0,0,0.55);
+    }
+    .shot::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(139,92,246,0.16), transparent 55%),
+        radial-gradient(circle at 80% 40%, rgba(16,185,129,0.10), transparent 55%),
+        radial-gradient(circle at 50% 90%, rgba(245,158,11,0.10), transparent 55%);
+      pointer-events:none;
+    }
+    .shot img{
+      width:100%;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+      display:block;
+      position:relative;
+      z-index:1;
+    }
+    .shot-cap{
+      position:relative;
+      z-index:1;
+      margin-top: 12px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+      padding: 0 6px 6px;
+    }
+    .shot-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 8px 8px 12px;
+      position:relative;
+      z-index:1;
+    }
+    .shot-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      color: #c4b5fd;
+      font-weight: 900;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .shot-pill.master{
+      background: rgba(245,158,11,0.10);
+      border-color: rgba(245,158,11,0.35);
+      color: #ffd37a;
+    }
+
+    /* CTA stripe */
+    .cta-stripe{
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: linear-gradient(135deg, rgba(139,92,246,0.16), rgba(15,23,42,0.65));
+      padding: 26px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .cta-stripe::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(circle at 20% 20%, rgba(245,158,11,0.14), transparent 55%);
+      pointer-events:none;
+    }
+    .cta-left{ position:relative; z-index:1; }
+    .cta-left h3{ font-size: 1.35rem; margin-bottom: 6px; }
+    .cta-left p{ color: var(--text-muted); line-height:1.65; }
+    .cta-right{ position:relative; z-index:1; display:flex; gap: 12px; flex-wrap:wrap; justify-content:flex-end; }
+
+    /* Floating WhatsApp */
+    .float-wa{
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+      transition: 0.25s;
+      z-index:9999;
+    }
+    .float-wa:hover{ transform: scale(1.1); box-shadow: 0 0 34px rgba(37, 211, 102, 0.55); }
+
+    footer{
+      padding: 60px 5%;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align:center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    .fade-up{ opacity:0; transform: translateY(26px); animation: fadeUp 0.8s forwards; }
+    @keyframes fadeUp{ to{ opacity:1; transform: translateY(0); } }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero h1{ font-size: 2.6rem; }
+      .compare{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
+      nav{ display:none; }
+    }
+    @media (max-width: 560px){
+      .hero{ min-height: 86vh; padding-top: 110px; }
+      .section-title h2{ font-size: 2.05rem; }
+      .cta-stripe{ flex-direction: column; text-align:center; }
+      .cta-right{ justify-content:center; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Finan<span>Prime</span> <span style="color:#ffd37a;">Master</span></div>
+
+    <nav>
+      <a class="nav-pill" href="index.html"><i data-lucide="arrow-left" size="16"></i> Voltar</a>
+      <a href="mei.html">Empresarial</a>
+      <a href="seguranca.html">Segurança</a>
+      <a href="#cta">Master</a>
+    </nav>
+
+    <a class="btn-cta btn-master" href="https://wa.me/5519996261910?text=Quero%20o%20FinanPrime%20MASTER%20(consultores)%20com%20perfis%20ilimitados" target="_blank" rel="noopener">
+      <i data-lucide="sparkles" size="18"></i> Quero o Master
+    </a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner fade-up">
+      <div class="kicker"><span class="kdot"></span> PARA CONSULTORES • PERFIS ILIMITADOS • DADOS ISOLADOS</div>
+
+      <h1>Gerencie sua carteira<br/>sem mensalidade por cliente.</h1>
+
+      <p>
+        O <strong>FinanPrime Master</strong> foi criado para consultores, profissionais e escritórios que atendem vários clientes
+        e precisam de <strong>organização real</strong>: CRM, cobranças, caixa e monitor fiscal — tudo com <strong>multi-perfis</strong> e isolamento de dados.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn-cta btn-master" href="#cta">
+          <i data-lucide="zap" size="18"></i> Ver o que o Master entrega
+        </a>
+        <a class="btn-outline" href="https://wa.me/5519996261910?text=Quero%20uma%20demonstra%C3%A7%C3%A3o%20do%20FinanPrime%20MASTER%20para%20consultores" target="_blank" rel="noopener">
+          <i data-lucide="play-circle" size="18"></i> Pedir demonstração
+        </a>
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-item"><i data-lucide="cloud-off" size="18"></i> Sem nuvem</div>
+        <div class="trust-item"><i data-lucide="lock-keyhole" size="18"></i> Dados locais</div>
+        <div class="trust-item"><i data-lucide="database" size="18"></i> Base por cliente</div>
+        <div class="trust-item"><i data-lucide="infinity" size="18"></i> Perfis ilimitados</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DORES -->
+  <section class="section">
+    <div class="section-title">
+      <span>O problema</span>
+      <h2>Atender vários clientes vira caos rápido</h2>
+      <p>
+        Planilha por cliente, SaaS cobrando por empresa, dados misturados e tempo perdido em tarefas repetitivas.
+        O Master existe pra você operar com controle, não com ansiedade.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i data-lucide="sheet" size="20"></i></div>
+        <h3>Planilha em todo lugar</h3>
+        <p>Um arquivo por cliente vira bagunça, inconsistente e difícil de auditar.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i data-lucide="credit-card" size="20"></i></div>
+        <h3>Mensalidade por cliente</h3>
+        <p>Você cresce e o software te pune. O custo acompanha a sua carteira (pior cenário).</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i data-lucide="alert-triangle" size="20"></i></div>
+        <h3>Risco de misturar dados</h3>
+        <p>Um clique errado e você cobra o cliente errado ou calcula imposto com informações trocadas.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i data-lucide="clock-3" size="20"></i></div>
+        <h3>Tempo some</h3>
+        <p>Cobrança, controle e relatórios viram “trabalho invisível” que ninguém te paga.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÃO (MASTER) -->
+  <section class="section alt" id="cta">
+    <div class="section-title">
+      <span>O Master</span>
+      <h2>Carteira de Clientes + Perfis Ilimitados</h2>
+      <p>
+        Cada cliente vira um perfil isolado (base independente). Você troca de contexto em 1 clique
+        e mantém tudo organizado sem pagar mensalidade por cliente.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card master">
+        <span class="badge-master">Master</span>
+        <div class="icon master"><i data-lucide="users" size="20"></i></div>
+        <h3>Carteira de Clientes</h3>
+        <p>Vários clientes. Um único sistema. Sem misturar dados.</p>
+        <ul class="mini-list">
+          <li><i data-lucide="check" size="18"></i> Perfis independentes (por cliente/empresa)</li>
+          <li><i data-lucide="check" size="18"></i> Troca rápida de contexto</li>
+          <li><i data-lucide="check" size="18"></i> Ideal para consultores e escritórios</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i data-lucide="database" size="20"></i></div>
+        <h3>CRM + Cobrança</h3>
+        <p>Organize, acompanhe risco e cobre em 1 clique. Menos fricção, mais operação.</p>
+        <ul class="mini-list">
+          <li><i data-lucide="check" size="18"></i> Funil Kanban (Risco / Cobrança / VIP)</li>
+          <li><i data-lucide="check" size="18"></i> Mensagens prontas (WhatsApp)</li>
+          <li><i data-lucide="check" size="18"></i> Baixa atualiza caixa</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i data-lucide="shield-check" size="20"></i></div>
+        <h3>Monitor Fiscal</h3>
+        <p>Visão clara de impostos e alertas proativos. A ideia é evitar surpresa, não gerar planilha.</p>
+        <ul class="mini-list">
+          <li><i data-lucide="check" size="18"></i> Alertas e status</li>
+          <li><i data-lucide="check" size="18"></i> Export e relatórios</li>
+          <li><i data-lucide="check" size="18"></i> Tudo local-first</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARATIVO -->
+  <section class="section">
+    <div class="section-title">
+      <span>Comparativo</span>
+      <h2>Por que consultores escolhem o Master</h2>
+      <p>
+        Você não precisa pagar 50 mensalidades para atender 50 clientes. O Master foi feito para escalar.
+      </p>
+    </div>
+
+    <div class="compare">
+      <div class="side">
+        <div class="icon"><i data-lucide="cloud" size="20"></i></div>
+        <h3>SaaS tradicional</h3>
+        <p>Funciona… até o custo começar a crescer com sua carteira.</p>
+        <ul>
+          <li><span class="x">✕</span> Mensalidade por cliente/empresa</li>
+          <li><span class="x">✕</span> Dados no servidor de terceiros</li>
+          <li><span class="x">✕</span> Escala vira “dor de custo”</li>
+          <li><span class="x">✕</span> Várias ferramentas para fechar o ciclo</li>
+        </ul>
+      </div>
+
+      <div class="side master">
+        <div class="icon master"><i data-lucide="infinity" size="20"></i></div>
+        <h3>FinanPrime Master</h3>
+        <p>Carteira de clientes com isolamento real. Você compra uma vez e opera.</p>
+        <ul>
+          <li><span class="ok">✓</span> Perfis ilimitados (Master)</li>
+          <li><span class="ok">✓</span> Base por cliente (dados separados)</li>
+          <li><span class="ok">✓</span> Local-first + criptografia (sem nuvem)</li>
+          <li><span class="ok">✓</span> CRM + cobrança + fiscal no mesmo fluxo</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVAS (prints) -->
+  <section class="section alt">
+    <div class="section-title">
+      <span>Na prática</span>
+      <h2>Veja o tipo de tela que você usa todos os dias</h2>
+    </div>
+
+    <div class="gallery">
+      <div class="shot">
+        <div class="shot-top">
+          <div class="shot-pill master"><i data-lucide="users" size="16"></i> Multi-perfis</div>
+          <div style="color:#64748b; font-size:0.9rem; font-weight:800;">MASTER</div>
+        </div>
+        <!-- Dica: se você tiver um print do seletor de perfis, troque o arquivo abaixo -->
+        <img src="assets/carteira.png" alt="Exemplo - use aqui um print do seletor de perfis do Master" />
+        <div class="shot-cap">
+          <strong>Dica:</strong> aqui é perfeito para você colocar um print do “selecionar perfil / cliente”.
+          Se você ainda não tem, use temporariamente o CRM Kanban e depois substitui o arquivo.
+        </div>
+      </div>
+
+      <div style="display:grid; gap: 22px;">
+        <div class="shot">
+          <div class="shot-top">
+            <div class="shot-pill"><i data-lucide="layout-dashboard" size="16"></i> CRM</div>
+          </div>
+          <img src="assets/CRM.png" alt="Print do CRM - Lista e Filtros" />
+          <div class="shot-cap">Lista, filtros e visão rápida da carteira. Ideal para consultor operar rápido.</div>
+        </div>
+
+        <div class="shot">
+          <div class="shot-top">
+            <div class="shot-pill"><i data-lucide="shield-check" size="16"></i> Impostos</div>
+          </div>
+          <img src="assets/impostosPj.png" alt="Print da tela de Impostos PJ" />
+          <div class="shot-cap">Monitor fiscal com alertas — foco em evitar surpresa e manter o fluxo sob controle.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 34px;">
+      <div class="cta-stripe">
+        <div class="cta-left">
+          <h3>Quer operar 20+ clientes com controle?</h3>
+          <p>Me chama no WhatsApp e eu te mostro o Master rodando com multi-perfis e isolamento real de dados.</p>
+        </div>
+        <div class="cta-right">
+          <a class="btn-cta btn-master" href="https://wa.me/5519996261910?text=Quero%20ver%20o%20FinanPrime%20MASTER%20rodando%20com%20multi-perfis%20(consultores)" target="_blank" rel="noopener">
+            <i data-lucide="message-circle" size="18"></i> Falar agora
+          </a>
+          <a class="btn-outline" href="mei.html">
+            <i data-lucide="building-2" size="18"></i> Ver página PJ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ curtinho -->
+  <section class="section">
+    <div class="section-title">
+      <span>FAQ</span>
+      <h2>Consultores perguntam isso sempre</h2>
+      <p>Direto ao ponto, sem enrolar.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i data-lucide="infinity" size="20"></i></div>
+        <h3>“Pago por cliente?”</h3>
+        <p>Não. O Master foi desenhado para carteira de clientes — sem mensalidade por cliente.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i data-lucide="lock-keyhole" size="20"></i></div>
+        <h3>“Os dados ficam na nuvem?”</h3>
+        <p>Não. É local-first: dados ficam na sua máquina. (Ideal para privacidade e controle.)</p>
+      </div>
+
+      <div class="card">
+        <div class="icon"><i data-lucide="folder-down" size="20"></i></div>
+        <h3>“Consigo exportar por cliente?”</h3>
+        <p>Sim. A lógica por perfis facilita backup e export por cliente/empresa.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 FinanPrime Technology. Todos os direitos reservados.</p>
+  </footer>
+
+  <a class="float-wa" href="https://wa.me/5519996261910?text=Ol%C3%A1%2C%20vim%20pela%20p%C3%A1gina%20de%20Consultores%20e%20quero%20o%20MASTER" target="_blank" rel="noopener">
+    <i data-lucide="message-circle" size="30"></i>
+  </a>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

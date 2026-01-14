@@ -420,6 +420,92 @@
             display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
         }
 
+        /* ================================
+        BENTO CARD — MASTER (DOURADO)
+        ================================ */
+
+        .bento-card.master {
+        position: relative;
+        border: 1px solid rgba(245, 158, 11, 0.55); /* dourado */
+        box-shadow:
+            0 0 0 rgba(245,158,11,0),
+            inset 0 0 0 rgba(245,158,11,0);
+        overflow: hidden;
+        }
+
+        /* glow pulsante */
+        .bento-card.master::before {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: inherit;
+        background: linear-gradient(
+            120deg,
+            rgba(245,158,11,0.0),
+            rgba(245,158,11,0.55),
+            rgba(245,158,11,0.0)
+        );
+        filter: blur(10px);
+        opacity: 0.6;
+        animation: masterPulse 2.8s ease-in-out infinite;
+        pointer-events: none;
+        }
+
+        /* brilho interno sutil */
+        .bento-card.master::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+            180deg,
+            rgba(245,158,11,0.08),
+            rgba(0,0,0,0)
+        );
+        pointer-events: none;
+        }
+
+        @keyframes masterPulse {
+        0% {
+            opacity: 0.25;
+            transform: scale(0.98);
+        }
+        50% {
+            opacity: 0.65;
+            transform: scale(1.01);
+        }
+        100% {
+            opacity: 0.25;
+            transform: scale(0.98);
+        }
+        }
+
+        /* badge flutuante */
+        .bento-card.master .badge-master {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #fbbf24;
+        background: rgba(245,158,11,0.15);
+        border: 1px solid rgba(245,158,11,0.5);
+        box-shadow: 0 0 14px rgba(245,158,11,0.35);
+        }
+
+        /* hover reforça o poder */
+        .bento-card.master:hover {
+        transform: translateY(-6px) scale(1.015);
+        box-shadow:
+            0 0 30px rgba(245,158,11,0.45),
+            0 20px 50px rgba(0,0,0,0.6);
+        }
+
+
         /* Tamanhos Especiais */
         .col-span-2 { grid-column: span 2; }
         .row-span-2 { grid-row: span 2; }
@@ -557,6 +643,7 @@
         <nav class="nav-links">
             <a href="#features">Recursos</a>
             <a href="mei.html">Para Empresas</a>
+            <a href="consultores.html">Consultores</a>
             <a href="seguranca.html">Criptografia</a>
             <a href="docs.html">Documentação</a>
         </nav>
@@ -657,6 +744,28 @@
                         <i data-lucide="file-check" size="80" style="opacity: 0.1; color: white;"></i>
                     </div>
                 </div>
+                
+                <div class="bento-card master">
+                    <span class="badge-master">Master</span>
+
+                    <div class="bento-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+
+                    <h3>Carteira de Clientes</h3>
+                    <p>
+                        Gerencie múltiplos clientes ou empresas
+                        sem misturar dados.
+                    </p>
+
+                    <p class="bento-desc">
+                            <br>
+                            • Perfis independentes
+                            <br>
+                            • Troca rápida de contexto
+                        </p>
+                </div>
+
 
                 <div class="bento-card">
                     <div class="bento-icon" style="background: rgba(245,158,11,0.1); color: #f59e0b;">
@@ -986,7 +1095,8 @@
                 <ul class="check-list">
                     <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> <strong>Licença Híbrida (PF e PJ)</strong></li>
                     <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> Módulo Fiscal Completo</li>
-                    <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> <strong>FinanPrime Mobile (HUB Wi-Fi + fila offline)</strong></li>
+                    <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> <strong>FinanPrime Mobile</strong></li>
+                    <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> <strong>Perfis Ilimitados </strong></li>
                     <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> Suporte Prioritário VIP</li>
                 </ul>
                 <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20MASTER%20(Combo)%20por%20R$%20597" target="_blank" class="btn-price" style="background-color: var(--neon-gold); color: #78350f;">
