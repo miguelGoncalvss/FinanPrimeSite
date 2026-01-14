@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -526,13 +527,6 @@
             color: var(--text-muted); opacity: 0.3;
         }
 
-        @media (max-width: 900px) {
-            .workflow-grid { grid-template-columns: 1fr; gap: 60px; }
-            .workflow-line { display: none; } /* Remove linha em mobile */
-            .step-arrow { display: none; }
-            .step-badge { margin: 0 auto 20px; } /* Reseta margem */
-        }
-
 
         /* Responsividade do Bento */
         /* Responsividade Ajustada */
@@ -562,7 +556,8 @@
         <div class="logo"><i data-lucide="layout-grid"></i> Finan<span>Prime</span></div>
         <nav class="nav-links">
             <a href="#features">Recursos</a>
-            <a href="mei.html">Para Empresas</a>
+            <a href="mei_v2.html">Para Empresas</a>
+            <a href="seguranca.html">Criptografia</a>
             <a href="docs.html">Documentação</a>
         </nav>
         <a href="#planos" class="btn-header">Baixar Agora</a>
@@ -748,6 +743,98 @@
         </div>
     </section>
 
+    <section class="sim-section" id="simulador">
+    <div class="section-title">
+        <span style="color: var(--primary);">Interactive</span>
+        <h2>Calculadora de Liberdade Financeira</h2>
+        <p style="color: var(--text-muted); margin-top: 10px;">
+        Coloque renda e gastos. O site estima em quantos anos você consegue se “aposentar” mantendo o padrão.
+        </p>
+    </div>
+
+    <div class="sim-wrap">
+        <div class="sim-card">
+        <div class="sim-title">
+            <i data-lucide="sparkles"></i>
+            <h3>Quanto tempo falta?</h3>
+            <span class="tag">Neon Widget</span>
+        </div>
+
+        <p class="sim-sub">
+            A lógica é simples: se você consegue guardar mais por mês, seu tempo cai.
+            <br><span style="opacity:.85;">(Estimativa educativa — não é recomendação financeira.)</span>
+        </p>
+
+        <div class="sim-form">
+            <div class="sim-field">
+            <label>Renda mensal (R$)</label>
+            <input id="sim_income" type="number" inputmode="numeric" placeholder="Ex: 5000" />
+            </div>
+
+            <div class="sim-field">
+            <label>Gasto mensal (R$)</label>
+            <input id="sim_expense" type="number" inputmode="numeric" placeholder="Ex: 3200" />
+            </div>
+
+            <div class="sim-field">
+            <label>Patrimônio atual (R$) <span style="opacity:.6;">(opcional)</span></label>
+            <input id="sim_networth" type="number" inputmode="numeric" placeholder="Ex: 10000" />
+            </div>
+
+            <div class="sim-field">
+            <label>Meta “aposentar” (R$)</label>
+            <input id="sim_target" type="number" inputmode="numeric" placeholder="Ex: 500000" />
+            </div>
+        </div>
+
+        <div class="sim-actions">
+            <button class="sim-btn" id="sim_calc">
+            <i data-lucide="calculator"></i> Calcular
+            </button>
+            <button class="sim-btn-secondary" id="sim_fill">
+            Preencher exemplo
+            </button>
+        </div>
+
+        <div class="sim-result" id="sim_result">
+            <strong id="sim_headline">Resultado</strong>
+            <p id="sim_text"></p>
+
+            <div class="sim-mini">
+            <span class="sim-pill"><i data-lucide="piggy-bank" size="16"></i> <span id="sim_save"></span></span>
+            <span class="sim-pill"><i data-lucide="calendar" size="16"></i> <span id="sim_years"></span></span>
+            </div>
+
+            <div style="margin-top: 14px;">
+            <a class="btn-cta" href="#planos" style="font-size:1rem; padding:12px 18px;">
+                <i data-lucide="zap"></i> Quer reduzir esse tempo? Use o FinanPrime
+            </a>
+            </div>
+        </div>
+        </div>
+
+        <div style="margin-top:18px; display:grid; gap:10px;">
+            <div style="display:flex; align-items:center; gap:10px; color:#cbd5e1; font-weight:800;">
+                <i data-lucide="shield-check"></i> Por que isso ajuda?
+            </div>
+
+            <div class="sim-mini">
+                <span class="sim-pill"><i data-lucide="check" size="16"></i> Enxerga vazamentos</span>
+                <span class="sim-pill"><i data-lucide="check" size="16"></i> Categoriza gastos</span>
+                <span class="sim-pill"><i data-lucide="check" size="16"></i> Dashboard pronto</span>
+                <span class="sim-pill"><i data-lucide="check" size="16"></i> Tudo local</span>
+            </div>
+
+            <p style="color: var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                Quanto mais margem você cria por mês, mais rápido sua meta chega.
+                O FinanPrime te ajuda a criar essa margem sem depender de planilha.
+            </p>
+        </div>
+
+    </div>
+    </section>
+
+
     <section id="features" class="features-grid">
         <div class="feature-card">
             <div class="icon-box"><i data-lucide="brain-circuit"></i></div>
@@ -868,6 +955,7 @@
                     <li><i data-lucide="check" size="18" style="color: var(--neon-blue);"></i> Gestão de Gastos Ilimitada</li>
                     <li><i data-lucide="check" size="18" style="color: var(--neon-blue);"></i> Importação OFX Automática</li>
                     <li><i data-lucide="check" size="18" style="color: var(--neon-blue);"></i> Simulador de IRPF</li>
+                    <li><i data-lucide="check" size="18" style="color: var(--neon-blue);"></i> <strong>FinanPrime Mobile</strong></li>
                 </ul>
                 <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20Pessoal%20(PF)%20por%20R$%20147" target="_blank" class="btn-price" style="background: rgba(59, 130, 246, 0.1); border-color: var(--neon-blue); color: var(--neon-blue);">
                     Adquirir PF
@@ -882,6 +970,7 @@
                 <ul class="check-list">
                     <li><i data-lucide="check" size="18" style="color: var(--neon-purple);"></i> CRM Autônomo 2.0</li>
                     <li><i data-lucide="check" size="18" style="color: var(--neon-purple);"></i> Monitor Fiscal (Fator R)</li>
+                    <li><i data-lucide="check" size="18" style="color: var(--neon-purple);"></i> <strong>FinanPrime PJ Mobile</strong></li>
                     <li><i data-lucide="arrow-right" size="18" style="color: var(--neon-purple);"></i> <strong>Ver todos recursos PJ</strong></li>
                 </ul>
                 <a href="mei.html" class="btn-price" style="background: rgba(139, 92, 246, 0.1); border-color: var(--neon-purple); color: var(--neon-purple);">
@@ -897,13 +986,13 @@
                 <ul class="check-list">
                     <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> <strong>Licença Híbrida (PF e PJ)</strong></li>
                     <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> Módulo Fiscal Completo</li>
+                    <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> <strong>FinanPrime Mobile (HUB Wi-Fi + fila offline)</strong></li>
                     <li><i data-lucide="check" size="18" style="color: var(--neon-gold);"></i> Suporte Prioritário VIP</li>
                 </ul>
                 <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20MASTER%20(Combo)%20por%20R$%20597" target="_blank" class="btn-price" style="background-color: var(--neon-gold); color: #78350f;">
                     Quero o Combo
                 </a>
             </div>
-
         </div>
     </section>
 
@@ -912,7 +1001,98 @@
     </footer>
 
     <script>
+    // Mantém os ícones atualizados (se você já chama isso, deixa só uma vez)
         lucide.createIcons();
+
+        const brl = (n) => {
+            const v = Number(n || 0);
+            return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        };
+
+        const clamp = (x, min, max) => Math.max(min, Math.min(max, x));
+
+        const elIncome = document.getElementById('sim_income');
+        const elExpense = document.getElementById('sim_expense');
+        const elNetworth = document.getElementById('sim_networth');
+        const elTarget = document.getElementById('sim_target');
+
+        const btnCalc = document.getElementById('sim_calc');
+        const btnFill = document.getElementById('sim_fill');
+
+        const box = document.getElementById('sim_result');
+        const headline = document.getElementById('sim_headline');
+        const text = document.getElementById('sim_text');
+        const saveEl = document.getElementById('sim_save');
+        const yearsEl = document.getElementById('sim_years');
+
+        function calcYears() {
+            const income = Number(elIncome.value || 0);
+            const expense = Number(elExpense.value || 0);
+            const networth = Number(elNetworth.value || 0);
+            const target = Number(elTarget.value || 0);
+
+            if (income <= 0 || expense < 0 || target <= 0) {
+            return { ok: false, msg: 'Preencha renda, gasto e meta com valores válidos.' };
+            }
+
+            const save = income - expense;
+
+            if (save <= 0) {
+            return {
+                ok: true,
+                save,
+                years: Infinity,
+                msg: 'Hoje você não consegue poupar (ou está no zero). Primeiro passo: cortar vazamentos e criar margem.'
+            };
+            }
+
+            // Modelo simples e didático: sem juros/investimento (conservador)
+            const remaining = Math.max(0, target - networth);
+            const months = Math.ceil(remaining / save);
+            const years = months / 12;
+
+            return { ok: true, save, years, months, remaining };
+        }
+
+        function render() {
+            const r = calcYears();
+            box.style.display = 'block';
+
+            if (!r.ok) {
+            headline.textContent = 'Ops…';
+            text.textContent = r.msg;
+            saveEl.textContent = '';
+            yearsEl.textContent = '';
+            return;
+            }
+
+            saveEl.textContent = `Poupança/mês: ${brl(r.save)}`;
+
+            if (r.years === Infinity) {
+            headline.textContent = 'Sem poupança, sem saída.';
+            text.textContent = r.msg;
+            yearsEl.textContent = 'Tempo: indefinido';
+            return;
+            }
+
+            // Limita pra ficar legível no copy
+            const yearsShow = clamp(r.years, 0, 99.9);
+
+            headline.textContent = `Estimativa: ~${yearsShow.toFixed(1)} anos`;
+            text.textContent = `Para atingir ${brl(Number(elTarget.value || 0))}, faltam ${brl(r.remaining)}. Mantendo ${brl(r.save)} de poupança mensal, sua meta chega em ~${yearsShow.toFixed(1)} anos (estimativa conservadora).`;
+            yearsEl.textContent = `Tempo estimado: ~${yearsShow.toFixed(1)} anos`;
+        }
+
+        btnCalc?.addEventListener('click', render);
+
+        btnFill?.addEventListener('click', () => {
+            elIncome.value = 5000;
+            elExpense.value = 3200;
+            elNetworth.value = 10000;
+            elTarget.value = 500000;
+            render();
+        });
     </script>
+
 </body>
 </html>

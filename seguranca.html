@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanPrime • Segurança (Local-First)</title>
+
+  <link rel="shortcut icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      /* Mantém o mesmo “token set” do index (PF) */
+      --primary: #3b82f6; /* Azul Prime */
+      --accent: #10b981;  /* Verde Ação */
+      --dark: #0f172a;    /* Fundo Principal */
+      --dark-card: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+
+      --neon-green: #10b981;
+      --neon-blue: #3b82f6;
+      --neon-purple: #8b5cf6;
+      --neon-gold: #f59e0b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--dark); color: var(--text-main); overflow-x: hidden; }
+
+    /* --- HEADER (mesma pegada do index) --- */
+    header {
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .logo { font-size: 24px; font-weight: 800; color: white; display: flex; align-items: center; gap: 8px; }
+    .logo span { color: var(--primary); }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+    .nav-links a:hover { color: white; }
+    .nav-links a.active { color: var(--primary); font-weight: 600; }
+
+    .btn-header {
+      padding: 8px 20px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.25s;
+    }
+    .btn-header:hover { background: var(--primary); color: white; transform: translateY(-1px); }
+
+    /* --- HERO (mesma composição do index) --- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 100px 5% 0;
+      background: radial-gradient(circle at 50% 30%, #1e1b4b 0%, #0f172a 70%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 650px; height: 420px;
+      background: var(--neon-blue);
+      filter: blur(160px);
+      opacity: 0.18;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+    .pill-badge {
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 auto 30px auto;
+      backdrop-filter: blur(5px);
+    }
+    .pill-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #fff 30%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .btn-cta {
+      background: var(--primary);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.25s;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(59, 130, 246, 0.45); }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 12px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: white; transform: translateY(-1px); }
+
+    .trust-badges {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      color: #64748b;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 8px; }
+    .trust-item i { color: #475569; }
+
+    /* --- Sections --- */
+    .section-padding { padding: 100px 5%; }
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title span { color: var(--accent); text-transform: uppercase; font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; }
+    .section-title h2 { font-size: 2.5rem; margin-top: 10px; }
+    .section-title p { color: var(--text-muted); margin-top: 10px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 28px;
+      margin-top: 10px;
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.45);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 32px;
+      border-radius: 20px;
+      transition: 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(59,130,246,0.22), rgba(59,130,246,0));
+      filter: blur(2px);
+    }
+    .card:hover { transform: translateY(-5px); border-color: rgba(59, 130, 246, 0.65); background: rgba(30, 41, 59, 0.75); }
+    .card h3 { margin-top: 16px; margin-bottom: 10px; font-size: 1.25rem; }
+    .card p { color: var(--text-muted); line-height: 1.7; font-size: 0.98rem; }
+    .card small { display: block; margin-top: 12px; color: rgba(148,163,184,0.85); line-height: 1.6; }
+
+    /* --- Diagrama Neon --- */
+    .diagram-wrap {
+      margin-top: 30px;
+      background: #0b1120;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 25px 60px -18px rgba(0,0,0,0.6);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .diagram-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 10%, rgba(16,185,129,0.14), transparent 55%),
+                  radial-gradient(circle at 80% 40%, rgba(59,130,246,0.12), transparent 55%),
+                  radial-gradient(circle at 50% 90%, rgba(139,92,246,0.10), transparent 55%);
+      pointer-events: none;
+    }
+
+    .diagram {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .node {
+      background: rgba(30, 41, 59, 0.55);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+    }
+
+    .node .icon {
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.35);
+      box-shadow: 0 0 22px rgba(59,130,246,0.18);
+      color: #93c5fd;
+      flex-shrink: 0;
+    }
+
+    .node h4 { font-size: 1.05rem; margin-bottom: 4px; }
+    .node p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+
+    .pipe {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .pipe .line {
+      width: 68px;
+      height: 3px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, rgba(16,185,129,0.0), rgba(16,185,129,0.9), rgba(16,185,129,0.0));
+      box-shadow: 0 0 18px rgba(16,185,129,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pipe .line::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -40%;
+      width: 40%;
+      height: 100%;
+      background: rgba(255,255,255,0.65);
+      filter: blur(2px);
+      animation: sweep 1.8s linear infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes sweep {
+      0% { left: -40%; }
+      100% { left: 120%; }
+    }
+
+    .pipe .tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(16,185,129,0.9);
+      background: rgba(16,185,129,0.10);
+      border: 1px solid rgba(16,185,129,0.25);
+      padding: 6px 10px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .diagram-foot {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: rgba(148,163,184,0.9);
+      font-size: 0.92rem;
+    }
+
+    .pill-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* --- Comparativo --- */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .compare-card {
+      border-radius: 22px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(30, 41, 59, 0.42);
+      position: relative;
+      overflow: hidden;
+    }
+    .compare-card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: radial-gradient(circle at 20% 20%, rgba(245,158,11,0.12), transparent 55%);
+      pointer-events: none;
+    }
+    .compare-card.fin {
+      border-color: rgba(16,185,129,0.35);
+      background: linear-gradient(180deg, rgba(30,41,59,0.55), rgba(15,23,42,0.75));
+    }
+    .compare-card.fin::before {
+      background: radial-gradient(circle at 20% 20%, rgba(16,185,129,0.14), transparent 55%);
+    }
+
+    .compare-title {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 1.15rem;
+      font-weight: 900;
+    }
+
+    .badge-soft {
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .compare ul {
+      position: relative;
+      z-index: 1;
+      list-style: none;
+      margin-top: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .compare li {
+      color: rgba(203,213,225,0.92);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.6;
+    }
+
+    .compare li i { margin-top: 2px; }
+
+    /* --- FAQ (estilo simples, igual a vibe do mei) --- */
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 25px; }
+    .faq-item h4 { color: white; margin-bottom: 10px; font-size: 1.05rem; }
+    .faq-item p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
+
+    /* --- CTA final --- */
+    .final-cta {
+      background: #0b1120;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 90px 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 650px; height: 300px;
+      background: var(--accent);
+      filter: blur(160px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .final-cta .wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+    .final-cta h2 { font-size: 2.4rem; margin-bottom: 14px; }
+    .final-cta p { color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
+
+    /* --- Floating WhatsApp (igual você usa no mei) --- */
+    .float-wa {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      z-index: 9999;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+    .float-wa:hover { transform: scale(1.1); box-shadow: 0 0 30px #25d36680; }
+
+    footer {
+      padding: 60px 5%;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .compare { grid-template-columns: 1fr; }
+      .diagram { grid-template-columns: 1fr; }
+      .pipe { flex-direction: row; justify-content: center; }
+      .pipe .line { width: 120px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+      .faq-grid { grid-template-columns: 1fr; }
+      header { padding: 16px 5%; }
+      .nav-links { display: none; }
+    }
+
+    /* ANIMS */
+    .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.85s forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="assets/logo.png" width="28" alt="FinanPrime" />
+      Finan<span>Prime</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html">Pessoal</a>
+      <a href="mei.html">Empresarial</a>
+      <a href="seguranca.html" class="active">Criptografia</a>
+      <a href="docs.html">Documentação</a>
+    </nav>
+
+    <a class="btn-header" href="https://wa.me/5519996261910?text=Ol%C3%A1%2C%20quero%20entender%20melhor%20a%20seguran%C3%A7a%20do%20FinanPrime" target="_blank" rel="noopener">
+      <i data-lucide="message-circle" size="18"></i> Tirar Dúvidas
+    </a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content fade-up">
+      <div class="pill-badge">
+        <span class="pill-dot"></span> Local-First • Sem Nuvem • Sem Servidor
+      </div>
+
+      <h1>Segurança não é “feature”.<br>É arquitetura.</h1>
+      <p>
+        O FinanPrime foi desenhado para você ter <strong>controle total</strong>:
+        seus dados ficam na sua máquina e, quando há integração com o mobile,
+        ela acontece por <strong>Sync Local via Wi-Fi</strong> — sem passar pela internet.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn-cta" href="#sync">
+          <i data-lucide="wifi" size="20"></i> Ver o Sync Local
+        </a>
+        <a class="btn-outline" href="#crypto">
+          <i data-lucide="lock" size="20"></i> Entender AES-256
+        </a>
+        <a class="btn-outline" href="#comparativo">
+          <i data-lucide="scale" size="20"></i> Comparativo
+        </a>
+      </div>
+
+      <div class="trust-badges">
+        <div class="trust-item"><i data-lucide="shield-check" size="16"></i> Local-First</div>
+        <div class="trust-item"><i data-lucide="cloud-off" size="16"></i> Sem servidor</div>
+        <div class="trust-item"><i data-lucide="key-round" size="16"></i> Cofre (senha mestra)</div>
+        <div class="trust-item"><i data-lucide="lock-keyhole" size="16"></i> Criptografia</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sync" class="section-padding">
+    <div class="section-title">
+      <span>SYNC LOCAL</span>
+      <h2>PC → Wi-Fi → Celular (sem internet)</h2>
+      <p>
+        O FinanPrime não “sobe” seus dados em um servidor de terceiros.
+        Quando você usa o mobile, o sistema sincroniza localmente dentro da sua rede.
+      </p>
+    </div>
+
+    <div class="diagram-wrap">
+      <div class="diagram">
+        <div class="node">
+          <div class="icon"><i data-lucide="monitor" size="22"></i></div>
+          <div>
+            <h4>Seu Computador</h4>
+            <p>Banco local + rotinas de análise.</p>
+          </div>
+        </div>
+
+        <div class="pipe" aria-hidden="true">
+          <div class="tag"><i data-lucide="wifi" size="16"></i> mesma rede Wi-Fi</div>
+          <div class="line"></div>
+          <div class="tag"><i data-lucide="shield" size="16"></i> sem internet</div>
+        </div>
+
+        <div class="node">
+          <div class="icon" style="background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.35); box-shadow: 0 0 22px rgba(16,185,129,0.16); color: #86efac;">
+            <i data-lucide="smartphone" size="22"></i>
+          </div>
+          <div>
+            <h4>Seu Celular</h4>
+            <p>Lançamentos e consultas rápidas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diagram-foot">
+        <div class="pill-mini"><i data-lucide="router" size="18"></i> Conecta apenas dentro da LAN</div>
+        <div class="pill-mini"><i data-lucide="ban" size="18"></i> Nada trafega “pela nuvem”</div>
+        <div class="pill-mini"><i data-lucide="clock" size="18"></i> Sync rápido e direto</div>
+      </div>
+    </div>
+
+    <div class="grid-cards" style="margin-top: 28px;">
+      <div class="card">
+        <i data-lucide="cloud-off" size="40"></i>
+        <h3>Sem servidor, sem dependência</h3>
+        <p>Seu histórico não fica preso em uma plataforma. O controle é seu.</p>
+        <small>Dica: isso reduz risco de vazamento por terceiros e “lock-in”.</small>
+      </div>
+
+      <div class="card">
+        <i data-lucide="radio" size="40"></i>
+        <h3>Conexão controlada</h3>
+        <p>O mobile conversa com o PC somente na rede local. Se não tiver Wi-Fi, não sincroniza — simples assim.</p>
+        <small>Menos superfície de ataque comparado a integrações cloud.</small>
+      </div>
+
+      <div class="card">
+        <i data-lucide="database" size="40"></i>
+        <h3>Dados ficam com você</h3>
+        <p>Banco de dados armazenado localmente e protegido por cofre de segurança.</p>
+        <small>Backup e restauração continuam sendo decisão do usuário.</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="crypto" class="section-padding" style="background: rgba(255,255,255,0.02);">
+    <div class="section-title">
+      <span>CRIPTOGRAFIA</span>
+      <h2>AES-256 e “Cofre” com Senha Mestra</h2>
+      <p>
+        Em vez de “obscurecer”, o FinanPrime trata segurança como base.
+        A proteção é feita por criptografia forte e um modelo de cofre.
+      </p>
+    </div>
+
+    <div class="grid-cards">
+      <div class="card">
+        <i data-lucide="lock-keyhole" size="40"></i>
+        <h3>AES-256 (força real)</h3>
+        <p>
+          AES-256 é um padrão moderno de criptografia simétrica usado amplamente em soluções sérias de proteção de dados.
+        </p>
+        <small>Tradução: mesmo que alguém copie arquivos, sem a chave/senha não lê o conteúdo.</small>
+      </div>
+
+      <div class="card">
+        <i data-lucide="key-round" size="40"></i>
+        <h3>Senha Mestra = sua chave</h3>
+        <p>
+          O cofre depende da sua senha mestra. Ela não fica “guardada no servidor”, porque… não tem servidor.
+        </p>
+        <small><strong>Importante:</strong> perder a senha pode significar perder acesso aos dados criptografados.</small>
+      </div>
+
+      <div class="card">
+        <i data-lucide="file-lock-2" size="40"></i>
+        <h3>Proteção em repouso</h3>
+        <p>
+          O foco é proteger dados <strong>quando estão armazenados</strong> (no disco), não só “durante o uso”.
+        </p>
+        <small>Isso combate o cenário comum: roubo/cópia do arquivo local.</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="comparativo" class="section-padding">
+    <div class="section-title">
+      <span>COMPARATIVO</span>
+      <h2>“Softwares comuns” vs FinanPrime</h2>
+      <p>
+        Aqui é onde a mensagem fica impossível de ignorar.
+        Você não está comprando só um sistema — está comprando <strong>autonomia</strong>.
+      </p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-card">
+        <div class="compare-title">
+          <i data-lucide="cloud" size="22"></i>
+          Softwares comuns <span class="badge-soft">cloud-first</span>
+        </div>
+        <ul>
+          <li><i data-lucide="x" size="18"></i> Dados em servidores de terceiros</li>
+          <li><i data-lucide="x" size="18"></i> Mensalidade e aumento de preço com o tempo</li>
+          <li><i data-lucide="x" size="18"></i> Risco de vazamento por falhas externas</li>
+          <li><i data-lucide="x" size="18"></i> Dependência de internet e status do serviço</li>
+          <li><i data-lucide="x" size="18"></i> Você “aluga” o acesso ao seu próprio histórico</li>
+        </ul>
+      </div>
+
+      <div class="compare-card fin">
+        <div class="compare-title">
+          <i data-lucide="shield-check" size="22"></i>
+          FinanPrime <span class="badge-soft" style="border-color: rgba(16,185,129,0.35); color: rgba(16,185,129,0.95); background: rgba(16,185,129,0.08);">local-first</span>
+        </div>
+        <ul>
+          <li><i data-lucide="check" size="18"></i> Banco local (seu PC, sua regra)</li>
+          <li><i data-lucide="check" size="18"></i> Sync Local via Wi-Fi (sem internet)</li>
+          <li><i data-lucide="check" size="18"></i> Criptografia AES-256 + cofre</li>
+          <li><i data-lucide="check" size="18"></i> Sem “surpresinha”: compra única (lifetime)</li>
+          <li><i data-lucide="check" size="18"></i> Menos superfície de ataque por arquitetura</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding" style="background: rgba(255,255,255,0.02);">
+    <div class="section-title">
+      <span>FAQ</span>
+      <h2>Dúvidas rápidas</h2>
+      <p>Respostas curtas, objetivas e que reforçam confiança.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>Meus dados ficam na nuvem?</h4>
+        <p>Não. O banco fica local no seu computador. A integração mobile (quando usada) pode ser feita via Sync Local na sua rede.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Se eu perder a senha mestra…?</h4>
+        <p>Como é um cofre real, perder a senha pode impedir a recuperação dos dados criptografados. A recomendação é guardar sua senha com segurança.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Se formatar o PC, perco tudo?</h4>
+        <p>Você pode manter backups do banco/arquivos. Restaurar vira um processo simples (copiar de volta e reabrir com sua senha).</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Isso é “mais seguro” que cloud?</h4>
+        <p>É um modelo diferente: reduz riscos de terceiros e vazamento em servidores, mas exige responsabilidade com backup e senha mestra.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>Quer ver o FinanPrime rodando no seu setup?</h2>
+      <p>
+        Te mostro a arquitetura e o fluxo real (desktop + sync local) — sem papo furado.
+        Se fizer sentido, você já sai com o caminho pra instalar e usar.
+      </p>
+      <div class="cta-row" style="margin-bottom:0;">
+        <a class="btn-cta" href="https://wa.me/5519996261910?text=Quero%20uma%20demo%20do%20FinanPrime%20e%20entender%20o%20Sync%20Local%20%2B%20AES-256" target="_blank" rel="noopener">
+          <i data-lucide="play-circle" size="20"></i> Pedir Demonstração
+        </a>
+        <a class="btn-outline" href="docs.html">
+          <i data-lucide="book-open" size="20"></i> Ler Documentação
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 FinanPrime Technology. Todos os direitos reservados.</p>
+  </footer>
+
+  <a href="https://wa.me/5519996261910?text=Ol%C3%A1%2C%20vim%20pela%20p%C3%A1gina%20de%20seguran%C3%A7a%20e%20tenho%20d%C3%BAvidas" class="float-wa" target="_blank" rel="noopener">
+    <i data-lucide="message-circle" size="30"></i>
+  </a>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

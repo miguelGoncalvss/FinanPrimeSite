@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -226,6 +225,202 @@
             background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
         }
 
+
+        .section-kicker {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 18px;
+                border-radius: 999px;
+                background: rgba(139, 92, 246, 0.10);
+                border: 1px solid rgba(139, 92, 246, 0.25);
+                color: #c4b5fd;
+                font-size: 0.85rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .mini-note {
+                color: #94a3b8;
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            /* Showcase (prints) */
+            .showcase-grid {
+                display: grid;
+                grid-template-columns: 1.15fr 0.85fr;
+                gap: 28px;
+                align-items: start;
+                margin-top: 26px;
+            }
+
+            .shot-frame {
+                background: rgba(30, 41, 59, 0.45);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                border-radius: 22px;
+                padding: 18px;
+                overflow: hidden;
+                box-shadow: 0 25px 60px -18px rgba(0,0,0,0.55);
+                position: relative;
+            }
+
+            .shot-frame::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.16), transparent 55%),
+                            radial-gradient(circle at 80% 40%, rgba(16, 185, 129, 0.10), transparent 55%),
+                            radial-gradient(circle at 50% 90%, rgba(59, 130, 246, 0.10), transparent 55%);
+                pointer-events: none;
+            }
+
+            .shot-topbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+                padding: 10px 10px 14px 10px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .shot-tabs {
+                display: inline-flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                padding: 9px 14px;
+                border-radius: 999px;
+                background: rgba(255,255,255,0.03);
+                border: 1px solid rgba(255,255,255,0.08);
+                color: #cbd5e1;
+                cursor: pointer;
+                font-weight: 800;
+                font-size: 0.9rem;
+                transition: 0.2s;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                user-select: none;
+            }
+
+            .tab-btn:hover { transform: translateY(-1px); border-color: rgba(139,92,246,0.35); }
+
+            .tab-btn.active {
+                background: rgba(139, 92, 246, 0.14);
+                border-color: rgba(139, 92, 246, 0.35);
+                color: #ddd6fe;
+                box-shadow: 0 0 22px rgba(139,92,246,0.20);
+            }
+
+            .shot-img {
+                width: 100%;
+                border-radius: 16px;
+                border: 1px solid rgba(255,255,255,0.06);
+                position: relative;
+                z-index: 1;
+                display: block;
+            }
+
+            .shot-caption {
+                position: relative;
+                z-index: 1;
+                margin-top: 12px;
+                padding: 0 10px 10px 10px;
+                color: #94a3b8;
+                font-size: 0.95rem;
+                line-height: 1.65;
+            }
+
+            /* Timeline / Como funciona */
+            .timeline {
+                margin-top: 28px;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 18px;
+            }
+
+            .step-card {
+                background: rgba(30, 41, 59, 0.42);
+                border: 1px solid rgba(255,255,255,0.06);
+                border-radius: 20px;
+                padding: 20px;
+                position: relative;
+                overflow: hidden;
+                transition: 0.25s;
+            }
+
+            .step-card::before {
+                content: '';
+                position: absolute;
+                top: -60px;
+                right: -60px;
+                width: 160px;
+                height: 160px;
+                background: radial-gradient(circle, rgba(139,92,246,0.20), rgba(139,92,246,0));
+            }
+
+            .step-card:hover { transform: translateY(-5px); border-color: rgba(139, 92, 246, 0.55); }
+
+            .step-top {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+
+            .step-num {
+                width: 34px;
+                height: 34px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 900;
+                color: white;
+                background: rgba(139,92,246,0.25);
+                border: 1px solid rgba(139,92,246,0.35);
+                box-shadow: 0 0 18px rgba(139,92,246,0.16);
+            }
+
+            .step-card h3 {
+                font-size: 1.05rem;
+                margin: 10px 0 8px;
+            }
+
+            .step-card p {
+                color: #94a3b8;
+                font-size: 0.93rem;
+                line-height: 1.6;
+            }
+
+            /* Cobrança */
+            .message-box {
+                background: rgba(15, 23, 42, 0.75);
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 18px;
+                padding: 18px;
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                color: #cbd5e1;
+                font-size: 0.92rem;
+                line-height: 1.6;
+                white-space: pre-wrap;
+            }
+
+            /* Ajustes responsivos extras */
+            @media (max-width: 1000px) {
+                .timeline { grid-template-columns: 1fr 1fr; }
+                .showcase-grid { grid-template-columns: 1fr; }
+            }
+            @media (max-width: 560px) {
+                .timeline { grid-template-columns: 1fr; }
+            }
+
         .badge-popular {
             position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
             background: var(--pj-primary); color: white;
@@ -304,18 +499,10 @@
             </div>
 
             <div class="trust-badges">
-                <div class="trust-item">
-                    <i data-lucide="shield-check" size="16"></i> Compra Segura
-                </div>
-                <div class="trust-item">
-                    <i data-lucide="wifi-off" size="16"></i> 100% Offline
-                </div>
-                <div class="trust-item">
-                    <i data-lucide="monitor" size="16"></i> Win 10/11
-                </div>
-                <div class="trust-item">
-                    <i data-lucide="check-circle" size="16"></i> Sem Mensalidade
-                </div>
+                <div class="trust-item"><i data-lucide="cloud-off"></i> Sem Nuvem</div>
+                <div class="trust-item"><i data-lucide="infinity"></i> Sem Mensalidade</div>
+                <div class="trust-item"><i data-lucide="lock-keyhole"></i> Dados Locais</div>
+                <div class="trust-item"><i data-lucide="workflow"></i> Funil de Clientes</div>
             </div>
 
         </div>
@@ -346,42 +533,210 @@
         </div>
     </section>
 
-    <section class="section-padding crm-showcase">
-        <div class="crm-text fade-up">
-            <span style="color: var(--accent); font-weight: 700;">TECNOLOGIA EXCLUSIVA</span>
-            <h2 style="font-size: 2.5rem; margin: 15px 0;">Seus clientes organizados.<br>Sem você tocar em nada.</h2>
-            <p style="color: #94a3b8; font-size: 1.1rem; margin-bottom: 30px;">
-                O FinanPrime monitora sua base 24/7. Se um cliente VIP para de comprar, ele te avisa. Se um boleto vence, ele vai para cobrança.
+    <section class="section-padding" id="crm">
+        <div class="section-title">
+            <span>CRM</span>
+            <h2>Clientes organizados. Sem planilha. Sem esforço.</h2>
+            <p style="color:#94a3b8; margin-top: 10px;">
+                Você pode trabalhar em <strong>lista</strong> ou em <strong>funil Kanban</strong>.
+                E o melhor: as colunas fazem sentido para o seu dia a dia.
             </p>
-            
-            <div style="display: grid; gap: 15px;">
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <div style="background: rgba(139, 92, 246, 0.2); pading: 10px; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: var(--pj-primary);"><i data-lucide="target"></i></div>
-                    <div><strong>Detecção de Churn</strong><br><span style="color: #64748b; font-size: 0.9rem;">Avisa antes do cliente te abandonar.</span></div>
-                </div>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <div style="background: rgba(16, 185, 129, 0.2); pading: 10px; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: var(--accent);"><i data-lucide="zap"></i></div>
-                    <div><strong>Tagueamento Inteligente</strong><br><span style="color: #64748b; font-size: 0.9rem;">Classifica Diamante, Ouro e Prata sozinho.</span></div>
-                </div>
-            </div>
         </div>
-        
-        <div class="crm-visual">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                <div style="font-weight: bold;">Gestão de Carteira</div>
-                <div style="background: var(--accent); padding: 2px 8px; border-radius: 4px; font-size: 11px; color: #064e3b; font-weight: 800;">LIVE DATA</div>
-            </div>
-            <div class="kanban-mock">
-                <div class="k-col c1"><div style="margin: 40px 10px 0; height: 30px; background: rgba(255,255,255,0.05); border-radius: 4px;"></div></div>
-                <div class="k-col c2">
-                    <div style="margin: 40px 10px 0; height: 30px; background: rgba(255,255,255,0.1); border-radius: 4px;"></div>
-                    <div style="margin: 10px 10px 0; height: 30px; background: rgba(255,255,255,0.05); border-radius: 4px;"></div>
+
+        <div class="showcase-grid">
+            <div class="shot-frame">
+                <div class="shot-topbar">
+                    <div class="section-kicker"><i data-lucide="sparkles"></i> Preview real do sistema</div>
+                    <div class="shot-tabs">
+                        <button class="tab-btn active" data-tab="lista"><i data-lucide="list"></i> Lista & Filtros</button>
+                        <button class="tab-btn" data-tab="kanban"><i data-lucide="columns-3"></i> Funil Kanban</button>
+                    </div>
                 </div>
-                <div class="k-col c3"><div style="margin: 40px 10px 0; height: 30px; background: rgba(255,255,255,0.05); border-radius: 4px;"></div></div>
+
+                <!-- Ajuste extensão se necessário: .png/.jpg -->
+                <img id="shot_crm" class="shot-img" src="assets/CRM.png" alt="Print do CRM - Lista e Filtros" />
+
+                <div class="shot-caption" id="shot_caption">
+                    Pesquisa, filtros e visão rápida da carteira. Ideal para trabalhar rápido e achar qualquer cliente.
+                </div>
             </div>
-            <div style="margin-top: 20px; text-align: center; color: #64748b; font-size: 0.8rem;">*Interface real do sistema</div>
+
+            <div>
+                <div class="card" style="margin-bottom: 18px;">
+                    <i data-lucide="diamond"></i>
+                    <h3>VIP / Risco / Cobrança</h3>
+                    <p>Colunas pensadas para o mundo real: quem é prioridade, quem está sumindo e quem está devendo.</p>
+                </div>
+
+                <div class="card" style="margin-bottom: 18px;">
+                    <i data-lucide="refresh-cw"></i>
+                    <h3>CRM “autônomo”</h3>
+                    <p>O sistema pode sugerir movimentação por comportamento (ex: atraso → Cobrança). Você só confirma.</p>
+                </div>
+
+                <div class="card">
+                    <i data-lucide="badge-check"></i>
+                    <h3>Atalho de ação</h3>
+                    <p>Contato e cobrança ficam a 1 clique. E quando dá baixa, o caixa atualiza.</p>
+                </div>
+            </div>
         </div>
     </section>
+
+    <section class="section-padding" id="cobranca" style="background: rgba(255,255,255,0.02);">
+        <div class="section-title">
+            <span>Cobrança inteligente</span>
+            <h2>Cobrar sem ser chato e sem perder tempo</h2>
+            <p style="color:#94a3b8; margin-top: 10px;">
+                Você não precisa “inventar texto” nem abrir planilha.
+                É só clicar, enviar e dar baixa quando receber.
+            </p>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card">
+                <i data-lucide="bell-ring"></i>
+                <h3>Vencimentos sob controle</h3>
+                <p>Você enxerga o que vence e o que está em atraso, sem caçar informação.</p>
+            </div>
+
+            <div class="card">
+                <i data-lucide="message-square-text"></i>
+                <h3>Mensagem pronta</h3>
+                <p>WhatsApp abre com texto e variáveis básicas (nome, valor, vencimento).</p>
+            </div>
+
+            <div class="card">
+                <i data-lucide="wallet"></i>
+                <h3>Dar baixa e atualizar caixa</h3>
+                <p>Recebeu? Dá baixa. O registro vira histórico e o caixa reflete o real.</p>
+            </div>
+        </div>
+
+        <div class="showcase-grid" style="margin-top: 24px;">
+            <div class="shot-frame">
+                <div class="shot-topbar">
+                    <div class="section-kicker"><i data-lucide="send"></i> Exemplo de cobrança</div>
+                    <div class="mini-note">Copiável/ajustável — e o botão abre o WhatsApp.</div>
+                </div>
+                <div class="message-box">
+                    Olá, Renato! Tudo bem? 😊
+                    Vi que o pagamento de R$ 49,99 venceu no dia 12/07.
+                    Posso te enviar o Pix ou link de pagamento por aqui?
+                </div>
+                <div class="shot-caption">
+                    O objetivo é simples: tirar a fricção. Você cobra, registra e segue o jogo.
+                </div>
+            </div>
+
+            <div class="card">
+                <i data-lucide="zap"></i>
+                <h3>“Quer reduzir inadimplência?”</h3>
+                <p class="mini-note" style="margin-top: 10px;">
+                    Quando você tem um fluxo claro (vencimento → cobrança → baixa), o negócio fica leve
+                    e você para de perder dinheiro por esquecimento.
+                </p>
+                <a href="https://wa.me/5519996261910?text=Quero%20ver%20a%20cobran%C3%A7a%20inteligente%20do%20FinanPrime%20PJ%20funcionando" class="btn-cta" style="margin-top: 18px; display:inline-flex;" target="_blank" rel="noopener">
+                    <i data-lucide="play-circle"></i> Quero ver ao vivo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="impostos">
+        <div class="section-title">
+            <span>Impostos</span>
+            <h2>Escudo Fiscal & Fator R</h2>
+            <p style="color:#94a3b8; margin-top: 10px;">
+                Uma tela que te lembra do que importa: evitar surpresa. Se der para agir antes, você age.
+            </p>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="shot-frame">
+                <div class="shot-topbar">
+                    <div class="section-kicker"><i data-lucide="shield-check"></i> Monitor Fiscal</div>
+                    <div class="mini-note"></div>
+                </div>
+
+                <img class="shot-img" src="assets/impostosPJ.png" alt="Print da tela de Impostos PJ" />
+
+                <div class="shot-caption">
+                    Alertas, status e visão rápida para você não ser pego de surpresa.
+                </div>
+            </div>
+
+            <div>
+                <div class="card" style="margin-bottom: 18px;">
+                    <i data-lucide="calculator"></i>
+                    <h3>Visão de regime e alíquotas</h3>
+                    <p>Sem adivinhação. Você enxerga o que muda e o que precisa acompanhar.</p>
+                </div>
+
+                <div class="card" style="margin-bottom: 18px;">
+                    <i data-lucide="alert-circle"></i>
+                    <h3>Alertas proativos</h3>
+                    <p>O objetivo não é “mostrar números”. É avisar quando está ficando perigoso.</p>
+                </div>
+
+                <div class="card">
+                    <i data-lucide="file-down"></i>
+                    <h3>Relatórios e export</h3>
+                    <p>Gere informações organizadas para auditoria interna ou para o contador.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="section-padding" style="background: linear-gradient(180deg, rgba(15,23,42,0.85), rgba(15,23,42,0.95)); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="section-title">
+            <span>Visão Geral</span>
+            <h2>Não é um módulo isolado.<br>É o sistema inteiro trabalhando junto.</h2>
+            <p style="color:#94a3b8; margin-top:10px; max-width:900px; margin-left:auto; margin-right:auto;">
+                CRM, vendas, cobrança, caixa e impostos conversam entre si.
+                Você para de apagar incêndio e começa a <strong>operar com clareza</strong>
+            </p>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card">
+            <i data-lucide="layers"></i>
+            <h3>Menos ferramentas</h3>
+            <p>
+                Você não precisa de CRM + planilha + app de cobrança + controle fiscal.
+                Tudo roda no mesmo fluxo.
+            </p>
+            </div>
+
+            <div class="card">
+            <i data-lucide="workflow"></i>
+            <h3>Fluxo conectado</h3>
+            <p>
+                Venda gera cobrança. Cobrança atualiza caixa.
+                Caixa influencia imposto. Nada fica solto.
+            </p>
+            </div>
+
+            <div class="card">
+            <i data-lucide="infinity"></i>
+            <h3>Sem mensalidade</h3>
+            <p>
+                Você cresce sem ser penalizado.
+                O custo não acompanha o número de clientes.
+            </p>
+            </div>
+        </div>
+
+        <div style="margin-top:40px; text-align:center;">
+            <a href="#planos" class="btn-cta" style="padding:14px 28px; font-size:1.05rem;">
+            <i data-lucide="arrow-down"></i> Ver planos e licenças
+            </a>
+        </div>
+    </section>
+
+
 
     <section id="planos" class="section-padding">
         <div class="section-title">
@@ -400,6 +755,7 @@
                     <li><i data-lucide="check"></i> Importação de Extrato (OFX)</li>
                     <li><i data-lucide="check"></i> Relatórios em PDF</li>
                     <li><i data-lucide="check"></i> Licença para 1 Computador</li>
+                    <li><i data-lucide="check"></i> <strong>FinanPrime Mobile PJ</strong></li>
                     <li style="opacity: 0.5;"><i data-lucide="x"></i> Módulo Fiscal & CRM</li>
                 </ul>
                 <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20ESSENCIAL" class="btn-outline" style="display: block; width: 100%;">Comprar Licença</a>
@@ -417,6 +773,7 @@
                     <li><i data-lucide="check"></i> CRM Autônomo 2.0</li>
                     <li><i data-lucide="check"></i> Monitor Fiscal (Fator R)</li>
                     <li><i data-lucide="check"></i> Simulador de Financiamento</li>
+                    <li><i data-lucide="check"></i> <strong>FinanPrime Mobile</strong> (lançamentos + sync com HUB)</li>
                     <li><i data-lucide="check"></i> Licença para 2 Computadores</li>
                 </ul>
                 <a href="https://wa.me/5519996261910?text=Quero%20aproveitar%20a%20oferta%20do%20PJ%20MASTER" class="btn-cta" style="display: block; width: 100%;">Garantir Oferta</a>
@@ -504,6 +861,42 @@
 
     <script>
         lucide.createIcons();
+
+    // CRM tabs (Lista / Kanban)
+        (function(){
+        const img = document.getElementById('shot_crm');
+        const caption = document.getElementById('shot_caption');
+        const buttons = document.querySelectorAll('.tab-btn');
+
+        if (!img || !caption || !buttons.length) return;
+
+        const cfg = {
+            lista: {
+            src: 'assets/CRM.png',
+            alt: 'Print do CRM - Lista e Filtros',
+            cap: 'Pesquisa, filtros e visão rápida da carteira. Ideal para trabalhar rápido e achar qualquer cliente.'
+            },
+            kanban: {
+            src: 'assets/CRMKAMBAM.png',
+            alt: 'Print do CRM Kanban',
+            cap: 'Funil Kanban com colunas (Novos, Carteira, Risco, Cobrança e VIP). Visual e direto para decidir ações.'
+            }
+        };
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+            const key = btn.getAttribute('data-tab');
+            if (!cfg[key]) return;
+
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            img.src = cfg[key].src;
+            img.alt = cfg[key].alt;
+            caption.textContent = cfg[key].cap;
+            });
+        });
+        })();
     </script>
 </body>
 </html>
