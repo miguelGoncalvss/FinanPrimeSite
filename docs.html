@@ -1,383 +1,542 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Oficial - FinanPrime v3.5</title>
-    
-    <link rel="shortcut icon" href="assets/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanPrime Docs — PF • PJ • Trial • Master</title>
 
-    <style>
-        :root {
-            --blue-prime: #0055cc;
-            --navy-dark: #0f172a;
-            --green-action: #10b981;
-            --purple-biz: #8b5cf6;
-            --bg-light: #f1f5f9;
-            --text-main: #334155;
-            --text-light: #64748b;
-            --border: #e2e8f0;
-        }
+  <link rel="shortcut icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-light); color: var(--text-main); line-height: 1.7; }
-        
-        /* LAYOUT */
-        .doc-layout { display: flex; min-height: 100vh; }
-        
-        /* SIDEBAR DE NAVEGAÇÃO (CLEAN) */
-        .sidebar { width: 280px; background: white; border-right: 1px solid var(--border); position: fixed; height: 100vh; overflow-y: auto; padding: 30px; display: none; }
-        
-        .sidebar-header { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
-        .sidebar-brand { font-weight: 700; font-size: 1.1rem; color: var(--navy-dark); }
-        
-        .sidebar h3 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-light); letter-spacing: 1px; margin-bottom: 15px; margin-top: 25px; font-weight: 700; }
-        
-        .sidebar a { 
-            display: block; 
-            text-decoration: none; 
-            color: var(--text-main); 
-            font-size: 0.9rem; 
-            margin-bottom: 8px; 
-            transition: 0.2s; 
-            padding: 8px 0 8px 15px; 
-            border-left: 2px solid transparent; 
-        }
-        
-        .sidebar a:hover { color: var(--blue-prime); border-left-color: var(--blue-prime); background: #f8fafc; }
-        .sidebar a.active { color: var(--blue-prime); font-weight: 600; border-left-color: var(--blue-prime); background: #f1f5f9; }
+  <style>
+    :root{
+      --blue-prime:#0055cc;
+      --navy-dark:#0f172a;
+      --green-action:#10b981;
+      --purple-biz:#8b5cf6;
 
-        /* CONTEÚDO PRINCIPAL */
-        .main-content { flex: 1; padding: 40px; margin-left: 0; max-width: 100%; }
-        
-        @media (min-width: 1024px) {
-            .sidebar { display: block; }
-            .main-content { margin-left: 280px; padding: 60px 80px; }
-        }
+      --bg-light:#f1f5f9;
+      --text-main:#334155;
+      --text-light:#64748b;
+      --border:#e2e8f0;
 
-        /* TIPOGRAFIA */
-        h1 { font-size: 2.5rem; font-weight: 800; color: var(--navy-dark); margin-bottom: 10px; letter-spacing: -1px; }
-        .subtitle { font-size: 1.2rem; color: var(--text-light); margin-bottom: 40px; font-weight: 300; }
-        
-        h2 { font-size: 1.75rem; color: var(--navy-dark); margin-top: 60px; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
-        h3 { font-size: 1.25rem; color: var(--blue-prime); margin-top: 30px; margin-bottom: 15px; font-weight: 700; }
-        h4 { font-size: 1.1rem; color: var(--navy-dark); margin-top: 20px; margin-bottom: 10px; font-weight: 600; }
-        
-        p, li { margin-bottom: 12px; font-size: 1rem; color: #475569; }
-        
-        /* ELEMENTOS VISUAIS */
-        .feature-box { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 25px; margin: 25px 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
-        
-        .feature-box h3:first-child,
-        .feature-box h4:first-child,
-        .feature-box strong:first-child {margin-top: 0;}
+      --master-bg:#fffbeb;
+      --master-tx:#b45309;
+      --master-br:#fcd34d;
 
-        .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-left: 10px; vertical-align: middle; }
-        .bg-master { background: #fffbeb; color: #b45309; border: 1px solid #fcd34d; }
-        .bg-pj { background: #f3e8ff; color: #7e22ce; border: 1px solid #d8b4fe; }
-        .bg-secure { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
-        .bg-core { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; } /* Nova cor para Core Features */
-        .bg-step { background: var(--navy-dark); color: white; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.8rem; margin-right: 10px; }
+      --pj-bg:#f3e8ff;
+      --pj-tx:#7e22ce;
+      --pj-br:#d8b4fe;
 
-        code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.9em; color: #dc2626; }
-        
-        ul, ol { margin-left: 20px; margin-bottom: 20px; }
-        
-        /* ALERTAS */
-        .alert { padding: 20px; border-radius: 8px; margin: 25px 0; font-size: 0.95rem; display: flex; gap: 15px; }
-        .alert-info { background: #eff6ff; border-left: 4px solid var(--blue-prime); color: #1e3a8a; }
-        .alert-warn { background: #fff7ed; border-left: 4px solid #f97316; color: #7c2d12; }
-        
-        .btn-back { display: inline-block; margin-bottom: 20px; color: var(--text-light); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
-        .btn-back:hover { color: var(--blue-prime); }
-        
-        .pro-tip {
-            background: linear-gradient(to right, #f8fafc, #ffffff);
-            border: 1px solid #e2e8f0;
-            border-left: 5px solid #3b82f6;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 30px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
-        }
+      --secure-bg:#eff6ff;
+      --secure-tx:#1e40af;
+      --secure-br:#bfdbfe;
 
-        .pro-tip:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 20px -3px rgba(59, 130, 246, 0.1);
-        }
+      --pf-bg:#dcfce7;
+      --pf-tx:#166534;
+      --pf-br:#bbf7d0;
 
-        .pro-tip-icon {
-            background-color: #eff6ff;
-            color: #2563eb;
-            min-width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
+      --trial-bg:#f1f5f9;
+      --trial-tx:#0f172a;
+      --trial-br:#cbd5e1;
+    }
 
-        .pro-tip-content strong {
-            display: block;
-            color: #1e3a8a;
-            font-size: 1rem;
-            margin-bottom: 4px;
-            font-weight: 700;
-        }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    body{background:var(--bg-light);color:var(--text-main);line-height:1.7;}
 
-        .pro-tip-content {
-            font-size: 0.95rem;
-            color: #475569;
-            line-height: 1.6;
-        }
+    /* Layout */
+    .doc-layout{display:flex;min-height:100vh;}
 
-        /* Específico para o novo CRM Kanban (Mantendo estilo clean) */
-        .kanban-preview { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
-        .k-col { flex: 1; padding: 15px; border-radius: 8px; font-size: 0.8rem; font-weight: bold; text-align: center; min-width: 120px; border: 1px solid transparent; }
-    </style>
+    /* Sidebar */
+    .sidebar{
+      width:280px;background:#fff;border-right:1px solid var(--border);
+      position:fixed;height:100vh;overflow-y:auto;padding:30px;display:none;
+    }
+    .sidebar-header{display:flex;align-items:center;gap:10px;margin-bottom:34px;}
+    .sidebar-brand{font-weight:800;font-size:1.05rem;color:var(--navy-dark);}
+    .sidebar h3{
+      font-size:.75rem;text-transform:uppercase;color:var(--text-light);
+      letter-spacing:1px;margin:22px 0 12px;font-weight:800;
+    }
+    .sidebar a{
+      display:block;text-decoration:none;color:var(--text-main);font-size:.9rem;
+      margin-bottom:8px;transition:.2s;padding:8px 0 8px 15px;border-left:2px solid transparent;
+      border-radius:8px;
+    }
+    .sidebar a:hover{color:var(--blue-prime);border-left-color:var(--blue-prime);background:#f8fafc;}
+    .sidebar a.active{color:var(--blue-prime);font-weight:700;border-left-color:var(--blue-prime);background:#f1f5f9;}
+
+    /* Main */
+    .main-content{flex:1;padding:40px;margin-left:0;max-width:100%;}
+    @media (min-width:1024px){
+      .sidebar{display:block;}
+      .main-content{margin-left:280px;padding:60px 80px;}
+    }
+
+    /* Typography */
+    h1{font-size:2.5rem;font-weight:900;color:var(--navy-dark);margin-bottom:10px;letter-spacing:-1px;}
+    .subtitle{font-size:1.15rem;color:var(--text-light);margin-bottom:36px;font-weight:300;}
+
+    h2{
+      font-size:1.75rem;color:var(--navy-dark);margin-top:60px;margin-bottom:22px;
+      padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;
+    }
+    h3{font-size:1.25rem;color:var(--blue-prime);margin-top:26px;margin-bottom:14px;font-weight:800;}
+    h4{font-size:1.05rem;color:var(--navy-dark);margin-top:18px;margin-bottom:10px;font-weight:700;}
+    p,li{margin-bottom:12px;font-size:1rem;color:#475569;}
+
+    /* Boxes */
+    .feature-box{
+      background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;margin:22px 0;
+      box-shadow:0 4px 6px -1px rgba(0,0,0,0.02);
+    }
+    .grid-2{display:grid;grid-template-columns:1fr;gap:16px;}
+    @media (min-width: 980px){ .grid-2{grid-template-columns:1fr 1fr;} }
+
+    /* Badges */
+    .badge{
+      display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;
+      font-size:.72rem;font-weight:900;text-transform:uppercase;margin-left:10px;vertical-align:middle;
+      letter-spacing:.8px;
+    }
+    .bg-master{background:var(--master-bg);color:var(--master-tx);border:1px solid var(--master-br);}
+    .bg-pj{background:var(--pj-bg);color:var(--pj-tx);border:1px solid var(--pj-br);}
+    .bg-pf{background:var(--pf-bg);color:var(--pf-tx);border:1px solid var(--pf-br);}
+    .bg-secure{background:var(--secure-bg);color:var(--secure-tx);border:1px solid var(--secure-br);}
+    .bg-trial{background:var(--trial-bg);color:var(--trial-tx);border:1px solid var(--trial-br);}
+
+    code{
+      background:#f1f5f9;padding:2px 6px;border-radius:6px;font-family:Consolas, monospace;
+      font-size:.92em;color:#dc2626;
+    }
+    ul,ol{margin-left:20px;margin-bottom:20px;}
+
+    /* Alerts */
+    .alert{padding:18px;border-radius:10px;margin:22px 0;font-size:.95rem;display:flex;gap:12px;}
+    .alert-info{background:#eff6ff;border-left:4px solid var(--blue-prime);color:#1e3a8a;}
+    .alert-warn{background:#fff7ed;border-left:4px solid #f97316;color:#7c2d12;}
+
+    .btn-back{display:inline-block;margin-bottom:18px;color:var(--text-light);text-decoration:none;font-weight:600;font-size:.92rem;}
+    .btn-back:hover{color:var(--blue-prime);}
+
+    .pro-tip{
+      background:linear-gradient(to right,#f8fafc,#ffffff);
+      border:1px solid #e2e8f0;border-left:5px solid #3b82f6;border-radius:12px;
+      padding:18px;margin:26px 0;display:flex;align-items:flex-start;gap:14px;
+      box-shadow:0 10px 15px -3px rgba(0,0,0,0.05);
+    }
+    .pro-tip-icon{
+      background-color:#eff6ff;color:#2563eb;min-width:40px;height:40px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;
+    }
+    .pro-tip-content strong{display:block;color:#1e3a8a;font-size:1rem;margin-bottom:4px;font-weight:900;}
+    .pro-tip-content{font-size:.95rem;color:#475569;line-height:1.6;}
+
+    .mini-kpi{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+    .kpi{
+      background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;
+      min-width:220px;flex:1;
+    }
+    .kpi b{display:block;color:var(--navy-dark);font-size:.85rem;text-transform:uppercase;letter-spacing:1px;}
+    .kpi span{display:block;font-size:1.2rem;font-weight:900;color:var(--navy-dark);margin-top:6px;}
+    .kpi small{color:var(--text-light);}
+
+    footer{
+      margin-top:60px;border-top:1px solid var(--border);padding-top:26px;
+      text-align:center;color:var(--text-light);font-size:.9rem;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="doc-layout">
 
-<div class="doc-layout">
-    
     <aside class="sidebar">
-        <div class="sidebar-header">
-            <img src="assets/logo.png" width="28">
-            <span class="sidebar-brand">FinanPrime Docs</span>
-        </div>
+      <div class="sidebar-header">
+        <img src="assets/logo.png" width="28" alt="FinanPrime" />
+        <span class="sidebar-brand">FinanPrime Docs</span>
+      </div>
 
-        <h3>Introdução</h3>
-        <a href="#intro" class="active">Visão Geral</a>
-        <a href="#setup">1. Instalação e Ativação</a>
-        
-        <h3>Manual Pessoal</h3>
-        <a href="#lancamentos">2. Lançamentos</a>
-        <a href="#metas">3. Metas e Investimentos</a>
-        <a href="#financiamento">4. Simulador Imóveis <span style="font-size:10px"></span></a> <a href="#importacao">5. Automação Bancária</a>
-        <a href="#irpf">6. Auditoria Fiscal (Leão)</a>
-        
-        <h3>Manual Empresarial</h3>
-        <a href="#pj">7. Gestão PJ e CRM 2.0</a> <h3>Suporte</h3>
-        <a href="#faq">Perguntas Frequentes</a>
+      <h3>Começar</h3>
+      <a href="#intro" class="active">Visão Geral</a>
+      <a href="#primeiro-acesso">Primeiro Acesso</a>
+      <a href="#seguranca">Segurança & Criptografia</a>
+      <a href="#arquitetura">Arquitetura</a>
+
+      <h3>Core (todos)</h3>
+      <a href="#core-lancamentos">Lançamentos</a>
+      <a href="#core-metas">Metas (Cofre)</a>
+      <a href="#core-importacao">Importação de Extratos</a>
+
+      <h3>PF <span class="badge bg-pf">PF</span></h3>
+      <a href="#pf-visao">Visão do PF</a>
+      <a href="#pf-irpf">IRPF & Auditoria</a>
+      <a href="#pf-simuladores">Simuladores</a>
+
+      <h3>PJ <span class="badge bg-pj">PJ</span></h3>
+      <a href="#pj-visao">Visão do PJ</a>
+      <a href="#pj-impostos">Impostos & Monitor Fiscal</a>
+      <a href="#pj-crm">CRM & Kanban</a>
+
+      <h3>Planos</h3>
+      <a href="#trial">TRIAL <span class="badge bg-trial">Trial</span></a>
+      <a href="#master">MASTER <span class="badge bg-master">Master</span></a>
+
+      <h3>Suporte</h3>
+      <a href="#faq">Perguntas Frequentes</a>
     </aside>
 
     <main class="main-content">
-        <a href="index.html" class="btn-back">← Voltar para o Site</a>
-        
-        <section id="intro">
-            <h1>Documentação Oficial</h1>
-            <p class="subtitle">Guia completo de operação e recursos do FinanPrime v3.5.</p>
-        </section>
+      <a href="index.html" class="btn-back">← Voltar para o Site</a>
 
-        <section id="setup">
-            <h2>1. Primeiro Acesso</h2>
-            <div class="feature-box">
-                <h4><span class="bg-step">1</span> Ativação da Licença</h4>
-                <p>Ao abrir o <code>FinanPrime.exe</code>, insira a chave recebida no WhatsApp (Formato: <code>FP-SEUNOME-XXXXXX</code>) ou clique em <strong>Testar 7 Dias Grátis</strong>.</p>
-                
-                <h4><span class="bg-step">2</span> Criação do Perfil</h4>
-                <p>O sistema pedirá seu <strong>Apelido</strong> (como quer ser chamado) e seu <strong>Objetivo Principal</strong>. Isso ajuda a IA a personalizar dicas.</p>
+      <section id="intro">
+        <h1>Documentação Oficial</h1>
+        <p class="subtitle">Guia de operação do FinanPrime — separado por PF, PJ, Trial e Master.</p>
 
-                <h4><span class="bg-step">3</span> Cofre de Segurança</h4>
-                <p>Crie sua <strong>Senha Mestra</strong>. Ela criptografa seus arquivos <code>.db</code>. <strong>Atenção:</strong> Se perder essa senha, seus dados não poderão ser recuperados nem pelo suporte.</p>
+        <div class="feature-box">
+          <h4>O que é o FinanPrime?</h4>
+          <p>
+            O <strong>FinanPrime</strong> é um <strong>Sistema Operacional Financeiro</strong> feito para entregar
+            <strong>clareza</strong> — com dados <strong>100% locais</strong>, criptografia forte e uma arquitetura que escala
+            do uso pessoal até a gestão de carteira de clientes.
+          </p>
+
+          <div class="mini-kpi">
+            <div class="kpi">
+              <b>Local-first</b>
+              <span>Sem servidor</span>
+              <small>Seus dados ficam na sua máquina.</small>
             </div>
-        </section>
-
-        <section id="lancamentos">
-            <h2>2. Lançamentos e Gastos</h2>
-            <p>O painel de controle principal para suas finanças diárias.</p>
-
-            <h3>Adicionando um Gasto Manual</h3>
-            <ol>
-                <li>No formulário lateral, confira a <strong>Data</strong> (hoje vem preenchido).</li>
-                <li>Escolha a <strong>Categoria</strong> (ex: Alimentação) e o <strong>Pagamento</strong> (ex: Pix).</li>
-                <li>Digite a <strong>Descrição</strong> (ex: Almoço) e o <strong>Valor</strong>.</li>
-                <li>Clique em <strong>ADICIONAR</strong>.</li>
-            </ol>
-
-            <div class="pro-tip">
-                <div class="pro-tip-icon">💡</div>
-                <div class="pro-tip-content">
-                    <strong>Dica Pro: O Poder do Parcelado</strong>
-                    Vai comprar em 10x? Ative a chave <code style="color: #ef4444; background: #fee2e2;">Parc.</code> (ficará vermelha), digite <code>10</code> e lance. O sistema projeta as parcelas futuras automaticamente nos próximos meses.
-                </div>
+            <div class="kpi">
+              <b>Criptografia</b>
+              <span>AES-256</span>
+              <small>Arquivo protegido por senha mestra.</small>
             </div>
+            <div class="kpi">
+              <b>Arquitetura</b>
+              <span>Per-tenant</span>
+              <small>Master com perfis isolados por cliente.</small>
+            </div>
+          </div>
+        </div>
 
-            <h3>Renda Extra e Salário</h3>
+        <div class="alert alert-info">
+          <div><strong>Nota:</strong></div>
+          <div>Esta documentação descreve o comportamento do produto por módulos e planos. Se algo “não aparecer”, normalmente é bloqueio do <strong>Trial</strong> ou recurso exclusivo do <strong>Master</strong>.</div>
+        </div>
+      </section>
+
+      <section id="primeiro-acesso">
+        <h2>Primeiro Acesso</h2>
+        <div class="feature-box">
+          <h4>1) Ativação</h4>
+          <p>Ao abrir o <code>FinanPrime.exe</code>, insira sua chave (ex: <code>FP-SEUNOME-XXXXXX</code>) ou use o modo <strong>Trial</strong>.</p>
+
+          <h4>2) Criação do Perfil</h4>
+          <p>Defina um <strong>apelido</strong> (como quer ser chamado). Isso organiza o ambiente e personaliza a experiência.</p>
+
+          <h4>3) Senha Mestra</h4>
+          <p>Crie sua <strong>Senha Mestra</strong>. Ela criptografa os bancos <code>.db</code>. Se perder a senha, <strong>não existe recuperação</strong> (nem por suporte).</p>
+        </div>
+      </section>
+
+      <section id="seguranca">
+        <h2>Segurança & Criptografia <span class="badge bg-secure">Secure</span></h2>
+
+        <div class="grid-2">
+          <div class="feature-box">
+            <h3>Local-first (sem internet)</h3>
+            <p>O FinanPrime é desenhado para funcionar localmente. Isso reduz dependência de servidores, evita vazamentos por terceiros e mantém o controle com o usuário.</p>
             <ul>
-                <li><strong>Salário Fixo:</strong> Digite no topo da barra lateral e clique no botão Verde (✓).</li>
-                <li><strong>Extras:</strong> Clique no botão <strong>"+ Extra"</strong> para lançar freelas ou dividendos.</li>
+              <li>Dados em arquivo local</li>
+              <li>Sem upload automático</li>
+              <li>Sem coleta de telemetria</li>
             </ul>
-        </section>
+          </div>
 
-        <section id="metas">
-            <h2>3. Metas e Investimentos</h2>
-            <p>Separe o dinheiro das contas do dinheiro dos seus sonhos.</p>
-            
-            <div class="feature-box">
-                <h3>Como Aportar (Modo Cofre)</h3>
-                <p>Para guardar dinheiro em uma meta específica (ex: Reserva de Emergência):</p>
-                <ol>
-                    <li>Vá na aba <strong>Metas</strong> e crie o objetivo.</li>
-                    <li>Na barra lateral, ative a chave <strong>"Meta"</strong> (ela ficará Dourada).</li>
-                    <li>Selecione a meta desejada e o valor.</li>
-                    <li>Clique em <strong>APORTAR</strong>.</li>
-                </ol>
-                <p>O sistema debita do seu "Saldo Disponível" e transfere para o "Patrimônio da Meta".</p>
-            </div>
-        </section>
-
-        <section id="financiamento">
-            <h2>4. Simulador de Imóveis <span class="badge bg-core">NOVO</span></h2>
-            <p>Ferramenta de engenharia financeira para quem possui ou planeja dívidas de longo prazo (Imóveis, Carros).</p>
-
-            <div class="feature-box">
-                <h3> O Poder da Amortização</h3>
-                <p>Simule cenários reais e veja a economia no seu bolso:</p>
-                <ul>
-                    <li><strong>SAC vs PRICE:</strong> Escolha o sistema de amortização do seu contrato para ver a evolução exata.</li>
-                    <li><strong>Simulador de Aporte ("Pagar de Trás"):</strong> Digite um valor extra (ex: R$ 5.000) e veja quantas parcelas finais são eliminadas.</li>
-                    <li><strong>Loop Reverso (Price):</strong> Algoritmo exclusivo que calcula a quitação das parcelas finais descontando os juros compostos.</li>
-                    <li><strong>Feedback Visual:</strong> As parcelas eliminadas ficam <span style="color:#10b981; font-weight:bold;">Verdes</span> na tabela de evolução, facilitando a visualização da redução da dívida.</li>
-                </ul>
-            </div>
-        </section>
-        <section id="importacao">
-            <h2>5. Automação Bancária</h2>
-            <p>Importe seus extratos bancários sem digitar linha por linha.</p>
-            
-            <ol>
-                <li>Baixe o PDF da fatura ou extrato do seu banco (Nubank, Inter, Bradesco...).</li>
-                <li>No FinanPrime, clique em <strong>Importar Extrato</strong>.</li>
-                <li>Selecione o arquivo.</li>
-            </ol>
-            <p>O sistema lê as descrições e classifica automaticamente (Ex: "Uber" vira "Transporte").</p>
-            <div class="alert alert-warn">
-                <strong>Nota:</strong> No modo <em>Trial</em>, essa função é bloqueada.
-            </div>
-        </section>
-
-        <section id="irpf">
-            <h2>6. Auditoria Fiscal <span class="badge bg-master">MASTER</span></h2>
-            <p>O módulo Leão prepara você para a declaração de Imposto de Renda, comparando cenários fiscais.</p>
-            
-            <h3>Dashboard de Fontes</h3>
-            <p>O sistema separa visualmente sua renda em:</p>
+          <div class="feature-box">
+            <h3>AES-256</h3>
+            <p>A camada de segurança utiliza criptografia forte (AES-256). O banco de dados fica protegido por uma senha mestra definida no primeiro acesso.</p>
             <ul>
-                <li><strong>Salários:</strong> Renda principal tributável.</li>
-                <li><strong>Vendas PJ:</strong> Distribuição de lucros (geralmente isenta).</li>
-                <li><strong>Extras:</strong> Outras fontes.</li>
+              <li>Proteção do arquivo <code>.db</code></li>
+              <li>Chave derivada da senha do usuário</li>
+              <li>Sem backdoor / sem recuperação</li>
             </ul>
+          </div>
+        </div>
 
-            <h3>Kit de Exportação Inteligente</h3> <p>Clique no botão verde <strong>EXPORTAR PACOTE IRPF</strong>. Você receberá um Relatório Completo com:</p>
-            <ul>
-                <li>Resumo de Rendimentos Anuais e Lista de Despesas Dedutíveis (Médico, Escola).</li>
-                <li><strong>Comparativo Tributário:</strong> O sistema calcula se vale mais a pena declarar pelo modelo <strong>Simplificado</strong> (desconto padrão de 20%) ou <strong>Completo</strong> (todas as deduções), mostrando a economia exata em Reais.</li>
-            </ul>
-        </section>
+        <div class="alert alert-warn">
+          <div><strong>Atenção:</strong></div>
+          <div>Se você esquecer a senha mestra, não será possível recuperar seus dados. Recomendação: use um gerenciador de senhas.</div>
+        </div>
+      </section>
 
-        <section id="pj">
-            <h2>7. Gestão PJ e CRM 2.0 <span class="badge bg-pj">PJ</span></h2>
-            <p>Funcionalidades exclusivas para autônomos e empresas, agora com inteligência de dados.</p>
+      <section id="arquitetura">
+        <h2>Arquitetura</h2>
 
-            <h3>CRM de Clientes Inteligente</h3> <p>O novo CRM abandona o "arrastar cards" manual. Agora, o status do cliente é definido matematicamente:</p>
-            
-            <div class="kanban-preview">
-                <div class="k-col" style="background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe">🟦 NOVOS<br>Nunca Compraram</div>
-                <div class="k-col" style="background:#f0fdf4; color:#166534; border:1px solid #bbf7d0">🟩 CARTEIRA<br>Ativos & Recorrentes</div>
-                <div class="k-col" style="background:#fff7ed; color:#9a3412; border:1px solid #fed7aa">🟧 RISCO<br>Inativo > 60 dias</div>
-                <div class="k-col" style="background:#fef2f2; color:#991b1b; border:1px solid #fecaca">🟥 COBRANÇA<br>Venda Vencida</div>
+        <div class="feature-box">
+          <h3>Perfis PF e PJ</h3>
+          <p>O FinanPrime possui modos de operação para PF e PJ. O comportamento e telas podem mudar conforme o modo selecionado.</p>
+          <ul>
+            <li><strong>PF:</strong> organização pessoal, metas e IRPF</li>
+            <li><strong>PJ:</strong> fluxo, vendas, clientes, impostos e CRM</li>
+          </ul>
+        </div>
+
+        <div class="feature-box">
+          <h3>Master: Database per Tenant</h3>
+          <p>
+            No <strong>Master</strong>, cada cliente tem seu próprio ambiente isolado (pasta + banco). Isso garante segurança e evita contaminação de dados.
+          </p>
+          <div class="pro-tip">
+            <div class="pro-tip-icon">👑</div>
+            <div class="pro-tip-content">
+              <strong>Conceito-chave</strong>
+              Cada cliente é um “FinanPrime independente”. O Master é o <em>visor estratégico</em> para orquestrar a carteira.
             </div>
+          </div>
+        </div>
+      </section>
 
-            <ul>
-                <li><strong>Diamante (VIP):</strong> Clientes com alto volume de compras ganham destaque roxo.</li>
-                <li><strong>Automação de Risco:</strong> Se um cliente ativo para de comprar, ele é movido automaticamente para "Risco" para você agir.</li>
-                <li><strong>Cobrança:</strong> Boletos vencidos movem o cliente para a coluna vermelha instantaneamente.</li>
-            </ul>
+      <section id="core-lancamentos">
+        <h2>Core — Lançamentos <span class="badge bg-pf">PF</span> <span class="badge bg-pj">PJ</span></h2>
+        <p>O painel de lançamentos é o coração do FinanPrime: registrar receitas, despesas, categorias e métodos de pagamento.</p>
 
-            <h3>Monitor Fiscal (Fator R)</h3>
-            <p>O sistema monitora se sua empresa (Simples Nacional) está gastando 28% do faturamento com folha/pró-labore. Mantenha esse indicador no <strong>Verde</strong> para pagar menos imposto (Anexo III).</p>
-        </section>
+        <div class="feature-box">
+          <h3>Adicionar gasto manual</h3>
+          <ol>
+            <li>Confira a <strong>data</strong> (geralmente vem preenchida).</li>
+            <li>Escolha <strong>categoria</strong> e <strong>método</strong> (Pix, crédito etc.).</li>
+            <li>Digite <strong>descrição</strong> e <strong>valor</strong>.</li>
+            <li>Clique em <strong>Adicionar</strong>.</li>
+          </ol>
 
-        <section id="faq">
-            <h2>Perguntas Frequentes</h2>
-            
-            <div class="feature-box">
-                <strong>Errei um lançamento. Como apagar?</strong><br>
-                Vá na aba <strong>Extrato</strong>. Clique no item errado e aperte o botão <strong>Remover</strong> na barra lateral. Para apagar vários, segure <code>CTRL</code> enquanto clica.
+          <div class="pro-tip">
+            <div class="pro-tip-icon">💡</div>
+            <div class="pro-tip-content">
+              <strong>Dica Pro (parcelado)</strong>
+              Se você lançar compras parceladas, projete as parcelas futuras para não “sumir” com a dor no próximo mês.
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="feature-box">
-                <strong>Automação de Gastos Fixos</strong><br>
-                Cadastre seu Aluguel e Internet na aba <strong>Fixos</strong>. Todo dia 1º, clique no botão <strong>⚡ LANÇAR FIXOS</strong> e o sistema lança tudo de uma vez.
-            </div>
-        </section>
-        
-        <footer style="margin-top: 60px; border-top: 1px solid var(--border); padding-top: 30px; text-align: center; color: var(--text-light); font-size: 0.9rem;">
-            <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2026 FinanPrime v3.5</p>
-        </footer>
+      <section id="core-metas">
+        <h2>Core — Metas (Cofre) <span class="badge bg-pf">PF</span></h2>
+        <p>Metas separam o dinheiro do dia a dia do dinheiro guardado. Você enxerga o que está disponível e o que está reservado.</p>
 
+        <div class="feature-box">
+          <h3>Como usar</h3>
+          <ol>
+            <li>Crie uma meta (ex: Reserva de Emergência).</li>
+            <li>Selecione a meta e informe o valor do aporte.</li>
+            <li>O sistema transfere do saldo disponível para o cofre da meta.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="core-importacao">
+        <h2>Core — Importação de Extratos</h2>
+        <p>Importe extratos (PDF/OFX quando disponível) para acelerar lançamentos e reduzir erro humano.</p>
+
+        <div class="feature-box">
+          <h3>Passo a passo</h3>
+          <ol>
+            <li>Baixe o extrato do banco (ex: Nubank/Inter/Bradesco).</li>
+            <li>No FinanPrime, use <strong>Importar Extrato</strong>.</li>
+            <li>Selecione o arquivo e confirme.</li>
+          </ol>
+          <p>O sistema tenta identificar padrões e categorizar automaticamente (ex: “Uber” → Transporte).</p>
+        </div>
+
+        <div class="alert alert-warn">
+          <div><strong>Trial:</strong></div>
+          <div>Dependendo da sua configuração, a importação pode ser limitada no modo <strong>Trial</strong>.</div>
+        </div>
+      </section>
+
+      <section id="pf-visao">
+        <h2>PF — Pessoa Física <span class="badge bg-pf">PF</span></h2>
+        <p>Modo PF é focado em organização pessoal, padrões de consumo, metas e preparo para imposto de renda.</p>
+
+        <div class="feature-box">
+          <h3>O que você ganha no PF</h3>
+          <ul>
+            <li>Clareza do mês (entradas, saídas e saldo)</li>
+            <li>Metas (cofre) e organização de objetivos</li>
+            <li>Visão de desperdícios e padrões</li>
+            <li>Base pronta para IRPF</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="pf-irpf">
+        <h2>PF — IRPF & Auditoria</h2>
+        <p>O módulo de IRPF organiza a vida fiscal e ajuda a estruturar rendimentos e despesas dedutíveis.</p>
+
+        <div class="feature-box">
+          <h3>O que o módulo faz</h3>
+          <ul>
+            <li>Separa fontes de renda</li>
+            <li>Mapeia despesas potencialmente dedutíveis</li>
+            <li>Ajuda a organizar a documentação anual</li>
+          </ul>
+        </div>
+
+        <div class="alert alert-info">
+          <div><strong>Importante:</strong></div>
+          <div>O FinanPrime ajuda na organização e auditoria. Ele não substitui orientação contábil/tributária profissional.</div>
+        </div>
+      </section>
+
+      <section id="pf-simuladores">
+        <h2>PF — Simuladores</h2>
+        <p>Simuladores ajudam a visualizar o custo real de decisões longas (parcelas, financiamentos e amortizações).</p>
+
+        <div class="feature-box">
+          <h3>Casos comuns</h3>
+          <ul>
+            <li>Simulação SAC vs PRICE</li>
+            <li>Simulação de amortização (reduzir prazo e juros)</li>
+            <li>Projeções com parcelas futuras</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="pj-visao">
+        <h2>PJ — Pessoa Jurídica <span class="badge bg-pj">PJ</span></h2>
+        <p>Modo PJ é focado em operação de negócio: vendas, despesas, visão de caixa e organização fiscal.</p>
+
+        <div class="feature-box">
+          <h3>O que você ganha no PJ</h3>
+          <ul>
+            <li>Controle de caixa e movimento</li>
+            <li>Organização de vendas</li>
+            <li>Base para impostos</li>
+            <li>CRM para acompanhar carteira</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="pj-impostos">
+        <h2>PJ — Impostos & Monitor Fiscal</h2>
+        <p>O módulo PJ traz visão prática de impostos e indicadores, como o <strong>Fator R</strong> no Simples Nacional.</p>
+
+        <div class="feature-box">
+          <h3>Fator R (Simples Nacional)</h3>
+          <p>O sistema ajuda a monitorar a relação entre folha/pró-labore e faturamento para orientar o enquadramento (ex: Anexo III vs V).</p>
+        </div>
+      </section>
+
+      <section id="pj-crm">
+        <h2>PJ — CRM & Kanban</h2>
+        <p>O CRM organiza clientes e ajuda a acompanhar recorrência, risco e cobrança.</p>
+
+        <div class="feature-box">
+          <h3>Kanban operacional</h3>
+          <ul>
+            <li><strong>Novos:</strong> ainda não compraram</li>
+            <li><strong>Carteira:</strong> ativos</li>
+            <li><strong>Risco:</strong> inatividade acima do limite</li>
+            <li><strong>Cobrança:</strong> pendências e vencimentos</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="trial">
+        <h2>Modo Trial <span class="badge bg-trial">Trial</span></h2>
+        <p>O Trial existe para você conhecer o fluxo e o conceito do FinanPrime antes de destravar o potencial completo.</p>
+
+        <div class="feature-box">
+          <h3>O que esperar</h3>
+          <ul>
+            <li>Acesso ao básico para testar experiência</li>
+            <li>Algumas automações podem ser limitadas</li>
+            <li>Recursos avançados e Master podem ficar bloqueados</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="master">
+        <h2>Modo Master <span class="badge bg-master">Master</span></h2>
+        <p>O Master transforma o FinanPrime em ferramenta profissional: você gerencia vários clientes sem mensalidade por cliente.</p>
+
+        <div class="feature-box">
+          <h3>O que o Master entrega</h3>
+          <ul>
+            <li><strong>Multi-perfis PF e PJ</strong> totalmente isolados</li>
+            <li><strong>Gestão de carteiras</strong> (AUM — patrimônio sob gestão)</li>
+            <li>Troca rápida de cliente e contexto</li>
+            <li>Arquitetura <em>database per tenant</em></li>
+          </ul>
+        </div>
+
+        <div class="pro-tip">
+          <div class="pro-tip-icon">🧠</div>
+          <div class="pro-tip-content">
+            <strong>Mindset correto</strong>
+            O cliente usa o FinanPrime. O consultor usa a <em>Carteira</em>. O Master existe para orquestrar, não para virar CRM gigante.
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2>Perguntas Frequentes</h2>
+
+        <div class="feature-box">
+          <strong>Errei um lançamento. Como apagar?</strong>
+          <p>Vá até o extrato, selecione o item e use o botão de remover. Para múltiplos itens, utilize seleção múltipla (quando disponível).</p>
+        </div>
+
+        <div class="feature-box">
+          <strong>Se eu perder minha senha mestra, vocês recuperam?</strong>
+          <p><strong>Não.</strong> A criptografia foi desenhada para que ninguém (nem suporte) consiga abrir seus bancos sem a senha.</p>
+        </div>
+
+        <div class="feature-box">
+          <strong>O FinanPrime envia meus dados para a internet?</strong>
+          <p>Não. O modelo é local-first: seus dados ficam no seu computador.</p>
+        </div>
+      </section>
+
+      <footer>
+        <p>Desenvolvido por <strong>Miguel Gonçalves</strong> • © 2026 FinanPrime</p>
+      </footer>
     </main>
-</div>
+  </div>
 
-</body>
-<script>
+  <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const links = document.querySelectorAll('.sidebar a');
-        const sections = document.querySelectorAll('section');
+      const links = document.querySelectorAll('.sidebar a');
+      const sections = document.querySelectorAll('main section');
 
-        // 1. Clique Suave (Smooth Scroll)
+      links.forEach(link => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (!href || !href.startsWith('#')) return;
+          e.preventDefault();
+          const targetId = href.substring(1);
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            window.scrollTo({ top: targetSection.offsetTop - 40, behavior: 'smooth' });
+          }
+        });
+      });
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (window.scrollY >= (sectionTop - 150)) current = section.getAttribute('id');
+        });
+
         links.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault(); // Impede o pulo seco padrão
-                
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    // Rola suavemente até a seção
-                    window.scrollTo({
-                        top: targetSection.offsetTop - 40, // -40px para dar um respiro no topo
-                        behavior: 'smooth'
-                    });
-                }
-            });
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) link.classList.add('active');
         });
-
-        // 2. Espião de Rolagem (Muda a cor na Sidebar conforme você desce)
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                // Se a rolagem passou de 1/3 da seção, considera ela ativa
-                if (window.scrollY >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            // Atualiza os links da sidebar
-            links.forEach(link => {
-                link.classList.remove('active');
-                // Adiciona a classe apenas se o href do link bater com a seção atual
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
+      });
     });
-</script>
-
+  </script>
+</body>
 </html>

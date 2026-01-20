@@ -388,6 +388,139 @@
       color: #ffd37a;
     }
 
+
+    /* Email mock (Relatórios por e-mail) */
+    .email-mock{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(15,23,42,0.86), rgba(30,41,59,0.52));
+      overflow:hidden;
+      box-shadow: 0 22px 55px -22px rgba(0,0,0,0.65);
+      position:relative;
+    }
+    .email-mock::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(245,158,11,0.18), transparent 55%),
+        radial-gradient(circle at 75% 28%, rgba(139,92,246,0.18), transparent 55%),
+        radial-gradient(circle at 55% 100%, rgba(16,185,129,0.10), transparent 60%);
+      pointer-events:none;
+      opacity:0.9;
+    }
+    .email-head{
+      position:relative;
+      z-index:1;
+      padding: 16px 18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(2,6,23,0.18);
+    }
+    .email-brand{
+      display:flex; flex-direction:column; gap:4px;
+      min-width: 0;
+    }
+    .email-brand .t1{
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      color: #ffd37a;
+      font-size: 1.04rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .email-brand .t2{
+      font-size: 0.78rem;
+      color: #94a3b8;
+      font-weight: 700;
+    }
+    .email-badges{
+      display:flex;
+      gap: 8px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .ebadge{
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: #cbd5e1;
+    }
+    .ebadge.master{
+      border-color: rgba(245,158,11,0.45);
+      background: rgba(245,158,11,0.12);
+      color: #ffd37a;
+      box-shadow: 0 0 18px rgba(245,158,11,0.16);
+    }
+    .email-body{
+      position:relative;
+      z-index:1;
+      padding: 18px;
+      color: #e2e8f0;
+    }
+    .email-body p{
+      margin: 0 0 12px;
+      color: #e2e8f0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .email-box{
+      margin: 14px 0 14px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      background: rgba(2,6,23,0.22);
+      border: 1px solid rgba(59,130,246,0.35);
+      box-shadow: 0 0 0 1px rgba(59,130,246,0.10) inset;
+    }
+    .email-box h4{
+      margin: 0 0 8px;
+      font-size: 0.92rem;
+      color: #93c5fd;
+      letter-spacing: 0.2px;
+    }
+    .email-list{
+      margin:0;
+      padding-left: 18px;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .email-cta{
+      margin-top: 14px;
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(245,158,11,0.45);
+      background: rgba(245,158,11,0.12);
+      color: #ffe7b3;
+      font-weight: 900;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      box-shadow: 0 0 22px rgba(245,158,11,0.18);
+    }
+    .email-foot{
+      position:relative;
+      z-index:1;
+      padding: 12px 14px;
+      text-align:center;
+      font-size: 0.72rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+    }
+
     /* CTA stripe */
     .cta-stripe{
       max-width: 1100px;
@@ -500,6 +633,7 @@
         <div class="trust-item"><i data-lucide="lock-keyhole" size="18"></i> Dados locais</div>
         <div class="trust-item"><i data-lucide="database" size="18"></i> Base por cliente</div>
         <div class="trust-item"><i data-lucide="infinity" size="18"></i> Perfis ilimitados</div>
+        <div class="trust-item"><i data-lucide="file-text" size="18"></i> Relatórios 1-clique</div>
       </div>
     </div>
   </section>
@@ -567,7 +701,7 @@
       </div>
 
       <div class="card">
-        <div class="icon"><i data-lucide="database" size="20"></i></div>
+        <div class="icon"><i data-lucide="layout-kanban" size="20"></i></div>
         <h3>CRM + Cobrança</h3>
         <p>Organize, acompanhe risco e cobre em 1 clique. Menos fricção, mais operação.</p>
         <ul class="mini-list">
@@ -587,7 +721,19 @@
           <li><i data-lucide="check" size="18"></i> Tudo local-first</li>
         </ul>
       </div>
-    </div>
+
+      <div class="card">
+        <div class="icon"><i data-lucide="mail" size="20"></i></div>
+        <h3>Relatórios + Envio por E-mail</h3>
+        <p>Gere o PDF executivo e envie com template profissional — com a sua marca e a competência do período.</p>
+        <ul class="mini-list">
+          <li><i data-lucide="check" size="18"></i> PDF com gráfico + análise</li>
+          <li><i data-lucide="check" size="18"></i> E-mail bonito (FinanPrime Master)</li>
+          <li><i data-lucide="check" size="18"></i> Pronto para consultoria recorrente</li>
+        </ul>
+      </div>
+
+</div>
   </section>
 
   <!-- COMPARATIVO -->
@@ -632,6 +778,10 @@
     <div class="section-title">
       <span>Na prática</span>
       <h2>Veja o tipo de tela que você usa todos os dias</h2>
+      <p>
+        Coloque seus prints reais na pasta <code style="background:rgba(255,255,255,0.05); padding:2px 8px; border-radius:8px;">/assets</code>
+        e pronto: a página vira prova visual.
+      </p>
     </div>
 
     <div class="gallery">
@@ -641,7 +791,7 @@
           <div style="color:#64748b; font-size:0.9rem; font-weight:800;">MASTER</div>
         </div>
         <!-- Dica: se você tiver um print do seletor de perfis, troque o arquivo abaixo -->
-        <img src="assets/carteira.png" alt="Exemplo - use aqui um print do seletor de perfis do Master" />
+        <img src="assets/CRMKANBAN.png" alt="Exemplo - use aqui um print do seletor de perfis do Master" />
         <div class="shot-cap">
           <strong>Dica:</strong> aqui é perfeito para você colocar um print do “selecionar perfil / cliente”.
           Se você ainda não tem, use temporariamente o CRM Kanban e depois substitui o arquivo.
@@ -657,11 +807,52 @@
           <div class="shot-cap">Lista, filtros e visão rápida da carteira. Ideal para consultor operar rápido.</div>
         </div>
 
+
         <div class="shot">
+          <div class="shot-top">
+            <div class="shot-pill master"><i data-lucide="mail" size="16"></i> Relatórios por E-mail</div>
+          </div>
+
+          <div class="email-mock" aria-label="Prévia do e-mail FinanPrime Master">
+            <div class="email-head">
+              <div class="email-brand">
+                <div class="t1">Sua Marca • FinanPrime Master</div>
+                <div class="t2">Relatório Executivo de Gestão</div>
+              </div>
+              <div class="email-badges">
+                <span class="ebadge master">MASTER</span>
+                <span class="ebadge">Competência 01/2026</span>
+              </div>
+            </div>
+
+            <div class="email-body">
+              <p>Olá, <strong>Cliente</strong>. Segue em anexo o relatório consolidado do período.</p>
+
+              <div class="email-box">
+                <h4>O que você vai encontrar</h4>
+                <ul class="email-list">
+                  <li>Fluxo de caixa e leitura do período</li>
+                  <li>DRE sintética e comparativos</li>
+                  <li>Indicadores + plano de ação</li>
+                </ul>
+              </div>
+
+              <span class="email-cta"><i data-lucide="file-text" size="16"></i> Relatório anexado • PDF</span>
+            </div>
+
+            <div class="email-foot">Enviado via FinanPrime Master • Gestão Financeira Inteligente</div>
+          </div>
+
+          <div class="shot-cap">
+            Template pronto (dark + dourado). Você só troca <strong>nome do cliente</strong> e <strong>competência</strong> — e envia.
+          </div>
+        </div>
+
+                <div class="shot">
           <div class="shot-top">
             <div class="shot-pill"><i data-lucide="shield-check" size="16"></i> Impostos</div>
           </div>
-          <img src="assets/impostosPj.png" alt="Print da tela de Impostos PJ" />
+          <img src="assets/impostosPJ.png" alt="Print da tela de Impostos PJ" />
           <div class="shot-cap">Monitor fiscal com alertas — foco em evitar surpresa e manter o fluxo sob controle.</div>
         </div>
       </div>
@@ -711,7 +902,14 @@
         <h3>“Consigo exportar por cliente?”</h3>
         <p>Sim. A lógica por perfis facilita backup e export por cliente/empresa.</p>
       </div>
-    </div>
+
+      <div class="card">
+        <div class="icon"><i data-lucide="mail" size="20"></i></div>
+        <h3>“Consigo enviar relatório pro cliente?”</h3>
+        <p>Sim. O Master gera o PDF executivo e envia por e-mail com template profissional e sua marca.</p>
+      </div>
+
+</div>
   </section>
 
   <footer>
