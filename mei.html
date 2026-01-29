@@ -463,6 +463,219 @@
         .fade-up { opacity: 0; transform: translateY(30px); animation: fadeUp 0.8s forwards; }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
+    
+        /* --- PRICING V2 (estilo tráfego pago) --- */
+        :root {
+            --pricing-accent: #8b5cf6;
+            --pricing-accent-soft: rgba(139,92,246,0.18);
+            --pricing-accent-border: rgba(139,92,246,0.35);
+        }
+
+        .pricing-v2 {
+            padding: 100px 5%;
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .pricing-head {
+            max-width: 920px;
+            margin: 0 auto 50px auto;
+        }
+        .pricing-kicker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: var(--pricing-accent-soft);
+            border: 1px solid var(--pricing-accent-border);
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .pricing-head h2 {
+            margin-top: 18px;
+            font-size: 2.6rem;
+            line-height: 1.15;
+        }
+        .pricing-head p {
+            margin-top: 12px;
+            color: #94a3b8;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .pay-grid {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+            text-align: left;
+        }
+
+        .pay-card {
+            position: relative;
+            background: rgba(30, 41, 59, 0.40);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 22px;
+            padding: 34px 30px;
+            transition: 0.25s ease;
+            overflow: hidden;
+        }
+        .pay-card:hover {
+            transform: translateY(-6px);
+            background: rgba(30, 41, 59, 0.70);
+            border-color: var(--pricing-accent-border);
+            box-shadow: 0 20px 55px -18px rgba(0,0,0,0.55);
+        }
+
+        .pay-card.featured {
+            border: 2px solid var(--pricing-accent);
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.72) 0%, rgba(15, 23, 42, 0.85) 100%);
+            box-shadow: 0 0 26px var(--pricing-accent-soft);
+            transform: scale(1.04);
+            z-index: 2;
+        }
+
+        .p-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #0f172a;
+        }
+        .p-badge.popular {
+            background: rgba(251, 146, 60, 0.95);
+        }
+        .p-badge.value {
+            background: rgba(34, 197, 94, 0.95);
+        }
+
+        .pay-card h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .p-price {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .p-price .money {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+        .p-price .per {
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .p-meta {
+            color: #cbd5e1;
+            font-weight: 700;
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+
+        .p-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 900;
+            background: rgba(16,185,129,0.12);
+            border: 1px solid rgba(16,185,129,0.25);
+            color: #34d399;
+            margin-bottom: 22px;
+        }
+
+        .p-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 26px 0;
+            display: grid;
+            gap: 12px;
+        }
+        .p-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #e2e8f0;
+            font-size: 0.98rem;
+            line-height: 1.35;
+        }
+        .p-list i {
+            color: var(--pricing-accent);
+            margin-top: 2px;
+            flex: 0 0 auto;
+        }
+
+        .p-cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            padding: 13px 16px;
+            border-radius: 12px;
+            font-weight: 900;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            transition: 0.22s ease;
+        }
+        .p-cta:hover {
+            transform: translateY(-2px);
+            border-color: var(--pricing-accent-border);
+            box-shadow: 0 0 22px var(--pricing-accent-soft);
+        }
+
+        .pricing-note {
+            max-width: 1120px;
+            margin: 28px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            text-align: left;
+        }
+        .note-box {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: rgba(15, 23, 42, 0.60);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 16px;
+        }
+        .note-box i {
+            color: var(--pricing-accent);
+            margin-top: 2px;
+        }
+        .note-box .muted {
+            color: #94a3b8;
+            margin-top: 3px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 900px) {
+            .pricing-head h2 { font-size: 2.1rem; }
+            .pricing-note { grid-template-columns: 1fr; }
+            .pay-card.featured { transform: none; }
+        }
+    
     </style>
 </head>
 
@@ -494,13 +707,13 @@
                     <i data-lucide="play-circle" size="20"></i> Ver Demonstração
                 </a>
                 <a href="#planos" class="btn-outline">
-                    Ver Planos Vitalícios
+                    Ver Planos de Assinatura
                 </a>
             </div>
 
             <div class="trust-badges">
                 <div class="trust-item"><i data-lucide="cloud-off"></i> Sem Nuvem</div>
-                <div class="trust-item"><i data-lucide="infinity"></i> Sem Mensalidade</div>
+                <div class="trust-item"><i data-lucide="infinity"></i> Assinatura Flexível</div>
                 <div class="trust-item"><i data-lucide="lock-keyhole"></i> Dados Locais</div>
                 <div class="trust-item"><i data-lucide="workflow"></i> Funil de Clientes</div>
                 <div class="trust-item"><i data-lucide="calendar-check"></i> Agenda + Google</div>
@@ -805,72 +1018,88 @@
 
         <div style="margin-top:40px; text-align:center;">
             <a href="#planos" class="btn-cta" style="padding:14px 28px; font-size:1.05rem;">
-            <i data-lucide="arrow-down"></i> Ver planos e licenças
+            <i data-lucide="arrow-down"></i> Ver planos de assinatura
             </a>
         </div>
     </section>
 
 
 
-    <section id="planos" class="section-padding">
-        <div class="section-title">
-            <span>Sem mensalidade</span>
-            <h2>Licença Vitalícia (Lifetime)</h2>
-            <p style="color: #94a3b8; margin-top: 10px;">Licenças são pagamento único. A Consultoria VIP é um serviço mensal sob contrato.</p>
+    
+    <section id="planos" class="pricing-v2">
+      <div class="pricing-head">
+        <span class="pricing-kicker">Planos de Assinatura • Empresarial</span>
+        <h2>Escolha apenas a forma de pagamento que melhor se adapta a você.</h2>
+        <p>Comece mensal e mude para semestral/anual quando quiser — <strong>pagando à vista você ganha mais desconto</strong>.</p>
+      </div>
+
+      <div class="pay-grid">
+        
+        <article class="pay-card">
+          
+          <h3>Mensal</h3>
+          <div class="p-price"><span class="money">R$47</span><span class="per"></span></div>
+          <div class="p-meta">Pagamento mensal</div>
+          <div class="p-pill">R$50 de DESCONTO</div>
+          <ul class="p-list"><li><i data-lucide="check" size="18"></i><span>Acesso total ao Empresarial (MEI/PJ)</span></li>
+<li><i data-lucide="check" size="18"></i><span>CRM + Agenda + Google Calendar</span></li>
+<li><i data-lucide="check" size="18"></i><span>Monitor fiscal (teto MEI / fator R)</span></li>
+<li><i data-lucide="check" size="18"></i><span>Dashboard do negócio</span></li>
+<li><i data-lucide="check" size="18"></i><span>Mordomo no WhatsApp</span></li>
+<li><i data-lucide="check" size="18"></i><span>Suporte prioritário</span></li></ul>
+          <a class="p-cta" href="https://pay.cakto.com.br/6n7ptnt_746266" target="_blank" rel="noopener">Começar Agora</a>
+        </article>
+        
+        <article class="pay-card featured">
+          <div class="p-badge popular">Mais Popular</div>
+          <h3>Semestral</h3>
+          <div class="p-price"><span class="money">R$36,70</span><span class="per">/mês</span></div>
+          <div class="p-meta">R$197,00 à vista</div>
+          <div class="p-pill">+R$85 de DESCONTO</div>
+          <ul class="p-list"><li><i data-lucide="check" size="18"></i><span>Acesso total ao Empresarial (MEI/PJ)</span></li>
+<li><i data-lucide="check" size="18"></i><span>CRM + Agenda + Google Calendar</span></li>
+<li><i data-lucide="check" size="18"></i><span>Monitor fiscal (teto MEI / fator R)</span></li>
+<li><i data-lucide="check" size="18"></i><span>Dashboard do negócio</span></li>
+<li><i data-lucide="check" size="18"></i><span>Mordomo no WhatsApp</span></li>
+<li><i data-lucide="check" size="18"></i><span>Suporte prioritário</span></li></ul>
+          <a class="p-cta" href="https://pay.cakto.com.br/3e5mpnt_746273" target="_blank" rel="noopener">Começar Agora</a>
+        </article>
+        
+        <article class="pay-card valuecard">
+          <div class="p-badge value">Melhor Valor</div>
+          <h3>Anual</h3>
+          <div class="p-price"><span class="money">R$29,70</span><span class="per">/mês</span></div>
+          <div class="p-meta">R$297,00 à vista</div>
+          <div class="p-pill">+R$267 de DESCONTO!</div>
+          <ul class="p-list"><li><i data-lucide="check" size="18"></i><span>Acesso total ao Empresarial (MEI/PJ)</span></li>
+<li><i data-lucide="check" size="18"></i><span>CRM + Agenda + Google Calendar</span></li>
+<li><i data-lucide="check" size="18"></i><span>Monitor fiscal (teto MEI / fator R)</span></li>
+<li><i data-lucide="check" size="18"></i><span>Dashboard do negócio</span></li>
+<li><i data-lucide="check" size="18"></i><span>Mordomo no WhatsApp</span></li>
+<li><i data-lucide="check" size="18"></i><span>Suporte prioritário</span></li></ul>
+          <a class="p-cta" href="https://pay.cakto.com.br/37ouqaj_746274" target="_blank" rel="noopener">Começar Agora</a>
+        </article>
+        
+      </div>
+
+      <div class="pricing-note">
+        <div class="note-box">
+          <i data-lucide="shield-check" size="18"></i>
+          <div>
+            <strong>Garantia de 7 dias</strong>
+            <div class="muted">Se não fizer sentido, você cancela sem dor.</div>
+          </div>
         </div>
-
-        <div class="grid-cards">
-            <div class="pricing-card">
-                <h3>MEI Essencial</h3>
-                <div class="price">R$ 297</div>
-                <p style="color: #64748b; font-size: 0.9rem;">Para quem quer apenas organizar o caixa.</p>
-                <ul class="check-list">
-                    <li><i data-lucide="check"></i> Controle de Fluxo de Caixa</li>
-                    <li><i data-lucide="check"></i> Importação de Extrato (OFX)</li>
-                    <li><i data-lucide="check"></i> Relatórios em PDF</li>
-                    <li><i data-lucide="check"></i> Licença para 1 Computador</li>
-                    <li><i data-lucide="check"></i> <strong>FinanPrime Mobile PJ</strong></li>
-                    <li style="opacity: 0.5;"><i data-lucide="x"></i> Módulo Fiscal & CRM</li>
-                    <li style="opacity: 0.5;"><i data-lucide="x"></i> Agenda inteligente + Google Agenda</li>
-                </ul>
-                <a href="https://wa.me/5519996261910?text=Quero%20o%20plano%20ESSENCIAL" class="btn-outline" style="display: block; width: 100%;">Comprar Licença</a>
-            </div>
-
-            <div class="pricing-card featured">
-                <div class="badge-popular">MAIS VENDIDO</div>
-                <h3>PJ Master 3.5</h3>
-                <div style="text-decoration: line-through; color: #64748b; font-size: 0.9rem; margin-bottom: -10px;">De R$ 997</div>
-                <div class="price">R$ 497<span style="font-size: 0.8rem; display: block; margin-top: -10px; color: #10b981;">Oferta de Lançamento</span></div>
-                
-                <p style="color: #94a3b8; font-size: 0.9rem;">O sistema completo com Inteligência de Negócio.</p>
-                <ul class="check-list">
-                    <li><i data-lucide="check"></i> <strong>Tudo do Essencial +</strong></li>
-                    <li><i data-lucide="check"></i> CRM Autônomo 2.0</li>
-                    <li><i data-lucide="check"></i> Monitor Fiscal (Fator R)</li>
-                    <li><i data-lucide="check"></i> Simulador de Financiamento</li>
-                    <li><i data-lucide="check"></i> Agenda inteligente + Google Agenda (1 clique)</li>
-                    <li><i data-lucide="check"></i> <strong>FinanPrime Mobile</strong> (lançamentos + sync com HUB)</li>
-                    <li><i data-lucide="check"></i> Licença para 2 Computadores</li>
-                </ul>
-                <a href="https://wa.me/5519996261910?text=Quero%20aproveitar%20a%20oferta%20do%20PJ%20MASTER" class="btn-cta" style="display: block; width: 100%;">Garantir Oferta</a>
-            </div>
-
-            <div class="pricing-card">
-                <h3>Consultoria VIP</h3>
-                <div class="price">Mensalidade<span style="font-size: 0.8rem; display: block; margin-top: -10px; color: #10b981;">valores via contrato</span></div>
-                <p style="color: #64748b; font-size: 0.9rem;">Implantação + acompanhamento mensal. A gente deixa seu financeiro rodando no automático.</p>
-                <ul class="check-list">
-                    <li><i data-lucide="check"></i> Implantação completa (remota)</li>
-                    <li><i data-lucide="check"></i> Migração/importação de dados (OFX/CSV/planilhas)</li>
-                    <li><i data-lucide="check"></i> Ajuste de categorias, regras e rotina do caixa</li>
-                    <li><i data-lucide="check"></i> Agenda inteligente + Google Agenda (quando aplicável)</li>
-                    <li><i data-lucide="check"></i> Suporte prioritário (WhatsApp)</li>
-                    <li><i data-lucide="check"></i> Reunião mensal + relatório (sob escopo)</li>
-                </ul>
-                <a href="https://wa.me/5519996261910?text=Quero%20a%20CONSULTORIA%20VIP%20(Mensal)%20-%20valores%20a%20acertar%20via%20contrato" class="btn-outline" style="display: block; width: 100%;">Solicitar Proposta</a>
-            </div>
+        <div class="note-box">
+          <i data-lucide="refresh-ccw" size="18"></i>
+          <div>
+            <strong>Sem pegadinha</strong>
+            <div class="muted">Renovação automática. Cancelou, parou de cobrar.</div>
+          </div>
         </div>
+      </div>
     </section>
+    
 
     <section class="section-padding" style="background: rgba(255,255,255,0.02);">
         <div class="section-title">

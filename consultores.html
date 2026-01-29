@@ -588,6 +588,219 @@
       .cta-stripe{ flex-direction: column; text-align:center; }
       .cta-right{ justify-content:center; }
     }
+  
+        /* --- PRICING V2 (estilo tráfego pago) --- */
+        :root {
+            --pricing-accent: #f59e0b;
+            --pricing-accent-soft: rgba(245,158,11,0.18);
+            --pricing-accent-border: rgba(245,158,11,0.35);
+        }
+
+        .pricing-v2 {
+            padding: 100px 5%;
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .pricing-head {
+            max-width: 920px;
+            margin: 0 auto 50px auto;
+        }
+        .pricing-kicker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: var(--pricing-accent-soft);
+            border: 1px solid var(--pricing-accent-border);
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .pricing-head h2 {
+            margin-top: 18px;
+            font-size: 2.6rem;
+            line-height: 1.15;
+        }
+        .pricing-head p {
+            margin-top: 12px;
+            color: #94a3b8;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .pay-grid {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+            text-align: left;
+        }
+
+        .pay-card {
+            position: relative;
+            background: rgba(30, 41, 59, 0.40);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 22px;
+            padding: 34px 30px;
+            transition: 0.25s ease;
+            overflow: hidden;
+        }
+        .pay-card:hover {
+            transform: translateY(-6px);
+            background: rgba(30, 41, 59, 0.70);
+            border-color: var(--pricing-accent-border);
+            box-shadow: 0 20px 55px -18px rgba(0,0,0,0.55);
+        }
+
+        .pay-card.featured {
+            border: 2px solid var(--pricing-accent);
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.72) 0%, rgba(15, 23, 42, 0.85) 100%);
+            box-shadow: 0 0 26px var(--pricing-accent-soft);
+            transform: scale(1.04);
+            z-index: 2;
+        }
+
+        .p-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #0f172a;
+        }
+        .p-badge.popular {
+            background: rgba(251, 146, 60, 0.95);
+        }
+        .p-badge.value {
+            background: rgba(34, 197, 94, 0.95);
+        }
+
+        .pay-card h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .p-price {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .p-price .money {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+        .p-price .per {
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .p-meta {
+            color: #cbd5e1;
+            font-weight: 700;
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+
+        .p-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 900;
+            background: rgba(16,185,129,0.12);
+            border: 1px solid rgba(16,185,129,0.25);
+            color: #34d399;
+            margin-bottom: 22px;
+        }
+
+        .p-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 26px 0;
+            display: grid;
+            gap: 12px;
+        }
+        .p-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #e2e8f0;
+            font-size: 0.98rem;
+            line-height: 1.35;
+        }
+        .p-list i {
+            color: var(--pricing-accent);
+            margin-top: 2px;
+            flex: 0 0 auto;
+        }
+
+        .p-cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            padding: 13px 16px;
+            border-radius: 12px;
+            font-weight: 900;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            transition: 0.22s ease;
+        }
+        .p-cta:hover {
+            transform: translateY(-2px);
+            border-color: var(--pricing-accent-border);
+            box-shadow: 0 0 22px var(--pricing-accent-soft);
+        }
+
+        .pricing-note {
+            max-width: 1120px;
+            margin: 28px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            text-align: left;
+        }
+        .note-box {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: rgba(15, 23, 42, 0.60);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 16px;
+        }
+        .note-box i {
+            color: var(--pricing-accent);
+            margin-top: 2px;
+        }
+        .note-box .muted {
+            color: #94a3b8;
+            margin-top: 3px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 900px) {
+            .pricing-head h2 { font-size: 2.1rem; }
+            .pricing-note { grid-template-columns: 1fr; }
+            .pay-card.featured { transform: none; }
+        }
+    
   </style>
 </head>
 
@@ -599,6 +812,7 @@
       <a class="nav-pill" href="index.html"><i data-lucide="arrow-left" size="16"></i> Voltar</a>
       <a href="mei.html">Empresarial</a>
       <a href="seguranca.html">Segurança</a>
+      <a href="#planos">Planos</a>
       <a href="#cta">Master</a>
     </nav>
 
@@ -873,7 +1087,83 @@
   </section>
 
   <!-- FAQ curtinho -->
-  <section class="section">
+  
+    <section id="planos" class="pricing-v2">
+      <div class="pricing-head">
+        <span class="pricing-kicker">Planos de Assinatura • Master</span>
+        <h2>Escolha apenas a forma de pagamento que melhor se adapta a você.</h2>
+        <p>Comece mensal e mude para semestral/anual quando quiser — <strong>pagando à vista você ganha mais desconto</strong>.</p>
+      </div>
+
+      <div class="pay-grid">
+        
+        <article class="pay-card">
+          
+          <h3>Mensal</h3>
+          <div class="p-price"><span class="money">R$97</span><span class="per"></span></div>
+          <div class="p-meta">Pagamento mensal</div>
+          <div class="p-pill">Sem fidelidade</div>
+          <ul class="p-list"><li><i data-lucide="check" size="18"></i><span>Carteira multi-clientes (perfís ilimitados)</span></li>
+<li><i data-lucide="check" size="18"></i><span>Relatórios com marca do cliente</span></li>
+<li><i data-lucide="check" size="18"></i><span>Envio automático por e-mail</span></li>
+<li><i data-lucide="check" size="18"></i><span>Painel Master + saúde da carteira</span></li>
+<li><i data-lucide="check" size="18"></i><span>Mordomo no WhatsApp</span></li>
+<li><i data-lucide="check" size="18"></i><span>Suporte VIP prioritário</span></li></ul>
+          <a class="p-cta" href="https://wa.me/5519996261910?text=Quero%20assinar%20o%20FinanPrime%20MASTER%20-%20Plano%20Mensal%20(com%20pagamento%20recorrente)." target="_blank" rel="noopener">Começar Agora</a>
+        </article>
+        
+        <article class="pay-card featured">
+          <div class="p-badge popular">Mais Popular</div>
+          <h3>Semestral</h3>
+          <div class="p-price"><span class="money">R$75,74</span><span class="per">/mês</span></div>
+          <div class="p-meta">R$497,00 à vista</div>
+          <div class="p-pill">+R$85 de DESCONTO</div>
+          <ul class="p-list"><li><i data-lucide="check" size="18"></i><span>Carteira multi-clientes (perfís ilimitados)</span></li>
+<li><i data-lucide="check" size="18"></i><span>Relatórios com marca do cliente</span></li>
+<li><i data-lucide="check" size="18"></i><span>Envio automático por e-mail</span></li>
+<li><i data-lucide="check" size="18"></i><span>Painel Master + saúde da carteira</span></li>
+<li><i data-lucide="check" size="18"></i><span>Mordomo no WhatsApp</span></li>
+<li><i data-lucide="check" size="18"></i><span>Suporte VIP prioritário</span></li></ul>
+          <a class="p-cta" href="https://wa.me/5519996261910?text=Quero%20assinar%20o%20FinanPrime%20MASTER%20-%20Plano%20Semestral%20(com%20pagamento%20recorrente)." target="_blank" rel="noopener">Começar Agora</a>
+        </article>
+        
+        <article class="pay-card valuecard">
+          <div class="p-badge value">Melhor Valor</div>
+          <h3>Anual</h3>
+          <div class="p-price"><span class="money">R$61,30</span><span class="per">/mês</span></div>
+          <div class="p-meta">R$597,00 à vista</div>
+          <div class="p-pill">+R$567 de DESCONTO!</div>
+          <ul class="p-list"><li><i data-lucide="check" size="18"></i><span>Carteira multi-clientes (perfís ilimitados)</span></li>
+<li><i data-lucide="check" size="18"></i><span>Relatórios com marca do cliente</span></li>
+<li><i data-lucide="check" size="18"></i><span>Envio automático por e-mail</span></li>
+<li><i data-lucide="check" size="18"></i><span>Painel Master + saúde da carteira</span></li>
+<li><i data-lucide="check" size="18"></i><span>Mordomo no WhatsApp</span></li>
+<li><i data-lucide="check" size="18"></i><span>Suporte VIP prioritário</span></li></ul>
+          <a class="p-cta" href="https://wa.me/5519996261910?text=Quero%20assinar%20o%20FinanPrime%20MASTER%20-%20Plano%20Anual%20(com%20pagamento%20recorrente)." target="_blank" rel="noopener">Começar Agora</a>
+        </article>
+        
+      </div>
+
+      <div class="pricing-note">
+        <div class="note-box">
+          <i data-lucide="shield-check" size="18"></i>
+          <div>
+            <strong>Garantia de 7 dias</strong>
+            <div class="muted">Se não fizer sentido, você cancela sem dor.</div>
+          </div>
+        </div>
+        <div class="note-box">
+          <i data-lucide="refresh-ccw" size="18"></i>
+          <div>
+            <strong>Sem pegadinha</strong>
+            <div class="muted">Renovação automática. Cancelou, parou de cobrar.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+<section class="section">
     <div class="section-title">
       <span>FAQ</span>
       <h2>Consultores perguntam isso sempre</h2>

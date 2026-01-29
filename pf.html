@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanPrime PF — Assinatura</title>
+
+  <link rel="shortcut icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --pf-primary: #0055cc;
+      --pf-deep: #003d99;
+      --dark: #0f172a;
+      --card: #1e293b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --success: #2ecc71;
+      --border: rgba(255,255,255,0.06);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    body { background: var(--dark); color: var(--text); overflow-x:hidden; }
+
+    header {
+      position: fixed;
+      top:0; left:0; right:0;
+      z-index: 1000;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 18px 5%;
+      background: rgba(15,23,42,0.90);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-size: 22px; font-weight: 900; }
+    .logo span { color: var(--pf-primary); }
+    nav a {
+      color: var(--muted);
+      text-decoration:none;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-left: 18px;
+    }
+    nav a:hover { color: #fff; }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 11px 18px;
+      border-radius: 12px;
+      text-decoration:none;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: 0.2s ease;
+    }
+    .btn-primary {
+      background: rgba(0,85,204,0.15);
+      border-color: rgba(0,85,204,0.35);
+      color: #cfe1ff;
+      box-shadow: 0 0 20px rgba(0,85,204,0.10);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 26px rgba(0,85,204,0.22);
+    }
+    .btn-solid {
+      background: var(--pf-primary);
+      border-color: var(--pf-primary);
+      color: white;
+      box-shadow: 0 0 22px rgba(0,85,204,0.28);
+    }
+    .btn-solid:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 32px rgba(0,85,204,0.45);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 110px 5% 60px;
+      text-align:center;
+      position:relative;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(0,85,204,0.25), transparent 55%),
+        radial-gradient(circle at 80% 50%, rgba(46,204,113,0.10), transparent 55%),
+        radial-gradient(circle at 30% 80%, rgba(0,61,153,0.18), transparent 60%);
+    }
+    .hero-inner { max-width: 920px; }
+    .badge {
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(0,85,204,0.12);
+      border: 1px solid rgba(0,85,204,0.30);
+      color: #cfe1ff;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.82rem;
+      margin-bottom: 22px;
+    }
+    h1 {
+      font-size: 4.2rem;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+      font-weight: 900;
+      background: linear-gradient(to right, #ffffff 15%, #cfe1ff 80%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.25rem;
+      line-height: 1.7;
+      margin: 0 auto 28px;
+      max-width: 760px;
+    }
+    .hero-actions {
+      display:flex;
+      justify-content:center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .mini-proof {
+      margin-top: 34px;
+      display:flex;
+      gap: 18px;
+      justify-content:center;
+      flex-wrap: wrap;
+      color: #64748b;
+      font-size: 0.92rem;
+    }
+    .mini-proof .item {
+      display:flex; align-items:center; gap:8px;
+    }
+    .mini-proof i { color: rgba(0,85,204,0.7); }
+
+    .section {
+      padding: 95px 5%;
+      border-top: 1px solid var(--border);
+    }
+    .section-head {
+      text-align:center;
+      max-width: 900px;
+      margin: 0 auto 55px;
+    }
+    .kicker {
+      color: var(--success);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.82rem;
+    }
+    .section-head h2 {
+      margin-top: 14px;
+      font-size: 2.6rem;
+      line-height: 1.2;
+    }
+    .section-head p {
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .card {
+      background: rgba(30, 41, 59, 0.40);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      transition: 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,85,204,0.35);
+      background: rgba(30,41,59,0.70);
+    }
+    .card .icon {
+      width: 44px; height: 44px;
+      border-radius: 16px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(0,85,204,0.15);
+      border: 1px solid rgba(0,85,204,0.35);
+      box-shadow: 0 0 18px rgba(0,85,204,0.12);
+      margin-bottom: 14px;
+    }
+    .card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); line-height: 1.7; }
+
+    /* FAQ */
+    .faq {
+      max-width: 1100px;
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+    .faq .q {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+    }
+    .faq .q h4 { font-size: 1.05rem; margin-bottom: 8px; }
+    .faq .q p { color: var(--muted); line-height: 1.65; }
+    @media (max-width: 950px) {
+      h1 { font-size: 3rem; }
+      .faq { grid-template-columns: 1fr; }
+    }
+
+    footer {
+      padding: 55px 5%;
+      border-top: 1px solid var(--border);
+      text-align:center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    .float-wa {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      background: #25D366;
+      color: #fff;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+      transition: 0.2s ease;
+      z-index: 9999;
+    }
+    .float-wa:hover { transform: scale(1.08); box-shadow: 0 0 30px rgba(37,211,102,0.45); }
+
+    
+        /* --- PRICING V2 (estilo tráfego pago) --- */
+        :root {
+            --pricing-accent: #0055cc;
+            --pricing-accent-soft: rgba(0,85,204,0.18);
+            --pricing-accent-border: rgba(0,85,204,0.35);
+        }
+
+        .pricing-v2 {
+            padding: 100px 5%;
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+        .pricing-head {
+            max-width: 920px;
+            margin: 0 auto 50px auto;
+        }
+        .pricing-kicker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: var(--pricing-accent-soft);
+            border: 1px solid var(--pricing-accent-border);
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .pricing-head h2 {
+            margin-top: 18px;
+            font-size: 2.6rem;
+            line-height: 1.15;
+        }
+        .pricing-head p {
+            margin-top: 12px;
+            color: #94a3b8;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .pay-grid {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+            text-align: left;
+        }
+
+        .pay-card {
+            position: relative;
+            background: rgba(30, 41, 59, 0.40);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 22px;
+            padding: 34px 30px;
+            transition: 0.25s ease;
+            overflow: hidden;
+        }
+        .pay-card:hover {
+            transform: translateY(-6px);
+            background: rgba(30, 41, 59, 0.70);
+            border-color: var(--pricing-accent-border);
+            box-shadow: 0 20px 55px -18px rgba(0,0,0,0.55);
+        }
+
+        .pay-card.featured {
+            border: 2px solid var(--pricing-accent);
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.72) 0%, rgba(15, 23, 42, 0.85) 100%);
+            box-shadow: 0 0 26px var(--pricing-accent-soft);
+            transform: scale(1.04);
+            z-index: 2;
+        }
+
+        .p-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #0f172a;
+        }
+        .p-badge.popular {
+            background: rgba(251, 146, 60, 0.95);
+        }
+        .p-badge.value {
+            background: rgba(34, 197, 94, 0.95);
+        }
+
+        .pay-card h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .p-price {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .p-price .money {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+        .p-price .per {
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .p-meta {
+            color: #cbd5e1;
+            font-weight: 700;
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+
+        .p-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 900;
+            background: rgba(16,185,129,0.12);
+            border: 1px solid rgba(16,185,129,0.25);
+            color: #34d399;
+            margin-bottom: 22px;
+        }
+
+        .p-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 26px 0;
+            display: grid;
+            gap: 12px;
+        }
+        .p-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            color: #e2e8f0;
+            font-size: 0.98rem;
+            line-height: 1.35;
+        }
+        .p-list i {
+            color: var(--pricing-accent);
+            margin-top: 2px;
+            flex: 0 0 auto;
+        }
+
+        .p-cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            padding: 13px 16px;
+            border-radius: 12px;
+            font-weight: 900;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            transition: 0.22s ease;
+        }
+        .p-cta:hover {
+            transform: translateY(-2px);
+            border-color: var(--pricing-accent-border);
+            box-shadow: 0 0 22px var(--pricing-accent-soft);
+        }
+
+        .pricing-note {
+            max-width: 1120px;
+            margin: 28px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            text-align: left;
+        }
+        .note-box {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: rgba(15, 23, 42, 0.60);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 16px;
+        }
+        .note-box i {
+            color: var(--pricing-accent);
+            margin-top: 2px;
+        }
+        .note-box .muted {
+            color: #94a3b8;
+            margin-top: 3px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 900px) {
+            .pricing-head h2 { font-size: 2.1rem; }
+            .pricing-note { grid-template-columns: 1fr; }
+            .pay-card.featured { transform: none; }
+        }
+    
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Finan<span>Prime PF</span></div>
+    <nav>
+      <a href="index.html">← Voltar</a>
+      <a class="btn btn-solid" href="https://wa.me/5519996261910?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20PF%20e%20quero%20assinar%20o%20FinanPrime." target="_blank" rel="noopener">
+        <i data-lucide="message-circle" size="18"></i> Falar no WhatsApp
+      </a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="badge"><i data-lucide="sparkles" size="16"></i> FinanPrime • Pessoal</div>
+      <h1>Seu dinheiro em paz.<br/>Em 5 minutos por dia.</h1>
+      <p>Feito pra quem estuda, trabalha e vive correndo. Você organiza, entende e toma decisão — sem planilha, sem culpa e sem confusão.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#planos"><i data-lucide="badge-check" size="18"></i> Ver planos</a>
+        <a class="btn btn-primary" href="https://wa.me/5519996261910?text=Quero%20uma%20demonstra%C3%A7%C3%A3o%20do%20FinanPrime%20PF" target="_blank" rel="noopener">
+          <i data-lucide="play-circle" size="18"></i> Ver demonstração
+        </a>
+      </div>
+
+      <div class="mini-proof">
+        <div class="item"><i data-lucide="lock-keyhole" size="16"></i> Dados locais</div>
+        <div class="item"><i data-lucide="repeat" size="16"></i> Assinatura flexível</div>
+        <div class="item"><i data-lucide="clock" size="16"></i> Rotina rápida</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div class="kicker">O que muda na sua vida</div>
+      <h2>Menos ansiedade. Mais clareza.</h2>
+      <p>O FinanPrime PF te dá um “painel de controle” simples, pra você saber o que pode gastar, o que precisa guardar e como evoluir mês a mês.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon"><i data-lucide="radar" size="20"></i></div>
+        <h3>Você enxerga o mês inteiro</h3>
+        <p>Entrada, saída, contas e sobra — com visual limpo e objetivo.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i data-lucide="shield-check" size="20"></i></div>
+        <h3>Reserva e metas sem drama</h3>
+        <p>Você cria metas reais (e mantém) com lembretes e visão de progresso.</p>
+      </div>
+      <div class="card">
+        <div class="icon"><i data-lucide="message-circle" size="20"></i></div>
+        <h3>Mordomo no WhatsApp</h3>
+        <p>Para registrar e acompanhar sem abrir app toda hora — perfeito pra rotina corrida.</p>
+      </div>
+    </div>
+  </section>
+
+  
+    <section id="planos" class="pricing-v2">
+      <div class="pricing-head">
+        <span class="pricing-kicker">Planos de Assinatura • Pessoal</span>
+        <h2>Escolha apenas a forma de pagamento que melhor se adapta a você.</h2>
+        <p>Comece mensal e mude para semestral/anual quando quiser — <strong>pagando à vista você ganha mais desconto</strong>.</p>
+      </div>
+
+      <div class="pay-grid">
+        
+        <article class="pay-card">
+          
+          <h3>Mensal</h3>
+          <div class="p-price"><span class="money">R$47</span><span class="per"></span></div>
+          <div class="p-meta">Pagamento mensal</div>
+          <div class="p-pill">R$50 de DESCONTO</div>
+          <ul class="p-list"><li><i data-lucide="check" size="18"></i><span>Acesso total ao PF (gastos, metas e relatórios)</span></li>
+<li><i data-lucide="check" size="18"></i><span>Dashboard pessoal personalizado</span></li>
+<li><i data-lucide="check" size="18"></i><span>Importação OFX automática</span></li>
+<li><i data-lucide="check" size="18"></i><span>Reserva de emergência + metas</span></li>
+<li><i data-lucide="check" size="18"></i><span>Mordomo no WhatsApp</span></li>
+<li><i data-lucide="check" size="18"></i><span>Suporte prioritário</span></li></ul>
+          <a class="p-cta" href="https://pay.cakto.com.br/3ei3chq_746265" target="_blank" rel="noopener">Começar Agora</a>
+        </article>
+        
+        <article class="pay-card featured">
+          <div class="p-badge popular">Mais Popular</div>
+          <h3>Semestral</h3>
+          <div class="p-price"><span class="money">R$36,70</span><span class="per">/mês</span></div>
+          <div class="p-meta">R$197,00 à vista</div>
+          <div class="p-pill">+R$85 de DESCONTO</div>
+          <ul class="p-list"><li><i data-lucide="check" size="18"></i><span>Acesso total ao PF (gastos, metas e relatórios)</span></li>
+<li><i data-lucide="check" size="18"></i><span>Dashboard pessoal personalizado</span></li>
+<li><i data-lucide="check" size="18"></i><span>Importação OFX automática</span></li>
+<li><i data-lucide="check" size="18"></i><span>Reserva de emergência + metas</span></li>
+<li><i data-lucide="check" size="18"></i><span>Mordomo no WhatsApp</span></li>
+<li><i data-lucide="check" size="18"></i><span>Suporte prioritário</span></li></ul>
+          <a class="p-cta" href="https://pay.cakto.com.br/os9hd7n_746271" target="_blank" rel="noopener">Começar Agora</a>
+        </article>
+        
+        <article class="pay-card valuecard">
+          <div class="p-badge value">Melhor Valor</div>
+          <h3>Anual</h3>
+          <div class="p-price"><span class="money">R$29,70</span><span class="per">/mês</span></div>
+          <div class="p-meta">R$297,00 à vista</div>
+          <div class="p-pill">+R$267 de DESCONTO!</div>
+          <ul class="p-list"><li><i data-lucide="check" size="18"></i><span>Acesso total ao PF (gastos, metas e relatórios)</span></li>
+<li><i data-lucide="check" size="18"></i><span>Dashboard pessoal personalizado</span></li>
+<li><i data-lucide="check" size="18"></i><span>Importação OFX automática</span></li>
+<li><i data-lucide="check" size="18"></i><span>Reserva de emergência + metas</span></li>
+<li><i data-lucide="check" size="18"></i><span>Mordomo no WhatsApp</span></li>
+<li><i data-lucide="check" size="18"></i><span>Suporte prioritário</span></li></ul>
+          <a class="p-cta" href="https://pay.cakto.com.br/fawqey7_746272" target="_blank" rel="noopener">Começar Agora</a>
+        </article>
+        
+      </div>
+
+      <div class="pricing-note">
+        <div class="note-box">
+          <i data-lucide="shield-check" size="18"></i>
+          <div>
+            <strong>Garantia de 7 dias</strong>
+            <div class="muted">Se não fizer sentido, você cancela sem dor.</div>
+          </div>
+        </div>
+        <div class="note-box">
+          <i data-lucide="refresh-ccw" size="18"></i>
+          <div>
+            <strong>Sem pegadinha</strong>
+            <div class="muted">Renovação automática. Cancelou, parou de cobrar.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+  <section class="section">
+    <div class="section-head">
+      <div class="kicker">FAQ</div>
+      <h2>Dúvidas rápidas</h2>
+      <p>Sem enrolação. Se tiver algo específico, chama no WhatsApp.</p>
+    </div>
+
+    <div class="faq">
+      <div class="q">
+        <h4>Funciona no PC e no celular?</h4>
+        <p>Sim. O núcleo é no desktop e você tem o Mobile como suporte para rotina e acompanhamento.</p>
+      </div>
+      <div class="q">
+        <h4>Posso cancelar quando quiser?</h4>
+        <p>Sim. Você cancela e para de cobrar. Sem fidelidade e sem pegadinha.</p>
+      </div>
+      <div class="q">
+        <h4>Tem desconto pagando à vista?</h4>
+        <p>Tem. Semestral e anual têm valor “à vista” com desconto maior (igual no print do Mordomia).</p>
+      </div>
+      <div class="q">
+        <h4>Como eu começo hoje?</h4>
+        <p>Escolha o plano ali em cima e finalize pelo WhatsApp (ou coloque seu link de checkout depois).</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 FinanPrime Technology. Feito para quem quer clareza financeira.</p>
+  </footer>
+
+  <a class="float-wa" href="https://wa.me/5519996261910?text=Ol%C3%A1!%20Vim%20pela%20p%C3%A1gina%20PF%20e%20quero%20assinar%20o%20FinanPrime." target="_blank" rel="noopener">
+    <i data-lucide="message-circle" size="28"></i>
+  </a>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
